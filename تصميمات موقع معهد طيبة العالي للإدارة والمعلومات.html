@@ -1,0 +1,614 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>تصميمات موقع معهد طيبة العالي للإدارة والمعلومات</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;600;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--chrome-bg:#ffffff;--chrome-ink:#16212b;--chrome-line:#d8dee5;--chrome-soft:#eef1f4}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--chrome-bg:#171b21;--chrome-ink:#e9edf1;--chrome-line:#2b323b;--chrome-soft:#20252c}}
+:root[data-theme="dark"]{--chrome-bg:#171b21;--chrome-ink:#e9edf1;--chrome-line:#2b323b;--chrome-soft:#20252c}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--chrome-bg);color:var(--chrome-ink);font-family:"IBM Plex Sans Arabic","Segoe UI",Tahoma,sans-serif;line-height:1.7}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer}
+.i{width:1.25em;height:1.25em;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+:focus-visible{outline:3px solid #f2a900;outline-offset:2px}
+.design{display:none}
+.design.on{display:block}
+
+/* ---------- design switcher ---------- */
+.switch{position:sticky;top:env(safe-area-inset-top,0px);z-index:60;background:var(--chrome-bg);border-bottom:1px solid var(--chrome-line);display:flex;gap:8px;align-items:center;padding:10px 14px;overflow-x:auto}
+.switch b{font-weight:600;white-space:nowrap;margin-inline-end:6px}
+.switch button{border:1px solid var(--chrome-line);background:var(--chrome-soft);color:var(--chrome-ink);border-radius:999px;padding:6px 14px;white-space:nowrap}
+.switch button[aria-pressed="true"]{background:var(--chrome-ink);color:var(--chrome-bg);border-color:var(--chrome-ink)}
+.switch small{margin-inline-start:auto;opacity:.7;white-space:nowrap}
+
+/* =====================================================
+   DESIGN A — مؤسسي (petrol + brass)
+   ===================================================== */
+.A{--pet:#0E3B43;--pet2:#0A2D33;--brass:#B8893B;--paper:#F5F6F4;--ink:#14282B;--mist:#DCE5E4;--mute:#4A5F62;background:var(--paper);color:var(--ink);font-family:"IBM Plex Sans Arabic","Segoe UI",Tahoma,sans-serif}
+.A .wrap{max-width:1160px;margin:0 auto;padding:0 20px}
+.A .util{background:var(--pet2);color:#cfe0de;font-size:13px}
+.A .util .wrap{display:flex;gap:18px;justify-content:space-between;padding-top:7px;padding-bottom:7px;flex-wrap:wrap}
+.A .util nav{display:flex;gap:16px}
+.A .head{background:#fff;border-bottom:3px solid var(--brass)}
+.A .head .wrap{display:flex;align-items:center;gap:16px;padding-top:14px;padding-bottom:14px;flex-wrap:wrap}
+.A .logo{display:flex;align-items:center;gap:12px}
+.A .mono{width:54px;height:54px;border-radius:50%;background:var(--pet);color:var(--brass);display:grid;place-items:center;font-family:Amiri,serif;font-size:34px;font-weight:700;border:2px solid var(--brass);line-height:1;padding-bottom:6px}
+.A .logo strong{display:block;font-family:Amiri,serif;font-size:21px;line-height:1.25;color:var(--pet)}
+.A .logo small{font-size:12.5px;color:var(--mute)}
+.A .menu{display:flex;gap:4px;margin-inline-start:auto;overflow-x:auto;max-width:100%}
+.A .menu a{padding:8px 12px;font-weight:500;white-space:nowrap;border-radius:4px}
+.A .menu a:hover{background:var(--mist)}
+.A section{padding:64px 0}
+.A .hero{position:relative;background:var(--pet);color:#fff;overflow:hidden;padding:0}
+.A .hero .pat{position:absolute;inset:0;width:100%;height:100%}
+.A .hero .wrap{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding-top:64px;padding-bottom:64px}
+.A h1{font-family:Amiri,serif;font-weight:700;font-size:clamp(34px,5vw,56px);line-height:1.4;margin:0 0 16px}
+.A .lead{font-size:18px;color:#cfe0de;max-width:34em;margin:0 0 26px}
+.A .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:4px;font-weight:600;border:2px solid transparent}
+.A .btn.gold{background:var(--brass);color:#1b1405}
+.A .btn.line{border-color:#ffffff66;color:#fff}
+.A .btns{display:flex;gap:12px;flex-wrap:wrap}
+.A .gate{background:#fff;color:var(--ink);border-radius:6px;box-shadow:0 20px 40px #00000040;overflow:hidden}
+.A .gate h2{margin:0;padding:14px 18px;font-size:16px;background:var(--mist);font-weight:600}
+.A .tabs{display:flex;border-bottom:1px solid var(--mist)}
+.A .tabs button{flex:1;padding:12px 6px;border:0;background:transparent;font-weight:600;color:var(--mute);border-bottom:3px solid transparent}
+.A .tabs button[aria-selected="true"]{color:var(--pet);border-bottom-color:var(--brass)}
+.A .gate ul{list-style:none;margin:0;padding:6px 18px 12px}
+.A .gate li a{display:flex;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--mist)}
+.A .gate li:last-child a{border-bottom:0}
+.A .gate li .i{color:var(--brass)}
+.A .gate li a:hover{color:var(--pet);font-weight:600}
+.A .sec-title{font-family:Amiri,serif;font-size:32px;color:var(--pet);margin:0 0 6px}
+.A .sec-sub{color:var(--mute);margin:0 0 30px;max-width:40em}
+.A .progs{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.A .prog{background:#fff;border-top:4px solid var(--brass);padding:24px;display:flex;flex-direction:column;gap:10px}
+.A .prog .i{width:34px;height:34px;color:var(--pet)}
+.A .prog h3{font-family:Amiri,serif;font-size:24px;margin:0;color:var(--pet)}
+.A .prog p{margin:0;color:var(--mute);flex:1}
+.A .more{display:inline-flex;gap:6px;align-items:center;color:var(--pet);font-weight:600}
+.A .news{background:#fff}
+.A .nlist{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.A .nlist article{border-inline-start:3px solid var(--brass);padding-inline-start:16px}
+.A .tag{font-size:13px;color:var(--brass);font-weight:600}
+.A .nlist h3{margin:4px 0 6px;font-size:19px;line-height:1.5}
+.A .nlist p{margin:0;color:var(--mute);font-size:15px}
+.A .ask{background:var(--pet2);color:#fff;padding:44px 0}
+.A .ask .wrap{display:flex;gap:30px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.A .ask h2{font-family:Amiri,serif;font-size:30px;margin:0 0 6px}
+.A .ask p{margin:0;color:#cfe0de}
+.A .qs{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.A .qs button{border:1px solid #ffffff55;background:transparent;color:#fff;border-radius:999px;padding:6px 14px}
+.A .qs button:hover{background:#ffffff1a}
+.A footer{background:var(--pet2);color:#b9cdcb;border-top:3px solid var(--brass);padding:40px 0 24px;font-size:15px}
+.A footer .cols{display:grid;grid-template-columns:2fr 1fr 1fr;gap:30px}
+.A footer h4{color:#fff;margin:0 0 10px;font-family:Amiri,serif;font-size:19px}
+.A footer a{display:block;padding:3px 0}
+.A .copy{margin-top:26px;padding-top:16px;border-top:1px solid #ffffff22;font-size:13px}
+
+/* =====================================================
+   DESIGN B — جريء (cobalt + yellow)
+   ===================================================== */
+.B{--cob:#2238D0;--cobd:#141F8C;--yel:#FFD23F;--ink:#0D1233;--sky:#EEF1FF;--mute:#4B5280;background:#fff;color:var(--ink);font-family:Cairo,"Segoe UI",Tahoma,sans-serif}
+.B .wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+.B .nav{padding:18px 0}
+.B .nav .wrap{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.B .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;line-height:1.2}
+.B .logo small{display:block;font-weight:600;font-size:12.5px;color:var(--mute)}
+.B .mono{width:46px;height:46px;border-radius:12px;background:var(--cob);color:var(--yel);display:grid;place-items:center;font-size:28px;font-weight:800;padding-bottom:6px;line-height:1}
+.B .links{display:flex;gap:6px;margin-inline-start:auto;overflow-x:auto;max-width:100%}
+.B .links a{padding:8px 12px;font-weight:600;border-radius:999px;white-space:nowrap}
+.B .links a:hover{background:var(--sky)}
+.B .apply{background:var(--ink);color:#fff;padding:10px 20px;border-radius:999px;font-weight:700;white-space:nowrap}
+.B .hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center;padding-top:36px;padding-bottom:70px}
+.B h1{font-weight:800;font-size:clamp(38px,6vw,68px);line-height:1.25;margin:0 0 18px}
+.B .lead{font-size:19px;color:var(--mute);max-width:30em;margin:0 0 28px}
+.B .btns{display:flex;gap:12px;flex-wrap:wrap}
+.B .btn{display:inline-flex;gap:8px;align-items:center;padding:13px 26px;border-radius:14px;font-weight:700;font-size:17px;border:2px solid var(--ink);background:#fff;color:var(--ink)}
+.B .btn.fill{background:var(--cob);border-color:var(--cob);color:#fff}
+.B .stagewrap{position:relative;isolation:isolate}
+.B .stagewrap::before{content:"";position:absolute;inset-inline-end:-14px;top:-14px;width:96px;height:96px;background:var(--yel);border-radius:24px;z-index:-1}
+.B .stage{background:var(--cob);border-radius:28px;padding:26px;min-height:360px;display:flex;flex-direction:column;gap:12px;justify-content:center}
+.B .msg{max-width:86%;padding:12px 16px;border-radius:18px;font-size:16px;line-height:1.7}
+.B .msg.u{align-self:flex-start;background:#fff;color:var(--ink);border-bottom-right-radius:4px;animation:pop .5s .4s both}
+.B .msg.b{align-self:flex-end;background:var(--yel);color:var(--ink);border-bottom-left-radius:4px;animation:pop .5s 3s both}
+.B .dots{align-self:flex-end;background:var(--yel);border-radius:18px;display:flex;gap:5px;overflow:hidden;animation:dotsLife 1.9s 1.1s both}
+.B .dots i{width:7px;height:7px;border-radius:50%;background:var(--ink);opacity:.6}
+@keyframes pop{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes dotsLife{0%{opacity:0;max-height:0;padding:0 16px}10%,88%{opacity:1;max-height:44px;padding:14px 16px}100%{opacity:0;max-height:0;padding:0 16px}}
+.B section{padding:64px 0}
+.B .hero{padding:0}
+.B h2.t{font-size:clamp(28px,4vw,42px);font-weight:800;margin:0 0 8px}
+.B .sub{color:var(--mute);margin:0 0 30px;font-size:18px}
+.B .index{border-top:2px solid var(--ink)}
+.B .row{display:grid;grid-template-columns:60px 1fr 46px;gap:18px;align-items:center;padding:24px 8px;border-bottom:2px solid var(--ink);transition:background .2s}
+.B .row:hover{background:var(--yel)}
+.B .row h3{font-size:clamp(24px,4vw,40px);font-weight:800;margin:0;line-height:1.25}
+.B .row p{margin:4px 0 0;color:var(--mute)}
+.B .row:hover p{color:var(--ink)}
+.B .row .ic{width:56px;height:56px;border-radius:16px;background:var(--sky);display:grid;place-items:center;color:var(--cob)}
+.B .row .ic .i{width:28px;height:28px}
+.B .row .go{width:44px;height:44px;border-radius:50%;border:2px solid var(--ink);display:grid;place-items:center}
+.B .svc-wrap{background:var(--sky)}
+.B .svc{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.B .svc a{display:flex;gap:14px;align-items:center;padding:20px;border-radius:18px;background:#fff;font-weight:700;font-size:18px;border:2px solid transparent}
+.B .svc a:hover{border-color:var(--cob)}
+.B .svc .i{width:28px;height:28px;color:var(--cob)}
+.B .cta{background:var(--yel);padding:0}
+.B .cta .wrap{display:flex;gap:24px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding-top:48px;padding-bottom:48px}
+.B .cta h2{font-size:clamp(28px,4vw,42px);font-weight:800;margin:0}
+.B .nl{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.B .nl article{border-top:2px solid var(--ink);padding-top:14px}
+.B .nl .tg{display:inline-block;background:var(--sky);color:var(--cob);font-weight:700;font-size:14px;padding:2px 12px;border-radius:999px}
+.B .nl h3{font-size:21px;margin:10px 0 6px;line-height:1.5}
+.B .nl p{margin:0;color:var(--mute)}
+.B footer{background:var(--cobd);color:#cdd3ff;padding:40px 0 24px}
+.B footer .cols{display:grid;grid-template-columns:2fr 1fr 1fr;gap:30px}
+.B footer h4{color:#fff;margin:0 0 10px;font-size:18px}
+.B footer a{display:block;padding:3px 0}
+.B .copy{margin-top:26px;padding-top:16px;border-top:1px solid #ffffff2b;font-size:13px}
+
+/* =====================================================
+   DESIGN C — بيانات (midnight + amber)
+   ===================================================== */
+.C{--bg:#0B1220;--panel:#121B2E;--line:#243049;--tx:#E8EEF9;--mut:#97A6C4;--amb:#FFB547;background:var(--bg);color:var(--tx);font-family:Tajawal,"Segoe UI",Tahoma,sans-serif}
+.C .wrap{max-width:1160px;margin:0 auto;padding:0 22px}
+.C .nav .wrap{display:flex;align-items:center;gap:18px;padding-top:16px;padding-bottom:16px;flex-wrap:wrap}
+.C .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;line-height:1.2}
+.C .logo small{display:block;font-weight:500;font-size:12.5px;color:var(--mut)}
+.C .mono{width:42px;height:42px;border:2px solid var(--amb);color:var(--amb);border-radius:10px;display:grid;place-items:center;font-size:26px;font-weight:800;padding-bottom:5px;line-height:1}
+.C .links{display:flex;gap:4px;margin-inline-start:auto;overflow-x:auto;max-width:100%}
+.C .links a{padding:8px 12px;color:var(--mut);font-weight:500;white-space:nowrap}
+.C .links a:hover{color:var(--tx)}
+.C .portal{border:1px solid var(--amb);color:var(--amb);padding:8px 18px;border-radius:10px;font-weight:700;white-space:nowrap}
+.C .hero{position:relative;text-align:center;padding:84px 0 72px;background:linear-gradient(var(--line) 1px,transparent 1px) 0 0/48px 48px,linear-gradient(90deg,var(--line) 1px,transparent 1px) 0 0/48px 48px}
+.C .hero::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 45%,transparent 0,var(--bg) 72%);pointer-events:none}
+.C .hero .wrap{position:relative;z-index:1}
+.C h1{font-weight:800;font-size:clamp(38px,6.5vw,68px);line-height:1.25;margin:0 0 14px}
+.C .lead{color:var(--mut);font-size:19px;max-width:32em;margin:0 auto}
+.C .askbox{max-width:680px;margin:30px auto 16px;display:flex;gap:8px;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:8px}
+.C .askbox:focus-within{border-color:var(--amb)}
+.C .askbox input{flex:1;min-width:0;background:transparent;border:0;color:var(--tx);font:inherit;font-size:18px;padding:12px 14px;outline:0}
+.C .askbox button{background:var(--amb);color:#201400;border:0;border-radius:11px;padding:0 20px;font-weight:800;display:flex;align-items:center;gap:8px}
+.C .chips{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.C .chips button{border:1px solid var(--line);background:transparent;color:var(--mut);border-radius:999px;padding:6px 14px}
+.C .chips button:hover{border-color:var(--amb);color:var(--tx)}
+.C section{padding:60px 0}
+.C .hero{padding:84px 0 72px}
+.C h2.t{font-size:clamp(26px,4vw,38px);font-weight:800;margin:0 0 6px}
+.C .sub{color:var(--mut);margin:0 0 28px;font-size:18px}
+.C .panels{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--panel)}
+.C .panels article{padding:28px;border-inline-start:1px solid var(--line)}
+.C .panels article:first-child{border-inline-start:0}
+.C .panels .i{width:32px;height:32px;color:var(--amb)}
+.C .panels h3{font-size:24px;margin:12px 0 6px}
+.C .panels p{margin:0 0 14px;color:var(--mut)}
+.C .tg{display:inline-block;font-size:13.5px;border:1px solid var(--line);color:var(--mut);padding:2px 10px;border-radius:999px;margin:0 0 6px 6px}
+.C .steps{list-style:none;margin:30px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;counter-reset:s}
+.C .step{position:relative;border-top:2px solid var(--line);padding-top:26px}
+.C .step::before{counter-increment:s;content:counter(s,arabic-indic);position:absolute;top:-16px;inset-inline-start:0;width:32px;height:32px;border-radius:50%;background:var(--bg);border:2px solid var(--amb);color:var(--amb);display:grid;place-items:center;font-weight:800}
+.C .step h3{margin:0 0 4px;font-size:19px}
+.C .step p{margin:0;color:var(--mut);font-size:15.5px}
+.C .nrows a{display:flex;gap:18px;align-items:baseline;padding:16px 4px;border-bottom:1px solid var(--line)}
+.C .nrows a:hover{background:var(--panel)}
+.C .nrows .nt{color:var(--amb);font-size:14px;min-width:80px;font-weight:700}
+.C .nrows span:last-child{font-size:18px}
+.C footer{border-top:1px solid var(--line);padding:40px 0 24px;color:var(--mut)}
+.C footer .cols{display:grid;grid-template-columns:2fr 1fr 1fr;gap:30px}
+.C footer h4{color:var(--tx);margin:0 0 10px;font-size:18px}
+.C footer a{display:block;padding:3px 0}
+.C .copy{margin-top:26px;padding-top:16px;border-top:1px solid var(--line);font-size:13px}
+
+/* ---------- responsive ---------- */
+@media (max-width:860px){
+ .A .hero .wrap,.B .hero .wrap{grid-template-columns:1fr}
+ .A .progs,.A .nlist,.A footer .cols,.B .nl,.B .svc,.B footer .cols,.C .panels,.C .steps,.C footer .cols{grid-template-columns:1fr}
+ .C .panels article{border-inline-start:0;border-top:1px solid var(--line)}
+ .C .panels article:first-child{border-top:0}
+ .B .svc{grid-template-columns:1fr 1fr}
+ .C .steps{gap:34px}
+ .B .row{grid-template-columns:48px 1fr 40px;gap:12px}
+ .switch small{display:none}
+}
+
+/* ---------- chatbot widget (themed per design) ---------- */
+body[data-design="A"]{--c-pri:#0E3B43;--c-on:#fff;--c-bg:#fff;--c-ink:#14282B;--c-mut:#4A5F62;--c-line:#DCE5E4;--c-bot:#EEF2F1;--c-usr:#0E3B43;--c-usr-ink:#fff;--c-r:6px;--c-font:"IBM Plex Sans Arabic","Segoe UI",Tahoma,sans-serif}
+body[data-design="B"]{--c-pri:#2238D0;--c-on:#fff;--c-bg:#fff;--c-ink:#0D1233;--c-mut:#4B5280;--c-line:#DDE2FF;--c-bot:#EEF1FF;--c-usr:#FFD23F;--c-usr-ink:#0D1233;--c-r:22px;--c-font:Cairo,"Segoe UI",Tahoma,sans-serif}
+body[data-design="C"]{--c-pri:#FFB547;--c-on:#201400;--c-bg:#121B2E;--c-ink:#E8EEF9;--c-mut:#97A6C4;--c-line:#243049;--c-bot:#1B2740;--c-usr:#FFB547;--c-usr-ink:#201400;--c-r:16px;--c-font:Tajawal,"Segoe UI",Tahoma,sans-serif}
+#chatBtn{position:fixed;left:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:80;display:flex;align-items:center;gap:10px;background:var(--c-pri);color:var(--c-on);border:0;border-radius:999px;padding:14px 20px;font-family:var(--c-font);font-weight:700;font-size:16px;box-shadow:0 8px 24px #0000004d}
+#chat{position:fixed;left:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:90;width:min(380px,calc(100vw - 36px));height:min(560px,calc(100dvh - 120px));background:var(--c-bg);color:var(--c-ink);border:1px solid var(--c-line);border-radius:var(--c-r);box-shadow:0 20px 50px #00000055;display:none;flex-direction:column;overflow:hidden;font-family:var(--c-font)}
+#chat.open{display:flex}
+#chat header{background:var(--c-pri);color:var(--c-on);padding:14px 16px;display:flex;gap:12px;align-items:center}
+#chat header div{flex:1}
+#chat header strong{display:block;font-size:17px;line-height:1.4}
+#chat header small{opacity:.85}
+#chat header button{background:transparent;border:0;color:inherit;padding:6px;border-radius:8px}
+#msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px}
+.m{max-width:86%;padding:10px 14px;border-radius:calc(var(--c-r) * .8);line-height:1.7;font-size:15.5px}
+.m.bot{align-self:flex-end;background:var(--c-bot)}
+.m.usr{align-self:flex-start;background:var(--c-usr);color:var(--c-usr-ink)}
+.m.typing{display:flex;gap:4px;align-items:center;padding:14px}
+.m.typing i{width:7px;height:7px;border-radius:50%;background:var(--c-mut);animation:blink 1s infinite}
+.m.typing i:nth-child(2){animation-delay:.15s}.m.typing i:nth-child(3){animation-delay:.3s}
+@keyframes blink{0%,100%{opacity:.25}50%{opacity:1}}
+#sugg{display:flex;gap:6px;flex-wrap:wrap;padding:0 14px 10px}
+#sugg button{border:1px solid var(--c-line);background:transparent;color:var(--c-ink);border-radius:999px;padding:5px 12px;font:inherit;font-size:14px}
+#sugg button:hover{border-color:var(--c-pri)}
+#chatForm{display:flex;gap:8px;padding:10px;border-top:1px solid var(--c-line)}
+#chatInput{flex:1;min-width:0;border:1px solid var(--c-line);background:transparent;color:var(--c-ink);border-radius:calc(var(--c-r) * .7);padding:10px 12px;font:inherit}
+#chatForm button{background:var(--c-pri);color:var(--c-on);border:0;border-radius:calc(var(--c-r) * .7);padding:0 14px;display:grid;place-items:center}
+#chatForm button .i{transform:scaleX(-1)}
+
+@media (prefers-reduced-motion:reduce){
+ html{scroll-behavior:auto}
+ *{animation:none!important;transition:none!important}
+ .B .dots{display:none}
+}
+</style>
+</head>
+<body data-design="A">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="cap" viewBox="0 0 24 24"><path d="M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></symbol>
+<symbol id="book" viewBox="0 0 24 24"><path d="M2 4h7a3 3 0 0 1 3 3v13a2 2 0 0 0-2-2H2z"/><path d="M22 4h-7a3 3 0 0 0-3 3v13a2 2 0 0 1 2-2h8z"/></symbol>
+<symbol id="chart" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></symbol>
+<symbol id="laptop" viewBox="0 0 24 24"><path d="M4 5h16v11H4z"/><path d="M2 19h20"/></symbol>
+<symbol id="calc" viewBox="0 0 24 24"><path d="M5 3h14v18H5z"/><path d="M8 7h8"/><path d="M8 12h2M14 12h2M8 16h2M14 16h2"/></symbol>
+<symbol id="users" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/></symbol>
+<symbol id="building" viewBox="0 0 24 24"><path d="M4 21V5l8-3 8 3v16"/><path d="M9 21v-5h6v5"/><path d="M8 9h2M14 9h2M8 13h2M14 13h2"/></symbol>
+<symbol id="chatic" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.5 7.2L4 20l1-4.2A8 8 0 1 1 21 12z"/></symbol>
+<symbol id="send" viewBox="0 0 24 24"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></symbol>
+<symbol id="back" viewBox="0 0 24 24"><path d="M19 12H5"/><path d="M11 6l-6 6 6 6"/></symbol>
+<symbol id="x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+<symbol id="cal" viewBox="0 0 24 24"><path d="M4 6h16v14H4z"/><path d="M4 10h16M8 3v4M16 3v4"/></symbol>
+<symbol id="wallet" viewBox="0 0 24 24"><path d="M3 7h18v12H3z"/><path d="M3 7l3-3h12l3 3"/><path d="M16 13h3"/></symbol>
+<symbol id="file" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/></symbol>
+<symbol id="award" viewBox="0 0 24 24"><circle cx="12" cy="9" r="5"/><path d="M8.5 13.5L7 21l5-3 5 3-1.5-7.5"/></symbol>
+<symbol id="idcard" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M6 16c.5-2 5.5-2 6 0M14 10h4M14 14h4"/></symbol>
+</defs></svg>
+
+<div class="switch" role="toolbar" aria-label="اختيار التصميم">
+  <b>التصميم:</b>
+  <button data-d="A" aria-pressed="true">١ مؤسسي</button>
+  <button data-d="B" aria-pressed="false">٢ جريء للطلاب</button>
+  <button data-d="C" aria-pressed="false">٣ بيانات</button>
+  <small>المحتوى تجريبي، عدّله ببيانات المعهد</small>
+</div>
+
+<!-- =================== DESIGN A =================== -->
+<div class="design A on" id="dA">
+  <div class="util"><div class="wrap"><span>معهد طيبة العالي للإدارة والمعلومات</span>
+    <nav aria-label="روابط سريعة"><a href="#">بوابة الطالب</a><a href="#">البريد الإلكتروني</a><a href="#">English</a></nav></div></div>
+  <header class="head"><div class="wrap">
+    <a class="logo" href="#"><span class="mono" aria-hidden="true">ط</span><span><strong>معهد طيبة العالي للإدارة والمعلومات</strong><small>Tiba Higher Institute</small></span></a>
+    <nav class="menu" aria-label="القائمة الرئيسية"><a href="#">الرئيسية</a><a href="#">عن المعهد</a><a href="#">الأقسام</a><a href="#">القبول والتسجيل</a><a href="#">شئون الطلاب</a><a href="#">الأخبار</a><a href="#">تواصل معنا</a></nav>
+  </div></header>
+
+  <section class="hero">
+    <svg class="pat" aria-hidden="true"><defs><pattern id="starA" width="64" height="64" patternUnits="userSpaceOnUse"><g fill="none" stroke="#ffffff" stroke-opacity=".09"><rect x="14" y="14" width="36" height="36"/><rect x="14" y="14" width="36" height="36" transform="rotate(45 32 32)"/></g></pattern></defs><rect width="100%" height="100%" fill="url(#starA)"/></svg>
+    <div class="wrap">
+      <div>
+        <h1>تعليم عالٍ في الإدارة والمعلومات</h1>
+        <p class="lead">ندرّب طلابنا على إدارة الأعمال ونظم المعلومات بمناهج تربط الدراسة بسوق العمل.</p>
+        <div class="btns"><a class="btn gold" href="#">ابدأ التقديم</a><a class="btn line" href="#">تعرّف على الأقسام</a></div>
+      </div>
+      <div class="gate">
+        <h2>ادخل حسب صفتك</h2>
+        <div class="tabs" role="tablist">
+          <button role="tab" aria-selected="true" data-t="0">طالب جديد</button>
+          <button role="tab" aria-selected="false" data-t="1">طالب حالي</button>
+          <button role="tab" aria-selected="false" data-t="2">خريج</button>
+        </div>
+        <ul>
+          <li><a href="#"><svg class="i"><use href="#award"/></svg>شروط القبول</a></li>
+          <li><a href="#"><svg class="i"><use href="#file"/></svg>الأوراق المطلوبة للقبول</a></li>
+          <li><a href="#"><svg class="i"><use href="#cap"/></svg>التقديم الإلكتروني</a></li>
+        </ul>
+        <ul hidden>
+          <li><a href="#"><svg class="i"><use href="#cal"/></svg>جدول المحاضرات والامتحانات</a></li>
+          <li><a href="#"><svg class="i"><use href="#chart"/></svg>نتائج الامتحانات</a></li>
+          <li><a href="#"><svg class="i"><use href="#wallet"/></svg>سداد المصروفات</a></li>
+        </ul>
+        <ul hidden>
+          <li><a href="#"><svg class="i"><use href="#file"/></svg>طلب شهادة تخرج</a></li>
+          <li><a href="#"><svg class="i"><use href="#award"/></svg>توثيق الشهادات</a></li>
+          <li><a href="#"><svg class="i"><use href="#users"/></svg>رابطة الخريجين</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2 class="sec-title">أقسام المعهد</h2>
+      <p class="sec-sub">ثلاثة أقسام تجمع بين الإدارة والمحاسبة وتكنولوجيا المعلومات.</p>
+      <div class="progs">
+        <article class="prog"><svg class="i"><use href="#building"/></svg><h3>إدارة الأعمال</h3><p>التخطيط والتسويق وإدارة الموارد البشرية والمشروعات.</p><a class="more" href="#">تفاصيل القسم <svg class="i"><use href="#back"/></svg></a></article>
+        <article class="prog"><svg class="i"><use href="#laptop"/></svg><h3>نظم المعلومات الإدارية</h3><p>تحليل البيانات وبناء النظم التي تدعم القرار داخل المؤسسات.</p><a class="more" href="#">تفاصيل القسم <svg class="i"><use href="#back"/></svg></a></article>
+        <article class="prog"><svg class="i"><use href="#calc"/></svg><h3>المحاسبة</h3><p>المحاسبة المالية والتكاليف والمراجعة وفق المعايير المعتمدة.</p><a class="more" href="#">تفاصيل القسم <svg class="i"><use href="#back"/></svg></a></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="news">
+    <div class="wrap">
+      <h2 class="sec-title">آخر الأخبار</h2>
+      <p class="sec-sub">إعلانات المعهد وفعالياته في مكان واحد.</p>
+      <div class="nlist">
+        <article><span class="tag">إعلان</span><h3>فتح باب التسجيل للفصل الدراسي الجديد</h3><p>تعرّف على مواعيد التسجيل وخطوات إضافة المواد وحذفها.</p></article>
+        <article><span class="tag">فعاليات</span><h3>ورشة عملية في تحليل البيانات</h3><p>ورشة لطلاب نظم المعلومات الإدارية بالتعاون مع مختصين من سوق العمل.</p></article>
+        <article><span class="tag">شئون الطلاب</span><h3>الإعلان عن نتائج المنح والإعفاءات</h3><p>اطلع على قائمة المقبولين وخطوات استكمال الإجراءات.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="ask">
+    <div class="wrap">
+      <div>
+        <h2>عندك سؤال؟ اسأل مساعد المعهد</h2>
+        <p>يجيبك عن التسجيل والمصروفات والامتحانات والقبول على مدار اليوم.</p>
+        <div class="qs"><button data-ask="كيف أسجل في المواد؟">كيف أسجل في المواد؟</button><button data-ask="ما مصروفات الدراسة؟">ما مصروفات الدراسة؟</button><button data-ask="متى جداول الامتحانات؟">متى جداول الامتحانات؟</button></div>
+      </div>
+      <button class="btn gold" data-ask="" style="font-family:inherit;font-size:17px"><svg class="i"><use href="#chatic"/></svg>ابدأ المحادثة</button>
+    </div>
+  </section>
+
+  <footer><div class="wrap">
+    <div class="cols">
+      <div><h4>معهد طيبة العالي للإدارة والمعلومات</h4><p>العنوان: يُضاف لاحقاً<br>البريد: يُضاف لاحقاً</p></div>
+      <div><h4>روابط</h4><a href="#">القبول والتسجيل</a><a href="#">بوابة الطالب</a><a href="#">الأخبار</a></div>
+      <div><h4>الأقسام</h4><a href="#">إدارة الأعمال</a><a href="#">نظم المعلومات الإدارية</a><a href="#">المحاسبة</a></div>
+    </div>
+    <div class="copy">جميع الحقوق محفوظة لمعهد طيبة العالي للإدارة والمعلومات</div>
+  </div></footer>
+</div>
+
+<!-- =================== DESIGN B =================== -->
+<div class="design B" id="dB">
+  <header class="nav"><div class="wrap">
+    <a class="logo" href="#"><span class="mono" aria-hidden="true">ط</span><span>معهد طيبة<small>للإدارة والمعلومات</small></span></a>
+    <nav class="links" aria-label="القائمة الرئيسية"><a href="#">عن المعهد</a><a href="#">الأقسام</a><a href="#">القبول</a><a href="#">شئون الطلاب</a><a href="#">الأخبار</a><a href="#">تواصل</a></nav>
+    <a class="apply" href="#">قدّم الآن</a>
+  </div></header>
+
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <h1>ابدأ مستقبلك في الإدارة والمعلومات</h1>
+        <p class="lead">دراسة تجمع بين فهم الأعمال وقوة البيانات، وفريق من الإرشاد الأكاديمي بجانبك في كل خطوة.</p>
+        <div class="btns"><a class="btn fill" href="#">قدّم الآن</a><button class="btn" data-ask=""><svg class="i"><use href="#chatic"/></svg>اسأل المساعد</button></div>
+      </div>
+      <div class="stagewrap">
+        <div class="stage" aria-label="مثال على محادثة مع المساعد">
+          <div class="msg u">كيف أسجل موادي هذا الفصل؟</div>
+          <div class="dots" aria-hidden="true"><i></i><i></i><i></i></div>
+          <div class="msg b">من بوابة الطالب: اختر «التسجيل» ثم المواد المتاحة وأكّد اختيارك. آخر موعد للحذف والإضافة موضح في التقويم الدراسي.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2 class="t">اختر قسمك</h2>
+      <p class="sub">ثلاثة مسارات، وكل مسار يفتح لك أبواب مختلفة.</p>
+      <div class="index">
+        <a class="row" href="#"><span class="ic"><svg class="i"><use href="#building"/></svg></span><div><h3>إدارة الأعمال</h3><p>التخطيط والتسويق وإدارة الموارد البشرية والمشروعات.</p></div><span class="go"><svg class="i"><use href="#back"/></svg></span></a>
+        <a class="row" href="#"><span class="ic"><svg class="i"><use href="#laptop"/></svg></span><div><h3>نظم المعلومات الإدارية</h3><p>تحليل البيانات وبناء النظم التي تدعم القرار.</p></div><span class="go"><svg class="i"><use href="#back"/></svg></span></a>
+        <a class="row" href="#"><span class="ic"><svg class="i"><use href="#calc"/></svg></span><div><h3>المحاسبة</h3><p>المحاسبة المالية والتكاليف والمراجعة.</p></div><span class="go"><svg class="i"><use href="#back"/></svg></span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="svc-wrap">
+    <div class="wrap">
+      <h2 class="t">خدمات الطالب</h2>
+      <p class="sub">كل ما تحتاجه يومياً على بعد نقرة.</p>
+      <div class="svc">
+        <a href="#"><svg class="i"><use href="#cal"/></svg>جدول المحاضرات</a>
+        <a href="#"><svg class="i"><use href="#chart"/></svg>نتائج الامتحانات</a>
+        <a href="#"><svg class="i"><use href="#wallet"/></svg>سداد المصروفات</a>
+        <a href="#"><svg class="i"><use href="#book"/></svg>المكتبة</a>
+        <a href="#"><svg class="i"><use href="#idcard"/></svg>كارنيه المعهد</a>
+        <a href="#"><svg class="i"><use href="#users"/></svg>شئون الطلاب</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="wrap">
+      <h2>محتار في خطوة؟ اسأل المساعد الآن</h2>
+      <button class="btn" data-ask="" style="background:var(--ink);color:#fff"><svg class="i"><use href="#chatic"/></svg>ابدأ المحادثة</button>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2 class="t">آخر الأخبار</h2>
+      <p class="sub">ما الجديد في المعهد.</p>
+      <div class="nl">
+        <article><span class="tg">إعلان</span><h3>فتح باب التسجيل للفصل الدراسي الجديد</h3><p>مواعيد التسجيل وخطوات الإضافة والحذف.</p></article>
+        <article><span class="tg">فعاليات</span><h3>ورشة عملية في تحليل البيانات</h3><p>لطلاب نظم المعلومات الإدارية.</p></article>
+        <article><span class="tg">شئون الطلاب</span><h3>نتائج المنح والإعفاءات</h3><p>قائمة المقبولين وخطوات استكمال الإجراءات.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <footer><div class="wrap">
+    <div class="cols">
+      <div><h4>معهد طيبة العالي للإدارة والمعلومات</h4><p>العنوان: يُضاف لاحقاً<br>البريد: يُضاف لاحقاً</p></div>
+      <div><h4>روابط</h4><a href="#">القبول</a><a href="#">بوابة الطالب</a><a href="#">الأخبار</a></div>
+      <div><h4>الأقسام</h4><a href="#">إدارة الأعمال</a><a href="#">نظم المعلومات الإدارية</a><a href="#">المحاسبة</a></div>
+    </div>
+    <div class="copy">جميع الحقوق محفوظة لمعهد طيبة العالي للإدارة والمعلومات</div>
+  </div></footer>
+</div>
+
+<!-- =================== DESIGN C =================== -->
+<div class="design C" id="dC">
+  <header class="nav"><div class="wrap">
+    <a class="logo" href="#"><span class="mono" aria-hidden="true">ط</span><span>معهد طيبة العالي<small>للإدارة والمعلومات</small></span></a>
+    <nav class="links" aria-label="القائمة الرئيسية"><a href="#">عن المعهد</a><a href="#">الأقسام</a><a href="#">القبول</a><a href="#">شئون الطلاب</a><a href="#">الأخبار</a><a href="#">تواصل</a></nav>
+    <a class="portal" href="#">بوابة الطالب</a>
+  </div></header>
+
+  <section class="hero">
+    <div class="wrap">
+      <h1>اسأل أولاً، والمعهد يجيب</h1>
+      <p class="lead">مساعد المعهد يجيب عن التسجيل والمصروفات والامتحانات والقبول في أي وقت.</p>
+      <form class="askbox" id="heroAsk" autocomplete="off">
+        <input id="heroInput" type="text" placeholder="اكتب سؤالك، مثال: كيف أسجل موادي؟" aria-label="اكتب سؤالك">
+        <button type="submit"><svg class="i"><use href="#send"/></svg>اسأل</button>
+      </form>
+      <div class="chips"><button data-ask="كيف أسجل في المواد؟">التسجيل في المواد</button><button data-ask="ما مصروفات الدراسة؟">المصروفات</button><button data-ask="متى جداول الامتحانات؟">جداول الامتحانات</button><button data-ask="ما شروط القبول؟">شروط القبول</button></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2 class="t">الأقسام</h2>
+      <p class="sub">ثلاثة مسارات دراسية، لكل منها مجالات عمل واضحة.</p>
+      <div class="panels">
+        <article><svg class="i"><use href="#building"/></svg><h3>إدارة الأعمال</h3><p>إدارة المؤسسات وتخطيط المشروعات واتخاذ القرار.</p><span class="tg">التخطيط</span><span class="tg">التسويق</span><span class="tg">الموارد البشرية</span></article>
+        <article><svg class="i"><use href="#laptop"/></svg><h3>نظم المعلومات الإدارية</h3><p>تحويل البيانات إلى قرارات عبر نظم تدعم الإدارة.</p><span class="tg">تحليل البيانات</span><span class="tg">قواعد البيانات</span><span class="tg">دعم القرار</span></article>
+        <article><svg class="i"><use href="#calc"/></svg><h3>المحاسبة</h3><p>إعداد القوائم المالية والتكاليف والمراجعة.</p><span class="tg">المحاسبة المالية</span><span class="tg">التكاليف</span><span class="tg">المراجعة</span></article>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2 class="t">خطوات القبول</h2>
+      <p class="sub">أربع خطوات من التقديم إلى أول محاضرة.</p>
+      <ol class="steps">
+        <li class="step"><h3>قدّم إلكترونياً</h3><p>عبّئ استمارة التقديم من صفحة القبول.</p></li>
+        <li class="step"><h3>ارفع الأوراق</h3><p>شهادة المؤهل وصورة البطاقة.</p></li>
+        <li class="step"><h3>سدّد رسوم القبول</h3><p>من بوابة الطالب أو الإدارة المالية.</p></li>
+        <li class="step"><h3>ابدأ دراستك</h3><p>استلم جدولك وكارنيه المعهد.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2 class="t">آخر الأخبار</h2>
+      <p class="sub">إعلانات المعهد أولاً بأول.</p>
+      <div class="nrows">
+        <a href="#"><span class="nt">إعلان</span><span>فتح باب التسجيل للفصل الدراسي الجديد</span></a>
+        <a href="#"><span class="nt">فعاليات</span><span>ورشة عملية في تحليل البيانات لطلاب نظم المعلومات</span></a>
+        <a href="#"><span class="nt">شئون الطلاب</span><span>الإعلان عن نتائج المنح والإعفاءات</span></a>
+      </div>
+    </div>
+  </section>
+
+  <footer><div class="wrap">
+    <div class="cols">
+      <div><h4>معهد طيبة العالي للإدارة والمعلومات</h4><p>العنوان: يُضاف لاحقاً<br>البريد: يُضاف لاحقاً</p></div>
+      <div><h4>روابط</h4><a href="#">القبول</a><a href="#">بوابة الطالب</a><a href="#">الأخبار</a></div>
+      <div><h4>الأقسام</h4><a href="#">إدارة الأعمال</a><a href="#">نظم المعلومات الإدارية</a><a href="#">المحاسبة</a></div>
+    </div>
+    <div class="copy">جميع الحقوق محفوظة لمعهد طيبة العالي للإدارة والمعلومات</div>
+  </div></footer>
+</div>
+
+<!-- =================== CHATBOT WIDGET (shared) =================== -->
+<button id="chatBtn" data-ask="" aria-label="افتح محادثة المساعد"><svg class="i"><use href="#chatic"/></svg>اسأل المعهد</button>
+<section id="chat" role="dialog" aria-label="مساعد معهد طيبة">
+  <header>
+    <svg class="i"><use href="#chatic"/></svg>
+    <div><strong>مساعد معهد طيبة</strong><small>نموذج تجريبي للمساعد الذكي</small></div>
+    <button id="chatClose" aria-label="إغلاق المحادثة"><svg class="i"><use href="#x"/></svg></button>
+  </header>
+  <div id="msgs" aria-live="polite"></div>
+  <div id="sugg">
+    <button data-ask="كيف أسجل في المواد؟">التسجيل في المواد</button>
+    <button data-ask="ما مصروفات الدراسة؟">المصروفات</button>
+    <button data-ask="متى جداول الامتحانات؟">الامتحانات</button>
+    <button data-ask="ما شروط القبول؟">القبول</button>
+  </div>
+  <form id="chatForm" autocomplete="off">
+    <input id="chatInput" type="text" placeholder="اكتب سؤالك هنا" aria-label="اكتب سؤالك">
+    <button type="submit" aria-label="إرسال"><svg class="i"><use href="#send"/></svg></button>
+  </form>
+</section>
+
+<script>
+(function(){
+  var API_URL = ""; // لاحقاً: ضع رابط API هنا، مثال: "http://localhost:5000/api/chat"
+
+  function norm(s){return String(s).toLowerCase().replace(/[\u064B-\u0652\u0640]/g,"").replace(/[أإآ]/g,"ا").replace(/ى/g,"ي").replace(/ة/g,"ه");}
+  var KB=[
+    {k:["تسجيل","سجل","المواد","حذف","اضافه"],a:"يتم التسجيل في المواد من بوابة الطالب خلال الفترة المعلنة في التقويم الدراسي. يمكنك إضافة المواد أو حذفها حتى آخر موعد محدد."},
+    {k:["مصروفات","رسوم","دفع","سداد","تقسيط"],a:"تختلف المصروفات حسب القسم والمرحلة الدراسية. يمكن السداد من بوابة الطالب أو في الإدارة المالية، وللاستفسار عن التقسيط تواصل مع الإدارة المالية."},
+    {k:["امتحان","اختبار","جدول"],a:"تُنشر جداول الامتحانات على بوابة الطالب قبل الامتحانات بأسابيع. أحضر كارنيه المعهد معك يوم الامتحان."},
+    {k:["قبول","تقديم","التحاق","اوراق","شروط"],a:"يبدأ القبول من صفحة القبول والتسجيل: عبّئ الاستمارة، وارفع شهادة المؤهل وصورة البطاقة، ثم سدّد رسوم القبول."},
+    {k:["قسم","اقسام","تخصص","ادارة","محاسبه","نظم"],a:"يضم المعهد أقسام إدارة الأعمال ونظم المعلومات الإدارية والمحاسبة. يمكنك التعرف على كل قسم من صفحة الأقسام."},
+    {k:["تواصل","هاتف","عنوان","شئون","شؤون"],a:"يمكنك التواصل مع شئون الطلاب خلال أوقات العمل الرسمية، وستجد بيانات التواصل في أسفل الصفحة."},
+    {k:["شكرا"],a:"عفواً! هل تريد معرفة شيء آخر؟"},
+    {k:["مرحبا","اهلا","السلام","صباح","مساء"],a:"أهلاً بك! اسألني عن التسجيل أو المصروفات أو الامتحانات أو القبول."}
+  ];
+  KB.forEach(function(e){e.k=e.k.map(norm);});
+  var FALLBACK="لم أفهم سؤالك بعد. جرّب أن تسأل عن التسجيل أو المصروفات أو الامتحانات أو القبول.";
+  function answer(q){var n=norm(q);for(var i=0;i<KB.length;i++){for(var j=0;j<KB[i].k.length;j++){if(n.indexOf(KB[i].k[j])>-1)return KB[i].a;}}return FALLBACK;}
+
+  var chat=document.getElementById("chat"),btn=document.getElementById("chatBtn"),msgs=document.getElementById("msgs"),
+      form=document.getElementById("chatForm"),inp=document.getElementById("chatInput"),greeted=false;
+  function add(t,who){var d=document.createElement("div");d.className="m "+who;d.textContent=t;msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d;}
+  function typing(){var d=document.createElement("div");d.className="m bot typing";d.innerHTML="<i></i><i></i><i></i>";msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d;}
+  function reply(q){
+    var t=typing();
+    var done=function(a){t.remove();add(a,"bot");};
+    if(API_URL){
+      fetch(API_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({message:q})})
+        .then(function(r){return r.json();}).then(function(d){done(d.reply);}).catch(function(){done(answer(q));});
+    }else{setTimeout(function(){done(answer(q));},700);}
+  }
+  function send(q){q=String(q).trim();if(!q)return;add(q,"usr");reply(q);}
+  function openC(q){
+    chat.classList.add("open");btn.style.display="none";
+    if(!greeted){greeted=true;add("أهلاً بك في معهد طيبة. اسألني عن التسجيل أو المصروفات أو الامتحانات أو القبول.","bot");}
+    if(q)send(q);
+    setTimeout(function(){inp.focus();},50);
+  }
+  function closeC(){chat.classList.remove("open");btn.style.display="flex";}
+  form.addEventListener("submit",function(e){e.preventDefault();var v=inp.value;inp.value="";send(v);});
+  document.getElementById("chatClose").addEventListener("click",closeC);
+  document.addEventListener("keydown",function(e){if(e.key==="Escape"&&chat.classList.contains("open"))closeC();});
+
+  document.addEventListener("click",function(e){
+    var a=e.target.closest('a[href="#"]');if(a)e.preventDefault();
+    var b=e.target.closest("[data-ask]");if(b){openC(b.getAttribute("data-ask"));}
+  });
+
+  /* design switcher */
+  var sw=document.querySelectorAll(".switch button");
+  sw.forEach(function(b){b.addEventListener("click",function(){
+    var d=b.getAttribute("data-d");
+    document.body.setAttribute("data-design",d);
+    document.querySelectorAll(".design").forEach(function(x){x.classList.toggle("on",x.id==="d"+d);});
+    sw.forEach(function(x){x.setAttribute("aria-pressed",x===b?"true":"false");});
+    window.scrollTo(0,0);
+  });});
+
+  /* design A: audience tabs */
+  var tabs=document.querySelectorAll(".A .tabs button"),lists=document.querySelectorAll(".A .gate ul");
+  tabs.forEach(function(t,i){t.addEventListener("click",function(){
+    tabs.forEach(function(x,j){x.setAttribute("aria-selected",j===i?"true":"false");});
+    lists.forEach(function(l,j){l.hidden=j!==i;});
+  });});
+
+  /* design C: ask-first hero */
+  document.getElementById("heroAsk").addEventListener("submit",function(e){
+    e.preventDefault();var i=document.getElementById("heroInput");var v=i.value;i.value="";openC(v||"");
+  });
+})();
+</script>
+</body>
+</html>
