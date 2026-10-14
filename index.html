@@ -1,0 +1,1444 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>PowerWise Egypt Design System</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: sticky-nav spec site. Hero with two live phones over a big tick-ring, then Foundations, Components, Screens, Layouts, Specs.
+   Every mockup is live HTML built from the page's own tokens, so the theme toggle restyles the whole kit.
+   Signature element: the segmented tick-ring gauge, borrowed from the dial of a prepaid meter. */
+:root,.fl{
+  --bg:#F3F6FC;--surface:#FFFFFF;--surface-2:#E9EEF8;--surface-3:#D9E1F1;
+  --ink:#0A1226;--ink-2:#47536E;--ink-3:#5C6884;--line:#D9E1F0;
+  --blue:#1F5BFF;--blue-ink:#1646CC;--blue-soft:#E6EDFF;--on-blue:#FFFFFF;
+  --green:#0E9F6E;--green-ink:#08764F;--green-soft:#DDF5EA;
+  --yellow:#FFC21A;--yellow-ink:#7A5600;--yellow-soft:#FFF3CC;
+  --orange:#F58A07;--orange-ink:#9A4F00;--orange-soft:#FFE9CF;
+  --red:#E5383B;--red-ink:#B4232A;--red-soft:#FDE1E1;
+  --grad:linear-gradient(135deg,#1F5BFF 0%,#0B8A63 100%);
+  --tick-off:#D5DDEE;--bezel:#0F172F;
+  --shadow-1:0 1px 2px rgba(10,18,38,.06),0 1px 1px rgba(10,18,38,.04);
+  --shadow-2:0 8px 24px rgba(23,50,110,.12);
+  --shadow-3:0 22px 56px rgba(23,50,110,.22);
+  --glass:rgba(255,255,255,.16);--glass-line:rgba(255,255,255,.3);
+  --scrim:rgba(10,18,38,.45);
+  --on-grad:#FFFFFF;--snack-bg:#18213A;--snack-fg:#FFFFFF;--snack-act:#FFD24D;
+  --font-ar:"Cairo","IBM Plex Sans Arabic",system-ui,sans-serif;
+  --font-en:"Inter",system-ui,sans-serif;
+  --font-mono:"JetBrains Mono",ui-monospace,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#070B14;--surface:#0F1626;--surface-2:#172036;--surface-3:#212C48;
+    --ink:#EAF0FF;--ink-2:#A3B0CE;--ink-3:#8593B4;--line:#243050;
+    --blue:#5B8CFF;--blue-ink:#8EAEFF;--blue-soft:#13224A;--on-blue:#04102E;
+    --green:#34D399;--green-ink:#5EE0AE;--green-soft:#0E2B22;
+    --yellow:#FFD24D;--yellow-ink:#FFD960;--yellow-soft:#33290A;
+    --orange:#FFA23A;--orange-ink:#FFB35C;--orange-soft:#38220A;
+    --red:#FF6B6B;--red-ink:#FF8E8E;--red-soft:#3A1416;
+    --grad:linear-gradient(135deg,#2F63F0 0%,#0C7F5C 100%);
+    --tick-off:#2A3558;--bezel:#26315A;
+    --shadow-1:0 1px 2px rgba(0,0,0,.4);--shadow-2:0 8px 24px rgba(0,0,0,.45);--shadow-3:0 22px 56px rgba(0,0,0,.6);
+    --scrim:rgba(0,0,0,.6);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"],.fd{
+  --bg:#070B14;--surface:#0F1626;--surface-2:#172036;--surface-3:#212C48;
+  --ink:#EAF0FF;--ink-2:#A3B0CE;--ink-3:#8593B4;--line:#243050;
+  --blue:#5B8CFF;--blue-ink:#8EAEFF;--blue-soft:#13224A;--on-blue:#04102E;
+  --green:#34D399;--green-ink:#5EE0AE;--green-soft:#0E2B22;
+  --yellow:#FFD24D;--yellow-ink:#FFD960;--yellow-soft:#33290A;
+  --orange:#FFA23A;--orange-ink:#FFB35C;--orange-soft:#38220A;
+  --red:#FF6B6B;--red-ink:#FF8E8E;--red-soft:#3A1416;
+  --grad:linear-gradient(135deg,#2F63F0 0%,#0C7F5C 100%);
+  --tick-off:#2A3558;--bezel:#26315A;
+  --shadow-1:0 1px 2px rgba(0,0,0,.4);--shadow-2:0 8px 24px rgba(0,0,0,.45);--shadow-3:0 22px 56px rgba(0,0,0,.6);
+  --scrim:rgba(0,0,0,.6);
+  color-scheme:dark;
+}
+.fl,.fd{background:var(--bg);color:var(--ink)}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.65 var(--font-en);-webkit-font-smoothing:antialiased}
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+code,pre{font-family:var(--font-mono)}
+a{color:var(--blue-ink)}
+:focus-visible{outline:3px solid color-mix(in srgb,var(--blue) 65%,transparent);outline-offset:2px}
+button{font-family:inherit;cursor:pointer}
+
+/* ---------- site chrome ---------- */
+.top-nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:color-mix(in srgb,var(--bg) 86%,transparent);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.top-nav .wrap{display:flex;align-items:center;gap:16px;height:60px}
+.brand{display:flex;align-items:center;gap:10px;font:800 17px var(--font-ar);color:var(--ink);text-decoration:none;white-space:nowrap}
+.brand svg{width:32px;height:32px}
+.links{display:flex;gap:2px;margin-inline-start:auto;overflow-x:auto;scrollbar-width:none;min-width:0}
+.links a{padding:8px 12px;border-radius:10px;font:600 14px var(--font-en);color:var(--ink-2);text-decoration:none;white-space:nowrap}
+.links a:hover{background:var(--surface-2);color:var(--ink)}
+.theme-btn{flex:none;height:38px;padding:0 12px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:600 13px var(--font-en);display:flex;align-items:center;gap:8px}
+.theme-btn .ic{width:18px;height:18px}
+
+.hero{padding-block:56px 40px;position:relative;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:40px;align-items:center;position:relative}
+.hero h1{font:800 clamp(2.6rem,6vw,4.7rem)/1.02 var(--font-ar);letter-spacing:-.02em;margin:0 0 6px;text-wrap:balance}
+.hero .ar{font:700 clamp(1.3rem,2.6vw,1.9rem)/1.4 var(--font-ar);color:var(--blue-ink);margin:0 0 18px}
+.hero .lead{font-size:1.1rem;color:var(--ink-2);max-width:54ch;margin:0}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0}
+.fact{padding:6px 12px;border-radius:99px;border:1px solid var(--line);background:var(--surface);font:600 13px var(--font-en);color:var(--ink-2)}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.hero-vis{position:relative;display:flex;justify-content:center;align-items:flex-start;min-height:600px}
+.hero-vis .bg-ring{position:absolute;inset:0;margin:auto;width:min(560px,100%);aspect-ratio:1;opacity:.55;pointer-events:none}
+.hero-vis .scaled{position:relative}
+.hero-vis .scaled+.scaled{margin-inline-start:-70px;margin-top:56px}
+@media (max-width:900px){.hero .wrap{grid-template-columns:minmax(0,1fr)}.hero-vis{min-height:0}.hero-vis .scaled+.scaled{display:none}}
+
+.scaled{flex:none}
+.scaled>.phone{transform-origin:0 0}
+.s85{width:267px;height:573px}.s85>.phone{transform:scale(.85)}
+
+.sec{padding-block:72px 8px}
+.sec h2{font:800 clamp(1.8rem,3.4vw,2.6rem)/1.15 var(--font-ar);margin:0 0 8px;letter-spacing:-.01em;text-wrap:balance}
+.sec .sub{color:var(--ink-2);max-width:64ch;margin:0 0 28px}
+h3.gh{font:700 1.2rem/1.3 var(--font-ar);margin:44px 0 6px}
+.gsub{color:var(--ink-2);margin:0 0 18px;max-width:72ch;font-size:.95rem}
+.dc{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px;min-width:0}
+.dc h4{margin:0 0 12px;font:600 12px var(--font-mono);color:var(--ink-3);letter-spacing:.02em}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))}
+.scroll-x{overflow-x:auto;max-width:100%}
+.note{font-size:.88rem;color:var(--ink-3)}
+
+/* ---------- foundations ---------- */
+.sws{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
+.swc{display:flex;flex-direction:column;gap:3px;min-width:0}
+.swc .chip-c{height:84px;border-radius:14px;border:1px solid var(--line);display:flex;align-items:flex-end;padding:8px;font:600 11px var(--font-mono)}
+.swc b{font:700 14px var(--font-en);margin-top:6px}
+.swc code{font-size:11.5px;color:var(--ink-2)}
+.swc small{font-size:11.5px;color:var(--ink-3);line-height:1.4}
+.spec-fonts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:16px}
+.spec-fonts .big{font-size:64px;line-height:1.25;font-weight:800;margin:4px 0 8px;overflow-wrap:anywhere}
+.spec-fonts .glyphs{color:var(--ink-2);font-size:15px}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:start;vertical-align:middle}
+th{font:600 12px var(--font-mono);color:var(--ink-3);white-space:nowrap}
+td code{font-size:12.5px;color:var(--ink-2)}
+.tscale td:first-child{white-space:nowrap}
+.sp-row{display:flex;align-items:center;gap:14px;margin:7px 0;font:500 13px var(--font-mono);color:var(--ink-2)}
+.sp-row i{display:block;height:14px;border-radius:4px;background:var(--blue)}
+.sp-row span{width:76px;flex:none}
+.rad-row{display:flex;flex-wrap:wrap;gap:14px}
+.rad{width:74px;height:74px;background:var(--blue-soft);border:2px solid var(--blue);display:grid;place-items:center;font:600 11px var(--font-mono);color:var(--blue-ink)}
+.elev{width:96px;height:72px;background:var(--surface);border-radius:16px;display:grid;place-items:center;font:600 11px var(--font-mono);color:var(--ink-2)}
+.icon-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:10px}
+.icon-cell{display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px 6px;border-radius:14px;background:var(--surface);border:1px solid var(--line);text-align:center;min-width:0}
+.icon-cell .ic{width:28px;height:28px;color:var(--blue-ink)}
+.icon-cell b{font:600 12px var(--font-en);color:var(--ink)}
+.icon-cell small{font:500 12px var(--font-ar);color:var(--ink-3)}
+.ul{margin:0;padding-inline-start:20px;display:grid;gap:8px;color:var(--ink-2)}
+.ul b{color:var(--ink)}
+pre.code{margin:0;padding:18px;border-radius:14px;background:var(--surface-2);overflow-x:auto;font-size:12.5px;line-height:1.7;color:var(--ink)}
+
+/* ---------- device frames ---------- */
+.rail{display:flex;gap:26px;overflow-x:auto;padding:14px 6px 30px;align-items:flex-start;scroll-snap-type:x proximity}
+.frame{margin:0;flex:none;scroll-snap-align:start}
+.frame figcaption{margin-top:14px;font:600 12px var(--font-mono);color:var(--ink-3);text-align:center}
+.phone{flex:none;width:314px;height:674px;padding:7px;border-radius:44px;background:var(--bezel);box-shadow:var(--shadow-3)}
+.screen{width:300px;height:660px;border-radius:37px;overflow:hidden;position:relative;display:flex;flex-direction:column;background:var(--bg);color:var(--ink);font:500 14px/1.5 var(--font-ar);direction:rtl}
+.dev{flex:none;position:relative}
+.dev>.dev-in{transform-origin:0 0;position:absolute;top:0;left:0}
+.dev-note{margin:12px 0 0;font:600 12px var(--font-mono);color:var(--ink-3)}
+
+/* ---------- app: shared pieces ---------- */
+.ic{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.num{font-family:var(--font-en),var(--font-ar);font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.sb{height:30px;flex:none;display:flex;justify-content:space-between;align-items:center;padding:8px 22px 0;font:600 12px var(--font-en);direction:ltr}
+.batt{width:22px;height:11px;border-radius:3px;border:1.5px solid currentColor;position:relative;opacity:.85}
+.batt::before{content:"";position:absolute;inset:1.5px;border-radius:1px;background:currentColor;width:70%}
+.batt::after{content:"";position:absolute;right:-4px;top:2.5px;width:2px;height:4px;border-radius:0 1px 1px 0;background:currentColor}
+.top{display:flex;align-items:center;gap:10px;padding:8px 16px 10px;flex:none}
+.top h1{margin:0;font:700 18px/1.3 var(--font-ar);flex:1}
+.top small{display:block;font:500 12px var(--font-ar);color:var(--ink-3);line-height:1.2}
+.top .hg{flex:1;min-width:0}.top .hg h1{font-size:17px}
+.ibtn{width:40px;height:40px;border-radius:14px;background:var(--surface);box-shadow:var(--shadow-1);display:grid;place-items:center;border:0;color:var(--ink);position:relative;flex:none}
+.ibtn .dot{position:absolute;top:9px;inset-inline-end:10px}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--red);box-shadow:0 0 0 2px var(--surface);display:block}
+.avatar{width:40px;height:40px;border-radius:14px;background:var(--grad);color:#fff;display:grid;place-items:center;font:700 16px var(--font-ar);flex:none}
+.body{flex:1;min-height:0;display:flex;flex-direction:column;gap:12px;padding:0 16px 14px;overflow:hidden}
+.body.fade{-webkit-mask-image:linear-gradient(#000 calc(100% - 26px),transparent);mask-image:linear-gradient(#000 calc(100% - 26px),transparent)}
+.card{background:var(--surface);border-radius:22px;padding:14px;box-shadow:var(--shadow-1);min-width:0}
+.card.lift{transition:transform .2s,box-shadow .2s}.card.lift:hover{transform:translateY(-3px);box-shadow:var(--shadow-2)}
+.glass{background:var(--glass);border:1px solid var(--glass-line);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-radius:16px}
+.h-row{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.h-row b{font:700 15px var(--font-ar)}
+.lnk{font:700 13px var(--font-ar);color:var(--blue-ink);background:none;border:0;padding:0}
+.muted{color:var(--ink-3);font-size:12px}
+.t2{color:var(--ink-2)}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:52px;padding:0 22px;border-radius:16px;border:0;font:700 16px var(--font-ar);transition:transform .12s,box-shadow .2s,background .2s;white-space:nowrap}
+.btn:active{transform:scale(.97)}
+.btn.primary{background:var(--blue);color:var(--on-blue);box-shadow:0 8px 18px color-mix(in srgb,var(--blue) 34%,transparent)}
+.btn.primary:hover{box-shadow:0 10px 24px color-mix(in srgb,var(--blue) 46%,transparent)}
+.btn.tonal{background:var(--blue-soft);color:var(--blue-ink)}
+.btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--line)}
+.btn.danger{background:var(--red-soft);color:var(--red-ink)}
+.btn.block{width:100%}
+.btn.sm{height:40px;font-size:14px;border-radius:12px;padding:0 14px}
+.btn[disabled]{opacity:.45;box-shadow:none}
+.btn .ic{width:20px;height:20px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field>label{font:600 12px var(--font-ar);color:var(--ink-2)}
+.input{height:52px;border-radius:14px;background:var(--surface);box-shadow:inset 0 0 0 1.5px var(--line);display:flex;align-items:center;gap:10px;padding:0 14px;color:var(--ink-3);font:500 14px var(--font-ar);min-width:0}
+.input .ic{width:20px;height:20px}
+.input span{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.input input{all:unset;flex:1;min-width:0;color:var(--ink);font:500 14px var(--font-ar)}
+.input .v{color:var(--ink)}
+.input.focus,.input:focus-within{box-shadow:inset 0 0 0 2px var(--blue)}
+.input.err{box-shadow:inset 0 0 0 2px var(--red)}
+.input.ok{box-shadow:inset 0 0 0 2px var(--green)}
+.hint{font:500 11.5px var(--font-ar);color:var(--ink-3)}.hint.err{color:var(--red-ink)}
+.pre-x{direction:ltr;font:600 13px var(--font-en);color:var(--ink-2);padding-inline-end:10px;border-inline-end:1.5px solid var(--line);margin-inline-end:2px}
+.chip{height:34px;padding:0 14px;border-radius:99px;background:var(--surface);box-shadow:inset 0 0 0 1.5px var(--line);font:600 13px var(--font-ar);display:inline-flex;align-items:center;gap:6px;white-space:nowrap;color:var(--ink-2);border:0}
+.chip.on{background:var(--blue);color:var(--on-blue);box-shadow:none}
+.chips{display:flex;gap:8px;overflow:hidden;flex:none}
+.badge{display:inline-flex;align-items:center;gap:4px;font:700 11px/1 var(--font-ar);padding:5px 9px;border-radius:99px;white-space:nowrap}
+.b-ok{background:var(--green-soft);color:var(--green-ink)}.b-warn{background:var(--orange-soft);color:var(--orange-ink)}.b-bad{background:var(--red-soft);color:var(--red-ink)}.b-info{background:var(--blue-soft);color:var(--blue-ink)}.b-ai{background:var(--grad);color:#fff}
+.bar{height:8px;border-radius:99px;background:var(--surface-3);overflow:hidden}
+.bar>i{display:block;height:100%;width:var(--w);border-radius:inherit;background:linear-gradient(90deg,var(--blue),var(--green));animation:grow 1.1s cubic-bezier(.2,.8,.2,1)}
+.bar.warn>i{background:linear-gradient(90deg,var(--yellow),var(--orange))}
+.bar.bad>i{background:var(--red)}
+@keyframes grow{from{width:0}}
+.seg{display:flex;background:var(--surface-2);border-radius:14px;padding:4px;gap:4px}
+.seg button{flex:1;height:34px;border:0;border-radius:11px;background:transparent;font:700 13px var(--font-ar);color:var(--ink-2);transition:background .2s}
+.seg .on{background:var(--surface);color:var(--ink);box-shadow:var(--shadow-1)}
+.sw{width:48px;height:28px;border-radius:99px;background:var(--surface-3);position:relative;border:0;padding:0;transition:background .2s;flex:none}
+.sw::after{content:"";position:absolute;top:3px;inset-inline-start:3px;width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:var(--shadow-1);transition:inset-inline-start .2s cubic-bezier(.3,.9,.3,1)}
+.sw.on,.sw[aria-checked="true"]{background:var(--blue)}
+.sw.on::after,.sw[aria-checked="true"]::after{inset-inline-start:23px}
+.cb{width:22px;height:22px;border-radius:7px;box-shadow:inset 0 0 0 2px var(--ink-3);display:grid;place-items:center;color:var(--on-blue);flex:none}
+.cb.on{background:var(--blue);box-shadow:none}.cb .ic{width:16px;height:16px;stroke-width:2.6}
+.row{display:flex;align-items:center;gap:12px;padding:10px 0}
+.tile{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;flex:none}
+.t-blue{background:var(--blue-soft);color:var(--blue-ink)}.t-green{background:var(--green-soft);color:var(--green-ink)}.t-yellow{background:var(--yellow-soft);color:var(--yellow-ink)}.t-orange{background:var(--orange-soft);color:var(--orange-ink)}.t-red{background:var(--red-soft);color:var(--red-ink)}.t-grey{background:var(--surface-2);color:var(--ink-2)}
+.grow1{flex:1;min-width:0}
+.row b{display:block;font:700 14px/1.4 var(--font-ar)}
+.row small{display:block;font:500 12px/1.45 var(--font-ar);color:var(--ink-3)}
+
+.bnav{height:72px;flex:none;background:var(--surface);box-shadow:0 -6px 24px rgba(10,18,38,.07);display:grid;grid-template-columns:1fr 1fr 76px 1fr 1fr;align-items:center;padding:0 6px 8px;border-radius:24px 24px 0 0;position:relative;z-index:2}
+.bnav a{display:flex;flex-direction:column;align-items:center;gap:2px;font:600 10.5px var(--font-ar);color:var(--ink-3);text-decoration:none}
+.bnav .pill{width:52px;height:30px;border-radius:99px;display:grid;place-items:center;transition:background .2s}
+.bnav a.on{color:var(--blue-ink)}.bnav a.on .pill{background:var(--blue-soft)}
+.fab{width:58px;height:58px;border-radius:20px;background:var(--grad);color:#fff;display:grid;place-items:center;margin-top:-30px;justify-self:center;box-shadow:0 10px 24px rgba(31,91,255,.4);border:0;transition:transform .12s}
+.fab:active{transform:scale(.94)}
+.fab .ic{width:26px;height:26px}
+.efab{position:absolute;inset-inline-start:16px;bottom:88px;height:52px;padding:0 18px;border-radius:18px;background:var(--blue);color:var(--on-blue);display:flex;align-items:center;gap:8px;font:700 14px var(--font-ar);box-shadow:0 10px 24px color-mix(in srgb,var(--blue) 40%,transparent);border:0;z-index:3}
+.dlg{background:var(--surface);border-radius:28px;padding:20px;box-shadow:var(--shadow-3)}
+.dlg h5{margin:0 0 6px;font:700 17px var(--font-ar)}.dlg p{margin:0 0 16px;color:var(--ink-2);font-size:14px}
+.sheet{background:var(--surface);border-radius:28px 28px 0 0;padding:10px 16px 18px;box-shadow:var(--shadow-3)}
+.grab{width:40px;height:4px;border-radius:99px;background:var(--surface-3);margin:0 auto 12px}
+.snack{background:var(--snack-bg);color:var(--snack-fg);border-radius:14px;padding:12px 14px;display:flex;align-items:center;gap:10px;font:600 13px var(--font-ar);box-shadow:var(--shadow-2)}
+.snack b{margin-inline-start:auto;color:var(--snack-act);font-weight:700}
+.snack .ic{width:20px;height:20px;color:var(--snack-act)}
+.tip{position:relative;display:inline-block;background:var(--snack-bg);color:var(--snack-fg);font:600 12px var(--font-ar);padding:7px 11px;border-radius:10px}
+.tip::after{content:"";position:absolute;bottom:-5px;inset-inline-start:18px;width:10px;height:10px;background:var(--snack-bg);transform:rotate(45deg);border-radius:2px}
+.sk{background:linear-gradient(90deg,var(--surface-2) 25%,var(--surface-3) 50%,var(--surface-2) 75%);background-size:200% 100%;animation:shimmer 1.4s linear infinite;border-radius:10px}
+@keyframes shimmer{to{background-position:-200% 0}}
+.spin{width:28px;height:28px;border-radius:50%;border:3px solid var(--surface-3);border-top-color:var(--blue);animation:rot .8s linear infinite;display:block}
+@keyframes rot{to{transform:rotate(360deg)}}
+.dots{display:flex;gap:6px;justify-content:center}.dots i{width:8px;height:8px;border-radius:50%;background:currentColor;animation:bounce 1s ease-in-out infinite}.dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}
+@keyframes bounce{0%,80%,100%{transform:scale(.6);opacity:.4}40%{transform:scale(1);opacity:1}}
+
+/* ---------- gauge (signature) ---------- */
+.gwrap{position:relative;flex:none}
+.gauge{width:100%;height:100%}
+.gauge svg{width:100%;height:100%;display:block;overflow:visible}
+.gauge line{stroke-width:2.8;stroke-linecap:round;animation:tickIn .5s both}
+.gauge .on{stroke:var(--gc,var(--blue))}.gauge .off{stroke:var(--tick-off)}
+.g-glass .on{stroke:#fff}.g-glass .off{stroke:rgba(255,255,255,.3)}
+@keyframes tickIn{from{opacity:0}}
+.gc{position:absolute;inset:0;display:grid;place-content:center;text-align:center;line-height:1.1}
+.gc b{font:700 26px var(--font-en)}.gc small{font:600 11px var(--font-ar);opacity:.8}
+
+/* ---------- charts ---------- */
+.chart{width:100%;height:auto;display:block;overflow:visible}
+.chart .gl{stroke:var(--line);stroke-width:1;stroke-dasharray:3 4}
+.chart text{fill:var(--ink-3);font:500 9px var(--font-ar)}
+.chart .ln{fill:none;stroke:var(--blue);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.chart .ar{fill:url(#none);opacity:.14}
+.draw{stroke-dasharray:1;stroke-dashoffset:0;animation:draw 1.2s cubic-bezier(.2,.7,.2,1)}
+@keyframes draw{from{stroke-dashoffset:1}}
+.rise{transform-box:fill-box;transform-origin:bottom;animation:rise .8s cubic-bezier(.2,.8,.2,1) both}
+@keyframes rise{from{transform:scaleY(0)}}
+
+/* ---------- screen specifics ---------- */
+.bal{background:var(--grad);color:var(--on-grad);border-radius:26px;padding:16px;display:flex;flex-direction:column;gap:14px;box-shadow:0 14px 30px color-mix(in srgb,var(--blue) 30%,transparent);position:relative;overflow:hidden;flex:none}
+.bal::before{content:"";position:absolute;width:190px;height:190px;border-radius:50%;inset-inline-end:-70px;top:-90px;background:radial-gradient(circle,rgba(255,255,255,.22),transparent 70%)}
+.bal small{font:600 12px var(--font-ar);opacity:.85}
+.bal .top2{display:flex;justify-content:space-between;align-items:center;gap:8px;position:relative}
+.amt{font:700 38px/1.1 var(--font-en)}.amt span{font:600 15px var(--font-ar);opacity:.9;margin-inline-start:4px}
+.bal .mini{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;position:relative}
+.bal .mini .glass{padding:8px 10px;display:flex;flex-direction:column;gap:0}
+.bal .mini b{font:700 16px/1.3 var(--font-en)}.bal .mini em{font:600 10px var(--font-ar);font-style:normal;opacity:.85}
+.ai-strip{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:18px;background:var(--surface);box-shadow:var(--shadow-1);flex:none}
+.ai-strip .tile{width:36px;height:36px;border-radius:12px;background:var(--grad);color:#fff}
+.ai-strip b{font:700 13px/1.35 var(--font-ar);display:block}.ai-strip small{font:500 12px var(--font-ar);color:var(--ink-3)}
+.qa{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;flex:none}
+.qa a{display:flex;flex-direction:column;align-items:center;gap:6px;font:600 11px/1.3 var(--font-ar);text-align:center;color:var(--ink);text-decoration:none}
+.qa .tile{width:54px;height:54px;border-radius:18px}
+.dev-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.dcard{background:var(--surface);border-radius:20px;padding:12px;box-shadow:var(--shadow-1);display:flex;flex-direction:column;gap:6px}
+.dcard .tile{width:46px;height:46px;border-radius:16px}.dcard .tile .ic{width:26px;height:26px}
+.dcard b{font:700 13.5px/1.3 var(--font-ar)}.dcard small{font:500 11.5px var(--font-ar);color:var(--ink-3)}
+.dcard .kw{font:700 13px var(--font-en);color:var(--blue-ink)}
+.hero-img{height:150px;border-radius:24px;background:var(--grad);display:grid;place-items:center;color:#fff;position:relative;overflow:hidden;flex:none}
+.hero-img::before,.hero-img::after{content:"";position:absolute;border-radius:50%;border:1.5px solid rgba(255,255,255,.2)}
+.hero-img::before{width:210px;height:210px}.hero-img::after{width:140px;height:140px}
+.hero-img .ic{width:68px;height:68px;stroke-width:1.4;position:relative;z-index:1}
+.stat3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.stat3 .card{padding:10px;text-align:center}.stat3 b{display:block;font:700 15px var(--font-en)}.stat3 small{font:500 11px var(--font-ar);color:var(--ink-3)}
+.mbars{display:flex;align-items:flex-end;gap:8px;height:64px}
+.mbars i{flex:1;border-radius:6px 6px 3px 3px;background:var(--blue-soft);min-height:6px}.mbars i.hi{background:var(--blue)}
+.cam{background:#06080F;color:#fff;font-family:var(--font-ar)}
+.cam .vf{flex:1;position:relative;overflow:hidden;background:radial-gradient(120% 90% at 50% 40%,#233049 0%,#0A0F1C 70%)}
+.meter{position:absolute;inset-inline:34px;top:96px;height:230px;border-radius:22px;background:linear-gradient(160deg,#E9EDF5,#B8C2D6);box-shadow:0 20px 40px rgba(0,0,0,.5);padding:16px;display:flex;flex-direction:column;gap:12px;color:#0A1226;direction:ltr}
+.meter .lcd{height:62px;border-radius:10px;background:#B9D6B0;color:#16301A;display:flex;align-items:center;justify-content:flex-end;padding:0 12px;font:500 34px var(--font-mono);letter-spacing:.06em;box-shadow:inset 0 2px 6px rgba(0,0,0,.25)}
+.meter .keys{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.meter .keys i{height:26px;border-radius:8px;background:#8D99B0}
+.meter .lbl{font:600 11px var(--font-en);letter-spacing:.14em;color:#44506B}
+.brk{position:absolute;inset-inline:26px;top:82px;height:258px}
+.brk i{position:absolute;width:34px;height:34px;border:3.5px solid var(--yellow)}
+.brk i:nth-child(1){top:0;inset-inline-start:0;border-width:3.5px 0 0 3.5px;border-top-left-radius:16px}
+.brk i:nth-child(2){top:0;inset-inline-end:0;border-width:3.5px 3.5px 0 0;border-top-right-radius:16px}
+.brk i:nth-child(3){bottom:0;inset-inline-start:0;border-width:0 0 3.5px 3.5px;border-bottom-left-radius:16px}
+.brk i:nth-child(4){bottom:0;inset-inline-end:0;border-width:0 3.5px 3.5px 0;border-bottom-right-radius:16px}
+.scanln{position:absolute;inset-inline:26px;height:3px;border-radius:3px;background:linear-gradient(90deg,transparent,var(--yellow),transparent);box-shadow:0 0 22px 6px color-mix(in srgb,var(--yellow) 55%,transparent);top:90px;animation:scan 2.2s ease-in-out infinite alternate}
+@keyframes scan{to{top:326px}}
+.cam .hintb{position:absolute;inset-inline:24px;top:20px;text-align:center}
+.cam .hintb span{display:inline-block;padding:8px 14px;border-radius:99px;background:rgba(255,255,255,.14);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);font:600 12.5px var(--font-ar)}
+.cam .ctl{height:150px;flex:none;display:flex;align-items:center;justify-content:space-around;padding:0 20px 18px;background:#06080F}
+.shut{width:72px;height:72px;border-radius:50%;border:4px solid #fff;display:grid;place-items:center}.shut i{width:56px;height:56px;border-radius:50%;background:#fff;display:block;transition:transform .12s}.shut:active i{transform:scale(.88)}
+.cbtn{width:48px;height:48px;border-radius:16px;background:rgba(255,255,255,.14);display:grid;place-items:center;color:#fff;border:0}
+.crop{position:absolute;inset-inline:44px;top:92px;height:216px;border:2px solid #fff;border-radius:8px;box-shadow:0 0 0 999px rgba(0,0,0,.55)}
+.crop::before{content:"";position:absolute;inset:0;background:linear-gradient(#fff3 1px,transparent 1px) 0 33%/100% 33.3%,linear-gradient(90deg,#fff3 1px,transparent 1px) 33%/33.3% 100%}
+.crop i{position:absolute;width:16px;height:16px;background:#fff;border-radius:50%}
+.crop i:nth-child(1){top:-8px;inset-inline-start:-8px}.crop i:nth-child(2){top:-8px;inset-inline-end:-8px}.crop i:nth-child(3){bottom:-8px;inset-inline-start:-8px}.crop i:nth-child(4){bottom:-8px;inset-inline-end:-8px}
+.sheet-dark{background:#111826;color:#fff;border-radius:28px 28px 0 0;padding:14px 16px 20px;display:flex;flex-direction:column;gap:12px}
+.sheet-dark .bar{background:rgba(255,255,255,.14)}
+.read{font:700 44px/1 var(--font-en);letter-spacing:.02em}
+.splash{background:var(--grad);color:#fff;align-items:center;justify-content:center;text-align:center;position:relative;background-image:repeating-radial-gradient(circle at 50% 40%,rgba(255,255,255,.07) 0 1px,transparent 1px 42px),var(--grad)}
+.splash .lg{width:132px;height:132px;position:relative;display:grid;place-items:center}
+.splash .lg .gauge{position:absolute;inset:-26px;width:auto;height:auto;animation:spinslow 14s linear infinite}
+.splash .lg svg.logo{width:92px;height:92px;filter:drop-shadow(0 12px 22px rgba(0,0,0,.28));animation:pulse 2.2s ease-in-out infinite}
+@keyframes spinslow{to{transform:rotate(360deg)}}
+@keyframes pulse{50%{transform:scale(1.06)}}
+.splash h1{font:800 31px/1.15 var(--font-en);margin:34px 0 4px;letter-spacing:-.01em}
+.splash .ar{font:700 18px var(--font-ar);margin:0}
+.splash .en{font:500 13px var(--font-en);opacity:.85;margin-top:2px;letter-spacing:.04em}
+.auth h2{margin:0;font:800 24px/1.3 var(--font-ar)}
+.divider{display:flex;align-items:center;gap:12px;color:var(--ink-3);font:600 12px var(--font-ar)}.divider::before,.divider::after{content:"";flex:1;height:1px;background:var(--line)}
+.gbtn{width:22px;height:22px;border-radius:50%;background:var(--surface-2);display:grid;place-items:center;font:700 13px var(--font-en);color:var(--blue-ink)}
+.steps{display:flex;gap:6px}.steps i{flex:1;height:5px;border-radius:9px;background:var(--surface-3)}.steps i.on{background:var(--blue)}
+.opt{flex:1;border-radius:16px;padding:12px;background:var(--surface);box-shadow:inset 0 0 0 1.5px var(--line);display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.opt.on{box-shadow:inset 0 0 0 2px var(--blue);background:var(--blue-soft)}
+.opt b{font:700 13px var(--font-ar)}.opt small{font:500 11px/1.4 var(--font-ar);color:var(--ink-3)}
+.ill{width:128px;height:128px;border-radius:50%;display:grid;place-items:center;margin:0 auto;position:relative;color:var(--blue-ink);background:var(--blue-soft)}
+.ill::before{content:"";position:absolute;inset:-14px;border-radius:50%;border:2px dashed var(--surface-3)}
+.ill .ic{width:54px;height:54px;stroke-width:1.5}
+.center-col{align-items:center;text-align:center;justify-content:center;gap:14px}
+.center-col h2{margin:0;font:800 20px var(--font-ar)}.center-col p{margin:0;color:var(--ink-2);font-size:13.5px;max-width:230px}
+.ai-card{background:var(--surface);border-radius:24px;padding:16px;position:relative;overflow:hidden;box-shadow:var(--shadow-1)}
+.ai-card::before{content:"";position:absolute;inset:0 0 auto 0;height:4px;background:var(--grad)}
+.legend{display:grid;gap:8px;font:600 12.5px var(--font-ar)}
+.legend div{display:flex;align-items:center;gap:8px}.legend i{width:10px;height:10px;border-radius:3px;flex:none}.legend em{margin-inline-start:auto;font:700 12.5px var(--font-en);font-style:normal;color:var(--ink-2)}
+.sep{height:1px;background:var(--line)}
+.group-l{font:700 12px var(--font-ar);color:var(--ink-3);padding:6px 4px 0}
+
+/* ---------- tablet / desktop ---------- */
+.lay{display:flex;background:var(--bg);color:var(--ink);font:500 14px/1.5 var(--font-ar);direction:rtl;overflow:hidden;border-radius:20px;box-shadow:var(--shadow-3);border:1px solid var(--line)}
+.rail-n{width:88px;flex:none;background:var(--surface);display:flex;flex-direction:column;align-items:center;gap:10px;padding:20px 0;border-inline-end:1px solid var(--line)}
+.rail-n a{display:flex;flex-direction:column;align-items:center;gap:3px;font:600 11px var(--font-ar);color:var(--ink-3);text-decoration:none}
+.rail-n a .pill{width:56px;height:34px;border-radius:99px;display:grid;place-items:center}
+.rail-n a.on{color:var(--blue-ink)}.rail-n a.on .pill{background:var(--blue-soft)}
+.side{width:248px;flex:none;background:var(--surface);padding:22px 16px;display:flex;flex-direction:column;gap:6px;border-inline-end:1px solid var(--line)}
+.side a{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;font:600 14px var(--font-ar);color:var(--ink-2);text-decoration:none}
+.side a.on{background:var(--blue-soft);color:var(--blue-ink)}
+.lmain{flex:1;min-width:0;padding:24px;display:flex;flex-direction:column;gap:16px}
+.lhead{display:flex;align-items:center;gap:12px}.lhead h1{margin:0;font:800 24px var(--font-ar);flex:1}
+.lsearch{height:44px;width:300px;border-radius:14px;background:var(--surface);box-shadow:inset 0 0 0 1.5px var(--line);display:flex;align-items:center;gap:10px;padding:0 14px;color:var(--ink-3)}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.kpi{background:var(--surface);border-radius:22px;padding:16px;display:flex;flex-direction:column;gap:4px;box-shadow:var(--shadow-1)}
+.kpi small{color:var(--ink-3);font:600 12px var(--font-ar)}.kpi b{font:700 28px/1.2 var(--font-en)}.kpi em{font:600 12px var(--font-ar);font-style:normal}
+.tbl{width:100%;font-size:13px}.tbl td,.tbl th{padding:10px 8px}.tbl th{font-family:var(--font-ar);font-size:12px}
+.wf{width:216px;height:430px;border:2px solid var(--ink-3);border-radius:26px;padding:12px;display:flex;flex-direction:column;gap:8px;background:var(--surface);flex:none;direction:ltr}
+.wb{border:1.5px dashed var(--ink-3);border-radius:10px;display:grid;place-items:center;font:500 10.5px var(--font-mono);color:var(--ink-3);text-align:center;padding:4px;background:var(--bg)}
+.wb.f{background:var(--surface-3);border-style:solid}
+.wr{display:flex;gap:8px}.wr>*{flex:1}
+.lg-grid{display:grid;gap:var(--gt);padding:0 var(--mg);height:70px;border-radius:12px;background:var(--surface-2);align-items:stretch;padding-block:8px}
+.lg-grid i{background:color-mix(in srgb,var(--blue) 30%,transparent);border-radius:4px}
+.tree{white-space:pre;font-size:12.5px;line-height:1.65}
+.motion-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}
+.mt{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:14px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.mt .demo{height:112px;border-radius:12px;background:var(--bg);display:grid;place-items:center;overflow:hidden;position:relative;direction:rtl;font-family:var(--font-ar)}
+.mt b{font:700 14px var(--font-en)}.mt small{font:500 12px/1.45 var(--font-en);color:var(--ink-3)}
+.pg{position:absolute;inset:0;display:grid;place-items:center;font:700 15px var(--font-ar);transition:transform .45s cubic-bezier(.3,.8,.2,1)}
+.pg.a{background:var(--blue-soft);color:var(--blue-ink)}.pg.b{background:var(--green-soft);color:var(--green-ink);transform:translateX(-100%)}
+.demo.p2 .pg.a{transform:translateX(30%)}.demo.p2 .pg.b{transform:translateX(0)}
+.scan-box{width:76px;height:76px;border-radius:14px;border:2px solid var(--blue);position:relative;display:grid;place-items:center;color:var(--blue-ink);overflow:hidden}
+.scan-box::after{content:"";position:absolute;inset-inline:0;height:3px;background:linear-gradient(90deg,transparent,var(--blue),transparent);top:0;animation:scanb 1.6s ease-in-out infinite alternate}
+@keyframes scanb{to{top:calc(100% - 3px)}}
+.tiny-btn{align-self:flex-start;height:30px;padding:0 12px;border-radius:9px;border:1px solid var(--line);background:var(--surface-2);color:var(--ink);font:600 12px var(--font-en)}
+.foot{padding-block:80px 60px;color:var(--ink-3);font-size:14px}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;animation-delay:0s!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+<defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1F5BFF"/><stop offset="1" stop-color="#0B8A63"/></linearGradient>
+<linearGradient id="areaf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1F5BFF" stop-opacity=".35"/><stop offset="1" stop-color="#1F5BFF" stop-opacity="0"/></linearGradient></defs>
+<symbol id="logo" viewBox="0 0 64 64"><rect width="64" height="64" rx="19" fill="url(#lg)"/><path d="M32 11a21 21 0 1 0 14.8 6.2" fill="none" stroke="#fff" stroke-opacity=".85" stroke-width="3.2" stroke-linecap="round" stroke-dasharray="0.1 5.6"/><path d="M34 19 22 34h8l-2 11 13-16h-8z" fill="#FFC21A"/></symbol>
+<symbol id="bolt" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></symbol>
+<symbol id="home" viewBox="0 0 24 24"><path d="M3 11 12 3l9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></symbol>
+<symbol id="plug" viewBox="0 0 24 24"><path d="M9 2v5M15 2v5M6 7h12v4a6 6 0 0 1-12 0zM12 17v5"/></symbol>
+<symbol id="wallet" viewBox="0 0 24 24"><path d="M4 7h14a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M4 7l11-3v3"/><path d="M16 13.5h.01"/></symbol>
+<symbol id="camera" viewBox="0 0 24 24"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.5"/></symbol>
+<symbol id="ai" viewBox="0 0 24 24"><path d="M11 3l1.8 5.2L18 10l-5.2 1.8L11 17l-1.8-5.2L4 10l5.2-1.8z"/><path d="M19 15l.7 1.8 1.8.7-1.8.7L19 20l-.7-1.8-1.8-.7 1.8-.7z"/></symbol>
+<symbol id="chart" viewBox="0 0 24 24"><path d="M5 20v-6M12 20V5M19 20V10M3 20h18"/></symbol>
+<symbol id="sliders" viewBox="0 0 24 24"><path d="M4 7h9M19 7h1M4 17h1M11 17h9"/><circle cx="16" cy="7" r="2.2"/><circle cx="8" cy="17" r="2.2"/></symbol>
+<symbol id="bell" viewBox="0 0 24 24"><path d="M6 16v-5a6 6 0 1 1 12 0v5l2 2H4z"/><path d="M10 21h4"/></symbol>
+<symbol id="file" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></symbol>
+<symbol id="recharge" viewBox="0 0 24 24"><rect x="3" y="7" width="16" height="10" rx="2.5"/><path d="M21 11v2M11.5 9.5 9.5 12.5h3l-1 3"/></symbol>
+<symbol id="warn" viewBox="0 0 24 24"><path d="M12 3 2 20h20z"/><path d="M12 10v4M12 17h.01"/></symbol>
+<symbol id="search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l5 5"/></symbol>
+<symbol id="plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+<symbol id="check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+<symbol id="x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+<symbol id="back" viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6"/></symbol>
+<symbol id="chev" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
+<symbol id="chevd" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+<symbol id="image" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5L6 20"/></symbol>
+<symbol id="crop" viewBox="0 0 24 24"><path d="M6 2v14a2 2 0 0 0 2 2h14M2 6h14a2 2 0 0 1 2 2v14"/></symbol>
+<symbol id="user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+<symbol id="globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></symbol>
+<symbol id="moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5z"/></symbol>
+<symbol id="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5 19 19M19 5l-1.5 1.5M6.5 17.5 5 19"/></symbol>
+<symbol id="shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></symbol>
+<symbol id="help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.4-1 1-1 1.7M12 17h.01"/></symbol>
+<symbol id="info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+<symbol id="logout" viewBox="0 0 24 24"><path d="M10 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h4M15 8l4 4-4 4M19 12H9"/></symbol>
+<symbol id="mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M4 7l8 6 8-6"/></symbol>
+<symbol id="lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="3"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></symbol>
+<symbol id="eye" viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+<symbol id="phone" viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="3"/><path d="M11 18h2"/></symbol>
+<symbol id="pin" viewBox="0 0 24 24"><path d="M12 21s7-6 7-11a7 7 0 0 0-14 0c0 5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+<symbol id="meter" viewBox="0 0 24 24"><path d="M4 16a8 8 0 1 1 16 0"/><path d="M12 16l4-5M4 16h2M18 16h2"/></symbol>
+<symbol id="calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
+<symbol id="trend" viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></symbol>
+<symbol id="trend-d" viewBox="0 0 24 24"><path d="M3 7l6 6 4-4 8 8M15 17h6v-6"/></symbol>
+<symbol id="wifi-off" viewBox="0 0 24 24"><path d="M2 9a15 15 0 0 1 20 0M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0M12 19.5h.01M3 3l18 18"/></symbol>
+<symbol id="wifi" viewBox="0 0 24 24"><path d="M2 9a15 15 0 0 1 20 0M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0M12 19.5h.01"/></symbol>
+<symbol id="refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/></symbol>
+<symbol id="wrench" viewBox="0 0 24 24"><path d="M14.5 6.5a4 4 0 0 0 5 5L11 20a2.1 2.1 0 0 1-3-3l8.5-8.5z"/></symbol>
+<symbol id="clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+<symbol id="fl-flash" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></symbol>
+<symbol id="ac" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="9" rx="2.5"/><path d="M7 10h10M7 17v2M12 17v3M17 17v2"/></symbol>
+<symbol id="fridge" viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M6 10h12M9 6v2M9 13v3"/></symbol>
+<symbol id="tv" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="12" rx="2.5"/><path d="M8 21h8M12 17v4"/></symbol>
+<symbol id="washer" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2.5"/><circle cx="12" cy="14" r="4"/><path d="M8 6h1M12 6h4"/></symbol>
+<symbol id="fan" viewBox="0 0 24 24"><circle cx="12" cy="12" r="1.8"/><path d="M12 10.2C10 6 11 3 13.5 3 16 3 15 8 12 10.2z"/><path d="M12 10.2C10 6 11 3 13.5 3 16 3 15 8 12 10.2z" transform="rotate(120 12 12)"/><path d="M12 10.2C10 6 11 3 13.5 3 16 3 15 8 12 10.2z" transform="rotate(240 12 12)"/></symbol>
+<symbol id="heater" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="14" rx="2.5"/><path d="M8 8v6M12 8v6M16 8v6M7 18v3M17 18v3"/></symbol>
+<symbol id="microwave" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2.5"/><rect x="5" y="8" width="10" height="8" rx="1.5"/><path d="M18.5 9h.01M18.5 12h.01M18.5 15h.01"/></symbol>
+<symbol id="kettle" viewBox="0 0 24 24"><path d="M5 9h12l-1 11H6z"/><path d="M8 9V7h6v2M17 11l3-2M5 11c-3 0-3 5 0 5"/></symbol>
+<symbol id="iron" viewBox="0 0 24 24"><path d="M3 19h18c0-6-3-10-8-10H9c-3 0-4 2-4 5z"/><path d="M9 13h4"/></symbol>
+<symbol id="led" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.5 1 2.5h6c0-1 .3-1.8 1-2.5A6 6 0 0 0 12 3z"/><path d="M9.5 19h5M10.5 21.5h3"/></symbol>
+<symbol id="bulb" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.5 1 2.5h6c0-1 .3-1.8 1-2.5A6 6 0 0 0 12 3z"/><path d="M9.5 19h5M10.5 21.5h3M10 9l2 3 2-3"/></symbol>
+<symbol id="router" viewBox="0 0 24 24"><rect x="3" y="14" width="18" height="6" rx="2.5"/><path d="M7 17h.01M11 17h.01M5 9a10 10 0 0 1 14 0M8.5 12a5 5 0 0 1 7 0"/></symbol>
+<symbol id="laptop" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="11" rx="2"/><path d="M2 20h20"/></symbol>
+<symbol id="computer" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="12" rx="2.5"/><path d="M9 21h6M12 15v6"/></symbol>
+<symbol id="pump" viewBox="0 0 24 24"><path d="M12 3s6 6.5 6 10.5a6 6 0 0 1-12 0C6 9.5 12 3 12 3z"/><path d="M9 14a3 3 0 0 0 3 3"/></symbol>
+<symbol id="oven" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2.5"/><path d="M3 8h18M7 5.5h.01M10 5.5h.01"/><rect x="7" y="11" width="10" height="7" rx="1.5"/></symbol>
+<symbol id="cooker" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2.5"/><circle cx="9" cy="8" r="2"/><circle cx="15" cy="8" r="2"/><path d="M7 15h10M7 18h10"/></symbol>
+</svg>
+<style>
+.stage{background:var(--bg);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px;direction:rtl;font-family:var(--font-ar);min-width:0}
+.stage.row-w{flex-direction:row;flex-wrap:wrap;align-items:center}
+.stage .bnav{border-radius:20px;width:100%;box-shadow:var(--shadow-1)}
+.menu{background:var(--surface);border-radius:16px;box-shadow:var(--shadow-2);padding:6px;display:flex;flex-direction:column}
+.menu div{padding:10px 12px;border-radius:10px;font:600 14px var(--font-ar);display:flex;align-items:center;gap:8px}
+.menu .sel{background:var(--blue-soft);color:var(--blue-ink)}
+.scrim-st{position:relative;height:270px;border-radius:14px;overflow:hidden;background:var(--bg);direction:rtl;font-family:var(--font-ar)}
+.scrim-st::before{content:"";position:absolute;inset:0;background:var(--scrim);z-index:1}
+.scrim-st>*{position:absolute;z-index:2}
+.cl-title{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin:0 0 12px}
+.cl-title h4{margin:0}
+.wide{grid-column:1/-1}
+</style>
+
+<header class="top-nav">
+  <div class="wrap">
+    <a class="brand" href="#top"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="#logo"/></svg>PowerWise Egypt</a>
+    <nav class="links" aria-label="Sections">
+      <a href="#foundations">Foundations</a><a href="#components">Components</a><a href="#screens">Mobile screens</a><a href="#layouts">Tablet &amp; desktop</a><a href="#specs">Specs &amp; tokens</a>
+    </nav>
+    <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch theme"><svg class="ic"><use href="#sun"/></svg><span id="themeLbl">Auto</span></button>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <h1>PowerWise Egypt</h1>
+      <p class="ar" lang="ar" dir="rtl">مراقبة ذكية لاستهلاك الكهرباء</p>
+      <p class="lead">The complete UI kit for an AI electricity monitor built for prepaid meter users in Egypt. Arabic RTL first, mobile first, with tablet and desktop layouts, a component library and design tokens. Everything on this page is live, so the theme switch restyles every screen.</p>
+      <div class="facts">
+        <span class="fact">Arabic RTL first</span><span class="fact">Mobile first</span><span class="fact">Light &amp; dark</span><span class="fact">Material 3 · HIG · Fluent</span><span class="fact">23 screens &amp; states</span>
+      </div>
+      <div class="cta">
+        <a class="btn primary" href="#screens" style="text-decoration:none;font-family:var(--font-en)">See the screens</a>
+        <a class="btn ghost" href="#specs" style="text-decoration:none;font-family:var(--font-en)">Design tokens</a>
+      </div>
+    </div>
+    <div class="hero-vis" aria-hidden="true">
+      <div class="gauge bg-ring" data-v="72" data-n="72" data-sweep="300" data-w="1.1" data-r1="44" data-r2="49"></div>
+      <div class="scaled s85" data-clone="f-home"></div>
+      <div class="scaled s85" data-clone="f-splash"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOUNDATIONS ================= -->
+<section class="sec" id="foundations">
+<div class="wrap">
+  <h2>Foundations</h2>
+  <p class="sub">A calm, premium base: electric blue for action, green for savings, energy yellow for attention. Neutrals lean slightly blue so cards, charts and the glass surfaces share one temperature.</p>
+
+  <h3 class="gh">Color palette</h3>
+  <p class="gsub">Swatches use the live tokens, so toggling the theme shows the dark values. Text on tinted fills always uses the matching <code>-ink</code> variant to keep contrast at 4.5:1 or better.</p>
+  <div class="sws">
+    <div class="swc"><span class="chip-c" style="background:var(--blue);color:var(--on-blue)">Aa</span><b>Electric Blue</b><code>primary</code><small>#1F5BFF · dark #5B8CFF<br>Actions, links, active states</small></div>
+    <div class="swc"><span class="chip-c" style="background:var(--green);color:#fff">Aa</span><b>Savings Green</b><code>secondary / success</code><small>#0E9F6E · dark #34D399<br>Savings, success, healthy balance</small></div>
+    <div class="swc"><span class="chip-c" style="background:var(--yellow);color:#3a2a00">Aa</span><b>Energy Yellow</b><code>accent</code><small>#FFC21A · dark #FFD24D<br>Highlights, scan frame, AI sparks</small></div>
+    <div class="swc"><span class="chip-c" style="background:var(--orange);color:#2a1600">Aa</span><b>Warning Orange</b><code>warning</code><small>#F58A07 · dark #FFA23A<br>Low balance, high usage</small></div>
+    <div class="swc"><span class="chip-c" style="background:var(--red);color:#fff">Aa</span><b>Danger Red</b><code>danger</code><small>#E5383B · dark #FF6B6B<br>Errors, abnormal consumption</small></div>
+    <div class="swc"><span class="chip-c" style="background:var(--bg);color:var(--ink)">Aa</span><b>Background</b><code>background</code><small>#F3F6FC · dark #070B14</small></div>
+    <div class="swc"><span class="chip-c" style="background:var(--surface);color:var(--ink)">Aa</span><b>Surface</b><code>surface</code><small>#FFFFFF · dark #0F1626<br>Cards, sheets, inputs</small></div>
+    <div class="swc"><span class="chip-c" style="background:var(--surface-2);color:var(--ink)">Aa</span><b>Surface variant</b><code>surface-variant</code><small>#E9EEF8 · dark #172036<br>Segmented controls, skeletons</small></div>
+    <div class="swc"><span class="chip-c" style="background:var(--ink);color:var(--bg)">Aa</span><b>On surface</b><code>on-surface</code><small>#0A1226 · dark #EAF0FF</small></div>
+    <div class="swc"><span class="chip-c" style="background:var(--ink-2);color:var(--bg)">Aa</span><b>On surface variant</b><code>on-surface-variant</code><small>#47536E · dark #A3B0CE</small></div>
+    <div class="swc"><span class="chip-c" style="background:var(--grad);color:#fff">Aa</span><b>Brand gradient</b><code>gradient.brand</code><small>135° #1F5BFF → #0B8A63<br>Balance card, splash, AI badge</small></div>
+    <div class="swc"><span class="chip-c" style="background:var(--grad);color:#fff;padding:0;align-items:stretch"><span class="glass" style="flex:1;margin:14px;display:grid;place-items:center;font:600 11px var(--font-en)">glass</span></span><b>Glass</b><code>glass</code><small>16% white fill, 30% white edge, 10px blur. Only over the gradient.</small></div>
+  </div>
+
+  <h3 class="gh">Typography</h3>
+  <p class="gsub">Cairo carries Arabic and Latin text in the Arabic UI. Inter carries the English locale and every meter reading and money figure, set with tabular figures so digits never jitter while they animate. Arabic never gets letter-spacing, italics or uppercase.</p>
+  <div class="spec-fonts">
+    <div class="dc"><h4>CAIRO · ARABIC UI · 400 500 600 700 800</h4><div class="big" lang="ar" dir="rtl" style="font-family:var(--font-ar)">الرصيد الحالي</div><div class="glyphs" lang="ar" dir="rtl" style="font-family:var(--font-ar)">أ ب ت ث ج ح خ د ذ ر ز س ش ص ض ط ظ ع غ ف ق ك ل م ن ه و ي — IBM Plex Sans Arabic is the approved fallback.</div></div>
+    <div class="dc"><h4>INTER · ENGLISH UI + NUMERALS · 400 500 600 700</h4><div class="big" style="font-family:var(--font-en);letter-spacing:-.02em">184.50</div><div class="glyphs" style="font-family:var(--font-en)">Current balance · kWh · EGP · 0123456789 · tabular figures on for all readings.</div></div>
+  </div>
+  <div class="dc" style="margin-top:16px"><h4>TYPE SCALE · SIZE / LINE HEIGHT · WEIGHT</h4>
+    <div class="scroll-x"><table class="tscale" style="min-width:640px">
+      <thead><tr><th>ROLE</th><th>ARABIC · CAIRO</th><th>ENGLISH · INTER</th><th>SPEC</th></tr></thead>
+      <tbody>
+        <tr><td>Display</td><td lang="ar" dir="rtl" style="font:800 40px/1.2 var(--font-ar)">وفّر كهرباءك</td><td style="font:800 40px/1.2 var(--font-en);letter-spacing:-.02em">Save power</td><td><code>40 / 48 · 800</code></td></tr>
+        <tr><td>Meter figure</td><td colspan="2" style="font:700 44px/1.1 var(--font-en);font-variant-numeric:tabular-nums">184.50 <span style="font:600 16px var(--font-ar);color:var(--ink-3)">ج.م · EGP</span></td><td><code>44 / 48 · Inter 700</code></td></tr>
+        <tr><td>Headline</td><td lang="ar" dir="rtl" style="font:800 28px/1.3 var(--font-ar)">تحليل الاستهلاك</td><td style="font:800 28px/1.3 var(--font-en)">Usage analysis</td><td><code>28 / 36 · 800</code></td></tr>
+        <tr><td>Title</td><td lang="ar" dir="rtl" style="font:700 20px/1.4 var(--font-ar)">رصيدك يكفي 13 يوماً</td><td style="font:700 20px/1.4 var(--font-en)">Balance lasts 13 days</td><td><code>20 / 28 · 700</code></td></tr>
+        <tr><td>Body large</td><td lang="ar" dir="rtl" style="font:500 16px/1.7 var(--font-ar)">اشحن قبل 25 أكتوبر لتجنب الانقطاع.</td><td style="font:500 16px/1.6 var(--font-en)">Recharge before 25 Oct to avoid a cut-off.</td><td><code>16 / 27 · 500</code></td></tr>
+        <tr><td>Body</td><td lang="ar" dir="rtl" style="font:500 14px/1.7 var(--font-ar)">استهلاك اليوم أعلى من المتوسط.</td><td style="font:500 14px/1.6 var(--font-en)">Today is above your average.</td><td><code>14 / 24 · 500</code></td></tr>
+        <tr><td>Label</td><td lang="ar" dir="rtl" style="font:600 12px/1.5 var(--font-ar)">ك.و.س · ج.م</td><td style="font:600 12px/1.5 var(--font-en)">kWh · EGP</td><td><code>12 / 18 · 600</code></td></tr>
+      </tbody></table></div>
+    <p class="note" style="margin:12px 0 0">Numerals: Western digits (0–9) by default for readings and money, matching the digits on Egyptian prepaid meters. Eastern Arabic digits are available as a locale option and never mix with Western digits in one figure.</p>
+  </div>
+
+  <div class="grid g2" style="margin-top:16px">
+    <div class="dc"><h4>SPACING · 4 PT BASE</h4>
+      <div class="sp-row"><span>space-1 · 4</span><i style="width:4px"></i></div><div class="sp-row"><span>space-2 · 8</span><i style="width:8px"></i></div><div class="sp-row"><span>space-3 · 12</span><i style="width:12px"></i></div><div class="sp-row"><span>space-4 · 16</span><i style="width:16px"></i></div><div class="sp-row"><span>space-5 · 20</span><i style="width:20px"></i></div><div class="sp-row"><span>space-6 · 24</span><i style="width:24px"></i></div><div class="sp-row"><span>space-8 · 32</span><i style="width:32px"></i></div><div class="sp-row"><span>space-10 · 40</span><i style="width:40px"></i></div><div class="sp-row"><span>space-12 · 48</span><i style="width:48px"></i></div><div class="sp-row"><span>space-16 · 64</span><i style="width:64px"></i></div>
+      <p class="note" style="margin:12px 0 0">Screen margin 16 · card padding 14–20 · gap between cards 12 · minimum touch target 48 × 48.</p>
+    </div>
+    <div class="dc"><h4>RADIUS &amp; ELEVATION</h4>
+      <div class="rad-row">
+        <div class="rad" style="border-radius:8px">8</div><div class="rad" style="border-radius:12px">12</div><div class="rad" style="border-radius:16px">16</div><div class="rad" style="border-radius:22px">22</div><div class="rad" style="border-radius:28px">28</div><div class="rad" style="border-radius:99px">full</div>
+      </div>
+      <div class="rad-row" style="margin-top:20px;padding:20px;border-radius:14px;background:var(--bg)">
+        <div class="elev" style="box-shadow:var(--shadow-1)">elev-1</div><div class="elev" style="box-shadow:var(--shadow-2)">elev-2</div><div class="elev" style="box-shadow:var(--shadow-3)">elev-3</div>
+      </div>
+      <p class="note" style="margin:12px 0 0">Buttons 16 · inputs 14 · cards 22 · balance card 26 · sheets and dialogs 28. Shadows are soft and blue-tinted, never grey.</p>
+    </div>
+  </div>
+
+  <h3 class="gh">Icon guidelines</h3>
+  <p class="gsub">One outline family, drawn on a 24 px grid with a 2 px safe margin, 1.75 px stroke and round caps and joins. Active navigation icons sit on a tinted pill instead of switching to a filled glyph. Core set first, then the appliance set.</p>
+  <div class="icon-grid" id="coreIcons">
+    <div class="icon-cell"><svg class="ic"><use href="#bolt"/></svg><b>Electricity</b><small lang="ar">كهرباء</small></div>
+    <div class="icon-cell"><svg class="ic"><use href="#home"/></svg><b>Home</b><small lang="ar">الرئيسية</small></div>
+    <div class="icon-cell"><svg class="ic"><use href="#plug"/></svg><b>Devices</b><small lang="ar">الأجهزة</small></div>
+    <div class="icon-cell"><svg class="ic"><use href="#wallet"/></svg><b>Balance</b><small lang="ar">الرصيد</small></div>
+    <div class="icon-cell"><svg class="ic"><use href="#camera"/></svg><b>Camera</b><small lang="ar">الكاميرا</small></div>
+    <div class="icon-cell"><svg class="ic"><use href="#ai"/></svg><b>AI</b><small lang="ar">الذكاء الاصطناعي</small></div>
+    <div class="icon-cell"><svg class="ic"><use href="#chart"/></svg><b>Analytics</b><small lang="ar">التحليلات</small></div>
+    <div class="icon-cell"><svg class="ic"><use href="#sliders"/></svg><b>Settings</b><small lang="ar">الإعدادات</small></div>
+    <div class="icon-cell"><svg class="ic"><use href="#bell"/></svg><b>Notifications</b><small lang="ar">الإشعارات</small></div>
+    <div class="icon-cell"><svg class="ic"><use href="#file"/></svg><b>Reports</b><small lang="ar">التقارير</small></div>
+    <div class="icon-cell"><svg class="ic"><use href="#recharge"/></svg><b>Recharge</b><small lang="ar">الشحن</small></div>
+    <div class="icon-cell"><svg class="ic"><use href="#warn"/></svg><b>Warnings</b><small lang="ar">التحذيرات</small></div>
+  </div>
+  <div class="icon-grid" style="margin-top:10px">
+    <div class="icon-cell"><svg class="ic"><use href="#ac"/></svg><b>Air conditioner</b><small lang="ar">تكييف</small></div>
+    <div class="icon-cell"><svg class="ic"><use href="#fridge"/></svg><b>Refrigerator</b><small lang="ar">ثلاجة</small></div>
+    <div class="icon-cell"><svg class="ic"><use href="#tv"/></svg><b>Television</b><small lang="ar">تلفزيون</small></div>
+    <div class="icon-cell"><svg class="ic"><use href="#washer"/></svg><b>Washing machine</b><small lang="ar">غسالة</small></div>
+    <div class="icon-cell"><svg class="ic"><use href="#fan"/></svg><b>Fan</b><small lang="ar">مروحة</small></div>
+    <div class="icon-cell"><svg class="ic"><use href="#heater"/></svg><b>Heater</b><small lang="ar">دفاية</small></div>
+    <div class="icon-cell"><svg class="ic"><use href="#microwave"/></svg><b>Microwave</b><small lang="ar">ميكروويف</small></div>
+    <div class="icon-cell"><svg class="ic"><use href="#kettle"/></svg><b>Kettle</b><small lang="ar">غلاية</small></div>
+    <div class="icon-cell"><svg class="ic"><use href="#iron"/></svg><b>Iron</b><small lang="ar">مكواة</small></div>
+    <div class="icon-cell"><svg class="ic"><use href="#led"/></svg><b>LED bulb</b><small lang="ar">لمبة LED</small></div>
+    <div class="icon-cell"><svg class="ic"><use href="#bulb"/></svg><b>Normal bulb</b><small lang="ar">لمبة عادية</small></div>
+    <div class="icon-cell"><svg class="ic"><use href="#router"/></svg><b>Router</b><small lang="ar">راوتر</small></div>
+    <div class="icon-cell"><svg class="ic"><use href="#laptop"/></svg><b>Laptop</b><small lang="ar">لابتوب</small></div>
+    <div class="icon-cell"><svg class="ic"><use href="#computer"/></svg><b>Computer</b><small lang="ar">كمبيوتر</small></div>
+    <div class="icon-cell"><svg class="ic"><use href="#pump"/></svg><b>Water pump</b><small lang="ar">طلمبة مياه</small></div>
+    <div class="icon-cell"><svg class="ic"><use href="#oven"/></svg><b>Electric oven</b><small lang="ar">فرن كهربائي</small></div>
+    <div class="icon-cell"><svg class="ic"><use href="#cooker"/></svg><b>Cooker</b><small lang="ar">بوتاجاز كهربائي</small></div>
+  </div>
+  <div class="grid g2" style="margin-top:16px">
+    <div class="dc"><h4>ICON RULES</h4><ul class="ul">
+      <li><b>Sizes:</b> 20 in buttons and inputs, 22 in app bars and rows, 26 in tiles and the scan button, 54+ in illustrations.</li>
+      <li><b>Color:</b> inherit the text color. On tinted tiles use the paired <code>-ink</code> color, never the raw accent.</li>
+      <li><b>Mirroring:</b> back, forward, chevrons, progress and list arrows flip in RTL. Bolt, camera, charts, clocks, plugs and appliances never flip.</li>
+      <li><b>Meaning:</b> never rely on an icon alone for a state. Pair it with a label or a badge.</li>
+    </ul></div>
+    <div class="dc"><h4>APPLIANCE TILES</h4><ul class="ul">
+      <li>Each category sits on a 46 px rounded tile: cooling in blue, kitchen in orange, lighting in yellow, network in green, motors and entertainment in grey.</li>
+      <li>Users can replace the icon with a photo of their own appliance. Photos crop to the same 16 px radius and keep the category tile as a fallback.</li>
+      <li>Every appliance icon is single-weight line art, readable at 20 px.</li>
+    </ul></div>
+  </div>
+
+  <h3 class="gh">Accessibility</h3>
+  <div class="grid g2">
+    <div class="dc"><h4>VISUAL</h4><ul class="ul">
+      <li><b>Contrast:</b> 4.5:1 for text, 3:1 for icons, borders of controls and chart marks. Both themes are checked.</li>
+      <li><b>Not color alone:</b> usage levels pair color with a label (<em>normal</em>, <em>high</em>, <em>abnormal</em>) and an icon.</li>
+      <li><b>Type:</b> body text scales to 200% without clipping. Arabic keeps a 1.7 line height so diacritics never collide.</li>
+      <li><b>Glass:</b> only used over the brand gradient, with white text at 4.5:1 or better.</li>
+    </ul></div>
+    <div class="dc"><h4>INTERACTION</h4><ul class="ul">
+      <li><b>Targets:</b> at least 48 × 48 dp. Chips and small buttons are 34–40 dp tall with extended hit areas.</li>
+      <li><b>Screen readers:</b> every icon button has an Arabic label. Charts expose a one-line summary, for example “Usage this week, highest on Wednesday, 9.4 kWh”.</li>
+      <li><b>Focus:</b> a 3 px blue ring with 2 px offset on keyboard and switch-access focus.</li>
+      <li><b>Motion:</b> every animation has a still end state and turns off with “reduce motion”. Nothing flashes more than 3 times per second.</li>
+      <li><b>OCR flow:</b> manual entry is always one tap away from the camera, with the same validation.</li>
+    </ul></div>
+  </div>
+</div>
+</section>
+
+<!-- ================= COMPONENTS ================= -->
+<section class="sec" id="components">
+<div class="wrap">
+  <h2>Component library</h2>
+  <p class="sub">Every reusable piece, drawn in RTL on the app background. The controls respond to hover, press and focus; the toggles and segmented tabs work.</p>
+  <div class="grid g2">
+
+    <div class="dc"><h4>BUTTONS</h4>
+      <div class="stage row-w">
+        <button class="btn primary" type="button">تسجيل الدخول</button>
+        <button class="btn tonal" type="button"><svg class="ic"><use href="#plus"/></svg>إضافة جهاز</button>
+        <button class="btn ghost" type="button">إلغاء</button>
+        <button class="btn danger" type="button">حذف</button>
+        <button class="btn primary sm" type="button">حفظ</button>
+        <button class="btn primary" type="button" disabled>غير متاح</button>
+        <button class="btn primary" type="button" aria-busy="true"><span class="spin" style="width:20px;height:20px;border-width:2.5px;border-color:rgba(255,255,255,.35);border-top-color:#fff"></span>جارٍ التحميل</button>
+      </div>
+      <p class="note" style="margin:10px 0 0">52 px tall, radius 16, Cairo 700 16. Press scales to 97% in 120 ms.</p>
+    </div>
+
+    <div class="dc"><h4>INPUTS</h4>
+      <div class="stage">
+        <div class="field"><label for="i1">البريد الإلكتروني</label><div class="input"><svg class="ic"><use href="#mail"/></svg><input id="i1" type="email" placeholder="name@example.com" dir="ltr" style="text-align:right"></div></div>
+        <div class="field"><label for="i2">رقم الهاتف</label><div class="input focus"><span class="pre-x">+20</span><input id="i2" type="tel" value="1012345678" dir="ltr" style="text-align:right"><svg class="ic"><use href="#phone"/></svg></div></div>
+        <div class="field"><label for="i3">كلمة المرور</label><div class="input err"><svg class="ic"><use href="#lock"/></svg><input id="i3" type="password" value="12345" aria-invalid="true"><svg class="ic"><use href="#eye"/></svg></div><span class="hint err">8 أحرف على الأقل</span></div>
+        <div class="field"><label for="i4">رقم العداد</label><div class="input ok"><svg class="ic"><use href="#meter"/></svg><input id="i4" value="4521 0098 7731" dir="ltr" style="text-align:right"><svg class="ic" style="color:var(--green)"><use href="#check"/></svg></div></div>
+      </div>
+    </div>
+
+    <div class="dc"><h4>DROPDOWN · SELECT</h4>
+      <div class="stage">
+        <div class="field"><label>المحافظة</label><div class="input focus"><svg class="ic"><use href="#pin"/></svg><span class="v">القاهرة</span><svg class="ic"><use href="#chevd"/></svg></div></div>
+        <div class="menu"><div class="sel"><svg class="ic" style="width:18px;height:18px"><use href="#check"/></svg>القاهرة</div><div style="padding-inline-start:38px">الجيزة</div><div style="padding-inline-start:38px">الإسكندرية</div><div style="padding-inline-start:38px">الدقهلية</div></div>
+      </div>
+    </div>
+
+    <div class="dc"><h4>SELECTION · SWITCH · CHECKBOX · SEGMENTED · CHIPS · RADIO CARDS</h4>
+      <div class="stage">
+        <div class="row" style="padding:0"><div class="grow1"><b>الإشعارات</b></div><button class="sw on" role="switch" aria-checked="true" aria-label="الإشعارات"></button></div>
+        <div class="row" style="padding:0"><span class="cb on"><svg class="ic"><use href="#check"/></svg></span><div class="grow1"><b>تذكرني</b></div><span class="cb"></span></div>
+        <div class="seg"><button class="on" type="button">يومي</button><button type="button">أسبوعي</button><button type="button">شهري</button></div>
+        <div class="chips"><span class="chip on">الكل</span><span class="chip"><svg class="ic" style="width:16px;height:16px"><use href="#ac"/></svg>تبريد</span><span class="chip">مطبخ</span><span class="chip">إضاءة</span></div>
+        <div class="row" style="padding:0;gap:10px;align-items:stretch"><div class="opt on"><svg class="ic" style="color:var(--blue-ink)"><use href="#meter"/></svg><b>عداد كارت</b><small>مسبق الدفع</small></div><div class="opt"><svg class="ic" style="color:var(--ink-3)"><use href="#file"/></svg><b>عداد فوترة</b><small>فاتورة شهرية</small></div></div>
+      </div>
+    </div>
+
+    <div class="dc"><h4>CARDS</h4>
+      <div class="stage">
+        <div class="card lift"><div class="h-row"><b>استهلاك اليوم</b><span class="badge b-warn">أعلى من المتوسط</span></div><div class="num" style="font:700 30px/1.3 var(--font-en)">9.4 <span style="font:600 13px var(--font-ar);color:var(--ink-3)">ك.و.س</span></div><div class="bar warn" style="margin-top:6px"><i style="--w:78%"></i></div></div>
+        <div class="dev-grid"><div class="dcard"><span class="tile t-blue"><svg class="ic"><use href="#ac"/></svg></span><b>تكييف</b><small>1,200 واط</small><span class="kw">108 kWh</span></div><div class="dcard"><span class="tile t-green"><svg class="ic"><use href="#fridge"/></svg></span><b>ثلاجة</b><small>150 واط</small><span class="kw">43 kWh</span></div></div>
+        <div class="bal" style="padding:14px"><small>الرصيد الحالي</small><div class="amt num">184.50<span>ج.م</span></div></div>
+      </div>
+      <p class="note" style="margin:10px 0 0">Plain cards hover up 3 px with elevation-2. The balance card is the only surface that uses the gradient.</p>
+    </div>
+
+    <div class="dc"><h4>BADGES · PROGRESS · GAUGE</h4>
+      <div class="stage">
+        <div class="row-w" style="display:flex;gap:8px;flex-wrap:wrap"><span class="badge b-ok">طبيعي</span><span class="badge b-warn">مرتفع</span><span class="badge b-bad">غير معتاد</span><span class="badge b-info">جديد</span><span class="badge b-ai"><svg class="ic" style="width:12px;height:12px"><use href="#ai"/></svg>AI</span></div>
+        <div><div class="h-row"><span class="muted">الشريحة الحالية</span><b class="num" style="font-size:13px">112 / 200</b></div><div class="bar" style="margin-top:6px"><i style="--w:56%"></i></div></div>
+        <div><div class="h-row"><span class="muted">اقتربت من حد الشريحة</span><b class="num" style="font-size:13px">91%</b></div><div class="bar warn" style="margin-top:6px"><i style="--w:91%"></i></div></div>
+        <div><div class="h-row"><span class="muted">تجاوزت الحد</span><b class="num" style="font-size:13px">104%</b></div><div class="bar bad" style="margin-top:6px"><i style="--w:100%"></i></div></div>
+        <div style="display:flex;gap:18px;justify-content:center">
+          <div class="gwrap" style="width:84px;height:84px"><div class="gauge" data-v="43" data-n="28" style="--gc:var(--green)"></div><div class="gc"><b style="font-size:20px">13</b><small style="color:var(--ink-3)">يوم</small></div></div>
+          <div class="gwrap" style="width:84px;height:84px"><div class="gauge" data-v="20" data-n="28" style="--gc:var(--orange)"></div><div class="gc"><b style="font-size:20px">6</b><small style="color:var(--ink-3)">أيام</small></div></div>
+          <div class="gwrap" style="width:84px;height:84px"><div class="gauge" data-v="8" data-n="28" style="--gc:var(--red)"></div><div class="gc"><b style="font-size:20px">2</b><small style="color:var(--ink-3)">يومان</small></div></div>
+        </div>
+      </div>
+      <p class="note" style="margin:10px 0 0">Gauge colors follow days left: green above 7, orange 3–7, red under 3.</p>
+    </div>
+
+    <div class="dc"><h4>DIALOG</h4>
+      <div class="scrim-st"><div class="dlg" style="inset-inline:20px;top:50px"><h5>حذف الجهاز؟</h5><p>سيتم حذف «تكييف» وسجل استهلاكه. لا يمكن التراجع.</p><div class="row" style="padding:0;gap:10px"><button class="btn ghost sm grow1" type="button">إلغاء</button><button class="btn danger sm grow1" type="button">حذف</button></div></div></div>
+    </div>
+
+    <div class="dc"><h4>BOTTOM SHEET</h4>
+      <div class="scrim-st"><div class="sheet" style="inset-inline:0;bottom:0"><div class="grab"></div><b style="font:700 16px var(--font-ar)">إضافة جهاز</b>
+        <div class="dev-grid" style="margin-top:10px;grid-template-columns:repeat(4,1fr);gap:8px"><div style="text-align:center;font:600 11px var(--font-ar)"><span class="tile t-blue" style="margin:0 auto 4px"><svg class="ic"><use href="#ac"/></svg></span>تكييف</div><div style="text-align:center;font:600 11px var(--font-ar)"><span class="tile t-green" style="margin:0 auto 4px"><svg class="ic"><use href="#fridge"/></svg></span>ثلاجة</div><div style="text-align:center;font:600 11px var(--font-ar)"><span class="tile t-orange" style="margin:0 auto 4px"><svg class="ic"><use href="#kettle"/></svg></span>غلاية</div><div style="text-align:center;font:600 11px var(--font-ar)"><span class="tile t-grey" style="margin:0 auto 4px"><svg class="ic"><use href="#plus"/></svg></span>آخر</div></div></div></div>
+    </div>
+
+    <div class="dc"><h4>SNACKBARS · TOOLTIP</h4>
+      <div class="stage">
+        <div class="snack"><svg class="ic"><use href="#check"/></svg>تم حفظ القراءة<b>تراجع</b></div>
+        <div class="snack"><svg class="ic" style="color:#FF8E8E"><use href="#warn"/></svg>تعذّر الاتصال بالخادم<b>إعادة</b></div>
+        <div style="padding-top:6px"><span class="tip">هذه القدرة بالواط من ملصق الجهاز</span></div>
+        <div><span class="icon-cell" style="display:inline-flex;flex-direction:row;padding:8px 12px;gap:6px"><svg class="ic" style="width:18px;height:18px"><use href="#info"/></svg><small style="font-size:12px">لمسة طويلة تُظهر التلميح</small></span></div>
+      </div>
+    </div>
+
+    <div class="dc"><h4>NAVIGATION · APP BAR · BOTTOM NAV · FAB</h4>
+      <div class="stage">
+        <div class="top" style="padding:0"><button class="ibtn" aria-label="رجوع"><svg class="ic"><use href="#back"/></svg></button><h1>تفاصيل الجهاز</h1><button class="ibtn" aria-label="المزيد"><svg class="ic"><use href="#bell"/></svg><i class="dot"></i></button></div>
+        <nav class="bnav" data-on="devices"></nav>
+        <div class="row-w" style="display:flex;gap:12px;align-items:center"><button class="fab" style="margin:0" aria-label="تصوير العداد"><svg class="ic"><use href="#camera"/></svg></button><button class="efab" style="position:static" type="button"><svg class="ic"><use href="#plus"/></svg>إضافة جهاز</button></div>
+      </div>
+    </div>
+
+    <div class="dc"><h4>LOADING · SKELETON</h4>
+      <div class="stage">
+        <div style="display:flex;gap:22px;align-items:center;color:var(--blue)"><span class="spin"></span><span class="dots"><i></i><i></i><i></i></span></div>
+        <div class="card"><div class="sk" style="height:14px;width:40%"></div><div class="sk" style="height:34px;width:62%;margin-top:10px"></div><div class="sk" style="height:8px;margin-top:14px;border-radius:9px"></div></div>
+        <div class="row" style="padding:0"><div class="sk" style="width:42px;height:42px;border-radius:14px"></div><div class="grow1"><div class="sk" style="height:12px;width:55%"></div><div class="sk" style="height:10px;width:35%;margin-top:8px"></div></div></div>
+      </div>
+    </div>
+
+    <div class="dc wide"><h4>CHARTS · LINE · BAR · DONUT · SPARKLINE</h4>
+      <div class="grid g3">
+        <div class="stage"><div class="h-row"><b style="font-size:14px">الاستهلاك اليومي</b><span class="muted">ك.و.س</span></div>
+          <svg class="chart" viewBox="0 0 290 124" role="img" aria-label="Daily usage last 7 days, highest today 9.4 kWh">
+            <line class="gl" x1="0" x2="262" y1="10" y2="10"/><line class="gl" x1="0" x2="262" y1="55" y2="55"/><line class="gl" x1="0" x2="262" y1="100" y2="100"/>
+            <text x="288" y="13" text-anchor="end">12</text><text x="288" y="58" text-anchor="end">6</text><text x="288" y="103" text-anchor="end">0</text>
+            <path d="M250,38.5 C230,38.5 230,28 210,28 C190,28 190,41.5 170,41.5 C150,41.5 150,33.3 130,33.3 C110,33.3 110,44.5 90,44.5 C70,44.5 70,39.3 50,39.3 C30,39.3 30,29.5 10,29.5 L10,100 L250,100 Z" fill="url(#areaf)"/>
+            <path class="ln draw" pathLength="1" d="M250,38.5 C230,38.5 230,28 210,28 C190,28 190,41.5 170,41.5 C150,41.5 150,33.3 130,33.3 C110,33.3 110,44.5 90,44.5 C70,44.5 70,39.3 50,39.3 C30,39.3 30,29.5 10,29.5"/>
+            <circle cx="10" cy="29.5" r="4.5" fill="var(--blue)" stroke="var(--surface)" stroke-width="2.5"/>
+            <text x="14" y="18" text-anchor="middle" style="fill:var(--ink);font-weight:700;font-family:var(--font-en)">9.4</text>
+            <text x="250" y="116" text-anchor="middle">خميس</text><text x="210" y="116" text-anchor="middle">جمعة</text><text x="170" y="116" text-anchor="middle">سبت</text><text x="130" y="116" text-anchor="middle">أحد</text><text x="90" y="116" text-anchor="middle">اثنين</text><text x="50" y="116" text-anchor="middle">ثلاثاء</text><text x="10" y="116" text-anchor="middle" style="fill:var(--ink);font-weight:700">اليوم</text>
+          </svg></div>
+        <div class="stage"><div class="h-row"><b style="font-size:14px">مقارنة شهرية</b><span class="muted">ك.و.س</span></div>
+          <svg class="chart" viewBox="0 0 290 124" role="img" aria-label="Monthly usage May to October, peak August 322 kWh">
+            <line class="gl" x1="0" x2="262" y1="10" y2="10"/><line class="gl" x1="0" x2="262" y1="55" y2="55"/><line class="gl" x1="0" x2="262" y1="100" y2="100"/>
+            <text x="288" y="13" text-anchor="end">300</text><text x="288" y="58" text-anchor="end">150</text><text x="288" y="103" text-anchor="end">0</text>
+            <rect class="rise" x="225" y="37" width="26" height="63" rx="5" style="fill:color-mix(in srgb,var(--blue) 38%,var(--surface))"/>
+            <rect class="rise" x="181" y="19.6" width="26" height="80.4" rx="5" style="fill:color-mix(in srgb,var(--blue) 38%,var(--surface))"/>
+            <rect class="rise" x="137" y="7" width="26" height="93" rx="5" style="fill:color-mix(in srgb,var(--blue) 38%,var(--surface))"/>
+            <rect class="rise" x="93" y="3.4" width="26" height="96.6" rx="5" style="fill:var(--blue)"/>
+            <rect class="rise" x="49" y="15.7" width="26" height="84.3" rx="5" style="fill:color-mix(in srgb,var(--blue) 38%,var(--surface))"/>
+            <rect x="5" y="28" width="26" height="72" rx="5" fill="none" stroke="var(--blue)" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <rect class="rise" x="5" y="66.4" width="26" height="33.6" rx="5" style="fill:var(--blue)"/>
+            <text x="238" y="116" text-anchor="middle">مايو</text><text x="194" y="116" text-anchor="middle">يونيو</text><text x="150" y="116" text-anchor="middle">يوليو</text><text x="106" y="116" text-anchor="middle" style="fill:var(--ink);font-weight:700">أغسطس</text><text x="62" y="116" text-anchor="middle">سبتمبر</text><text x="18" y="116" text-anchor="middle">أكتوبر</text>
+          </svg></div>
+        <div class="stage"><div class="h-row"><b style="font-size:14px">توزيع الطاقة</b><span class="muted">240 ك.و.س</span></div>
+          <div style="display:flex;align-items:center;gap:14px">
+            <div class="gwrap" style="width:116px;height:116px"><svg viewBox="0 0 100 100" style="width:100%;height:100%;transform:rotate(-90deg)" role="img" aria-label="Energy distribution: air conditioner 45%, refrigerator 18%, pump 12%, TV 8%, other 17%">
+              <circle cx="50" cy="50" r="36" fill="none" stroke="var(--blue)" stroke-width="14" pathLength="100" stroke-dasharray="44 56" stroke-dashoffset="0"/>
+              <circle cx="50" cy="50" r="36" fill="none" stroke="var(--green)" stroke-width="14" pathLength="100" stroke-dasharray="17 83" stroke-dashoffset="-45"/>
+              <circle cx="50" cy="50" r="36" fill="none" stroke="var(--yellow)" stroke-width="14" pathLength="100" stroke-dasharray="11 89" stroke-dashoffset="-63"/>
+              <circle cx="50" cy="50" r="36" fill="none" stroke="var(--orange)" stroke-width="14" pathLength="100" stroke-dasharray="7 93" stroke-dashoffset="-75"/>
+              <circle cx="50" cy="50" r="36" fill="none" stroke="var(--surface-3)" stroke-width="14" pathLength="100" stroke-dasharray="16 84" stroke-dashoffset="-83"/>
+            </svg><div class="gc"><b style="font-size:20px">45%</b><small style="color:var(--ink-3)">تكييف</small></div></div>
+            <div class="legend" style="flex:1"><div><i style="background:var(--blue)"></i>تكييف<em>45%</em></div><div><i style="background:var(--green)"></i>ثلاجة<em>18%</em></div><div><i style="background:var(--yellow)"></i>طلمبة<em>12%</em></div><div><i style="background:var(--orange)"></i>تلفزيون<em>8%</em></div><div><i style="background:var(--surface-3)"></i>أخرى<em>17%</em></div></div>
+          </div></div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="gh">Micro-animations</h3>
+  <p class="gsub">Each effect ends on a visible resting state. Durations: 120 ms press, 200 ms hover and toggles, 450 ms page transitions, 800–1200 ms data reveals. Easing: <code>cubic-bezier(.2,.8,.2,1)</code> for entrances, linear for loops.</p>
+  <div class="motion-grid">
+    <div class="mt"><div class="demo"><div class="card lift" style="width:130px;text-align:center"><b>مرّر الفأرة</b></div></div><b>Card hover</b><small>Lift 3 px, elevation 1 to 2 · 200 ms</small></div>
+    <div class="mt"><div class="demo"><button class="btn primary" type="button">اضغط</button></div><b>Button press</b><small>Scale to 97%, shadow tightens · 120 ms</small></div>
+    <div class="mt"><div class="demo"><svg class="chart" viewBox="0 0 290 124" style="width:92%" id="mChart"><path class="ln draw" pathLength="1" d="M250,38.5 C230,38.5 230,28 210,28 C190,28 190,41.5 170,41.5 C150,41.5 150,33.3 130,33.3 C110,33.3 110,44.5 90,44.5 C70,44.5 70,39.3 50,39.3 C30,39.3 30,29.5 10,29.5"/></svg></div><b>Chart animation</b><small>Line draws right to left in RTL · 1.2 s</small><button class="tiny-btn" type="button" data-replay="#mChart path">Replay</button></div>
+    <div class="mt"><div class="demo" id="mPage"><div class="pg a">الرئيسية</div><div class="pg b">الأجهزة</div></div><b>Page transition</b><small>Forward slides in from the left in RTL · 450 ms</small><button class="tiny-btn" type="button" id="mPageBtn">Toggle page</button></div>
+    <div class="mt"><div class="demo" style="color:var(--blue);gap:18px;display:flex"><span class="spin"></span><span class="dots"><i></i><i></i><i></i></span></div><b>Loading</b><small>Spinner for actions, shimmer skeleton for screens</small></div>
+    <div class="mt"><div class="demo"><span class="num" id="mCount" style="font:700 36px var(--font-en)">184.50</span></div><b>Balance animation</b><small>Count up with tabular figures · 900 ms</small><button class="tiny-btn" type="button" id="mCountBtn">Replay</button></div>
+    <div class="mt"><div class="demo"><div class="scan-box"><svg class="ic" style="width:34px;height:34px"><use href="#meter"/></svg></div></div><b>AI scanning</b><small>Light bar sweeps the frame while OCR runs · 1.6 s loop</small></div>
+  </div>
+</div>
+</section>
+<style>
+.sb .batt{display:block}
+.cam .btn.ghost{color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.32)}
+.cam .btn.tonal{background:rgba(255,255,255,.14);color:#fff}
+.cam .tile{background:rgba(255,255,255,.12);color:#fff}
+.cam .vf.dim .meter{filter:blur(3px) saturate(.7)}
+.mini-trend{width:84px;height:34px;flex:none}
+.clone-note{font:500 12px var(--font-mono);color:var(--ink-3)}
+.lbl-s{font:700 11px var(--font-ar);color:var(--ink-3)}
+</style>
+
+<!-- ================= MOBILE SCREENS ================= -->
+<section class="sec" id="screens">
+<div class="wrap">
+  <h2>Mobile screens</h2>
+  <p class="sub">Every screen at 300 × 660, drawn right to left. Money and readings use sample data for a household in Cairo with a card meter: 184.50 EGP left, about 13 days at today's pace. Scroll each row sideways.</p>
+
+  <h3 class="gh">Onboarding</h3>
+  <p class="gsub">Splash, login, and registration split into two short steps so each screen fits one thumb: account first, then address and meter. Meter number can be read from a photo.</p>
+  <div class="rail">
+
+    <figure class="frame" id="f-splash"><div class="phone"><div class="screen splash">
+      <div class="sb" style="position:absolute;inset-inline:0;top:0;color:#fff"><span>9:41</span><i class="batt"></i></div>
+      <div class="lg"><div class="gauge g-glass" data-v="76" data-n="44" data-sweep="320" data-w="1.7" data-r1="52" data-r2="58"></div><svg class="logo" viewBox="0 0 64 64"><use href="#logo"/></svg></div>
+      <h1>PowerWise Egypt</h1>
+      <p class="ar">مراقبة ذكية للكهرباء</p>
+      <p class="en">SMART ELECTRICITY MONITORING</p>
+      <div style="position:absolute;bottom:56px;inset-inline:0;color:#fff"><div class="dots"><i></i><i></i><i></i></div></div>
+      <small style="position:absolute;bottom:24px;inset-inline:0;font:500 11px var(--font-en);opacity:.7">v1.0</small>
+    </div></div><figcaption>Splash</figcaption></figure>
+
+    <figure class="frame"><div class="phone"><div class="screen auth"><div class="sb"><span>9:41</span><i class="batt"></i></div>
+      <div class="body" style="gap:14px;padding-top:10px">
+        <div style="display:flex;align-items:center;gap:10px"><svg viewBox="0 0 64 64" style="width:40px;height:40px"><use href="#logo"/></svg><b style="font:800 17px var(--font-en)">PowerWise Egypt</b></div>
+        <div style="margin-top:6px"><h2>أهلاً بعودتك</h2><p class="t2" style="margin:2px 0 0;font-size:13.5px">سجّل الدخول لمتابعة استهلاك الكهرباء</p></div>
+        <div class="field"><label>البريد الإلكتروني</label><div class="input"><svg class="ic"><use href="#mail"/></svg><span>name@example.com</span></div></div>
+        <div class="field"><label>كلمة المرور</label><div class="input focus"><svg class="ic"><use href="#lock"/></svg><span class="v">••••••••</span><svg class="ic"><use href="#eye"/></svg></div></div>
+        <div class="h-row"><span style="display:flex;align-items:center;gap:8px;font:600 13px var(--font-ar)"><span class="cb on"><svg class="ic"><use href="#check"/></svg></span>تذكرني</span><button class="lnk" type="button">نسيت كلمة المرور؟</button></div>
+        <button class="btn primary block" type="button">تسجيل الدخول</button>
+        <div class="divider">أو</div>
+        <button class="btn ghost block" type="button"><span class="gbtn">G</span>المتابعة باستخدام Google</button>
+        <p class="t2" style="text-align:center;margin:auto 0 0;font-size:13.5px">ليس لديك حساب؟ <button class="lnk" type="button">إنشاء حساب</button></p>
+      </div></div></div><figcaption>Login</figcaption></figure>
+
+    <figure class="frame"><div class="phone"><div class="screen auth"><div class="sb"><span>9:41</span><i class="batt"></i></div>
+      <div class="top"><button class="ibtn" aria-label="رجوع"><svg class="ic"><use href="#back"/></svg></button><h1>إنشاء حساب</h1><span class="badge b-info">1 من 2</span></div>
+      <div class="body" style="gap:12px">
+        <div class="steps"><i class="on"></i><i></i></div>
+        <div class="field"><label>الاسم الكامل</label><div class="input"><svg class="ic"><use href="#user"/></svg><span>أحمد سمير</span></div></div>
+        <div class="field"><label>رقم الهاتف</label><div class="input"><span class="pre-x">+20</span><span style="direction:ltr;text-align:right">10 1234 5678</span><svg class="ic"><use href="#phone"/></svg></div></div>
+        <div class="field"><label>البريد الإلكتروني</label><div class="input"><svg class="ic"><use href="#mail"/></svg><span>name@example.com</span></div></div>
+        <div class="field"><label>كلمة المرور</label><div class="input"><svg class="ic"><use href="#lock"/></svg><span>8 أحرف على الأقل</span><svg class="ic"><use href="#eye"/></svg></div></div>
+        <div class="field"><label>تأكيد كلمة المرور</label><div class="input err"><svg class="ic"><use href="#lock"/></svg><span class="v">••••••</span></div><span class="hint err">كلمتا المرور غير متطابقتين</span></div>
+        <button class="btn primary block" type="button" style="margin-top:auto">التالي</button>
+      </div></div></div><figcaption>Register · account</figcaption></figure>
+
+    <figure class="frame"><div class="phone"><div class="screen auth"><div class="sb"><span>9:41</span><i class="batt"></i></div>
+      <div class="top"><button class="ibtn" aria-label="رجوع"><svg class="ic"><use href="#back"/></svg></button><h1>بيانات العداد</h1><span class="badge b-info">2 من 2</span></div>
+      <div class="body" style="gap:12px">
+        <div class="steps"><i class="on"></i><i class="on"></i></div>
+        <div class="field"><label>العنوان</label><div class="input"><svg class="ic"><use href="#pin"/></svg><span>12 شارع النيل، المعادي</span></div></div>
+        <div class="field"><label>المحافظة</label><div class="input"><svg class="ic"><use href="#globe"/></svg><span class="v">القاهرة</span><svg class="ic"><use href="#chevd"/></svg></div></div>
+        <div class="field"><label>رقم العداد</label><div class="input focus"><svg class="ic"><use href="#meter"/></svg><span class="v num" style="direction:ltr;text-align:right">4521 0098 7731</span><svg class="ic" style="color:var(--blue-ink)"><use href="#camera"/></svg></div><span class="hint">أو اضغط على الكاميرا لقراءته من الصورة</span></div>
+        <div class="field"><label>نوع العداد</label>
+          <div style="display:flex;gap:10px"><div class="opt on"><svg class="ic" style="color:var(--blue-ink)"><use href="#meter"/></svg><b>عداد كارت</b><small>مسبق الدفع، تشحن برصيد</small></div><div class="opt"><svg class="ic" style="color:var(--ink-3)"><use href="#file"/></svg><b>عداد فوترة</b><small>فاتورة شهرية</small></div></div></div>
+        <div style="display:flex;align-items:center;gap:8px;font:500 12.5px var(--font-ar)" class="t2"><span class="cb on"><svg class="ic"><use href="#check"/></svg></span>أوافق على الشروط وسياسة الخصوصية</div>
+        <button class="btn primary block" type="button" style="margin-top:auto">إنشاء الحساب</button>
+      </div></div></div><figcaption>Register · address &amp; meter</figcaption></figure>
+  </div>
+
+  <h3 class="gh">Home and devices</h3>
+  <p class="gsub">The balance card leads: current balance, days left on a tick-ring dial, and three glass chips. The AI line, quick actions and usage chart follow. Home scrolls; the mock shows the first screen.</p>
+  <div class="rail">
+
+    <figure class="frame" id="f-home"><div class="phone"><div class="screen"><div class="sb"><span>9:41</span><i class="batt"></i></div>
+      <header class="top"><span class="avatar">أ</span><div class="hg"><small>صباح الخير</small><h1>أحمد</h1></div><button class="ibtn" aria-label="الإشعارات"><svg class="ic"><use href="#bell"/></svg><i class="dot"></i></button></header>
+      <div class="body fade">
+        <section class="bal">
+          <div class="top2"><div><small>الرصيد الحالي</small><div class="amt num">184.50<span>ج.م</span></div><small style="display:block;margin-top:4px">رصيد يكفي حتى 27 أكتوبر</small></div>
+            <div class="gwrap g-glass" style="width:92px;height:92px"><div class="gauge g-glass" data-v="43" data-n="30" data-sweep="260"></div><div class="gc"><b>13</b><small>يوم متبقٍ</small></div></div></div>
+          <div class="mini"><div class="glass"><em>اليوم</em><b class="num">9.4</b><em>ك.و.س</em></div><div class="glass"><em>هذا الشهر</em><b class="num">112</b><em>ك.و.س</em></div><div class="glass"><em>التكلفة</em><b class="num">168</b><em>ج.م</em></div></div>
+        </section>
+        <div class="ai-strip"><span class="tile"><svg class="ic"><use href="#ai"/></svg></span><div class="grow1"><b>توقع الذكاء الاصطناعي</b><small>ينفد الرصيد حوالي 27 أكتوبر</small></div><svg class="ic" style="color:var(--ink-3)"><use href="#chev"/></svg></div>
+        <nav class="qa" aria-label="إجراءات سريعة"><a href="#"><span class="tile t-blue"><svg class="ic"><use href="#camera"/></svg></span>تصوير العداد</a><a href="#"><span class="tile t-green"><svg class="ic"><use href="#plug"/></svg></span>إضافة جهاز</a><a href="#"><span class="tile t-orange"><svg class="ic"><use href="#file"/></svg></span>التقارير</a><a href="#"><span class="tile t-yellow"><svg class="ic"><use href="#led"/></svg></span>نصائح التوفير</a></nav>
+        <div class="card"><div class="h-row"><b>الاستهلاك</b><div class="seg" style="width:150px;padding:3px"><button class="on" type="button" style="height:28px;font-size:12px">يومي</button><button type="button" style="height:28px;font-size:12px">أسبوعي</button><button type="button" style="height:28px;font-size:12px">شهري</button></div></div>
+          <svg class="chart" viewBox="0 0 290 124" style="margin-top:8px" role="img" aria-label="Daily usage, last 7 days">
+            <line class="gl" x1="0" x2="262" y1="10" y2="10"/><line class="gl" x1="0" x2="262" y1="55" y2="55"/><line class="gl" x1="0" x2="262" y1="100" y2="100"/>
+            <text x="288" y="13" text-anchor="end">12</text><text x="288" y="58" text-anchor="end">6</text><text x="288" y="103" text-anchor="end">0</text>
+            <path d="M250,38.5 C230,38.5 230,28 210,28 C190,28 190,41.5 170,41.5 C150,41.5 150,33.3 130,33.3 C110,33.3 110,44.5 90,44.5 C70,44.5 70,39.3 50,39.3 C30,39.3 30,29.5 10,29.5 L10,100 L250,100 Z" fill="url(#areaf)"/>
+            <path class="ln draw" pathLength="1" d="M250,38.5 C230,38.5 230,28 210,28 C190,28 190,41.5 170,41.5 C150,41.5 150,33.3 130,33.3 C110,33.3 110,44.5 90,44.5 C70,44.5 70,39.3 50,39.3 C30,39.3 30,29.5 10,29.5"/>
+            <circle cx="10" cy="29.5" r="4.5" fill="var(--blue)" stroke="var(--surface)" stroke-width="2.5"/>
+            <text x="14" y="18" text-anchor="middle" style="fill:var(--ink);font-weight:700;font-family:var(--font-en)">9.4</text>
+            <text x="250" y="116" text-anchor="middle">خميس</text><text x="210" y="116" text-anchor="middle">جمعة</text><text x="170" y="116" text-anchor="middle">سبت</text><text x="130" y="116" text-anchor="middle">أحد</text><text x="90" y="116" text-anchor="middle">اثنين</text><text x="50" y="116" text-anchor="middle">ثلاثاء</text><text x="10" y="116" text-anchor="middle" style="fill:var(--ink);font-weight:700">اليوم</text>
+          </svg>
+          <div class="h-row" style="margin-top:8px"><span class="muted">الشريحة الحالية (101–200)</span><b class="num" style="font-size:12.5px">112 / 200</b></div><div class="bar" style="margin-top:6px"><i style="--w:56%"></i></div>
+        </div>
+      </div>
+      <nav class="bnav" data-on="home"></nav></div></div><figcaption>Home dashboard</figcaption></figure>
+
+    <figure class="frame" data-clone="f-home" data-dark="1" data-cap="Home dashboard · dark"></figure>
+
+    <figure class="frame"><div class="phone"><div class="screen"><div class="sb"><span>9:41</span><i class="batt"></i></div>
+      <header class="top"><h1>أجهزتي</h1><button class="ibtn" aria-label="إضافة جهاز"><svg class="ic"><use href="#plus"/></svg></button></header>
+      <div class="body">
+        <div class="input"><svg class="ic"><use href="#search"/></svg><span>ابحث عن جهاز…</span></div>
+        <div class="chips"><span class="chip on">الكل</span><span class="chip">تبريد</span><span class="chip">مطبخ</span><span class="chip">إضاءة</span><span class="chip">شبكة</span></div>
+        <div class="dev-grid">
+          <div class="dcard"><span class="tile t-blue"><svg class="ic"><use href="#ac"/></svg></span><b>تكييف 1.5 حصان</b><small>1,200 واط</small><span class="kw num">108 <small>ك.و.س/شهر</small></span></div>
+          <div class="dcard"><span class="tile t-blue"><svg class="ic"><use href="#fridge"/></svg></span><b>ثلاجة</b><small>150 واط</small><span class="kw num">43 <small>ك.و.س/شهر</small></span></div>
+          <div class="dcard"><span class="tile t-grey"><svg class="ic"><use href="#pump"/></svg></span><b>طلمبة مياه</b><small>750 واط</small><span class="kw num">29 <small>ك.و.س/شهر</small></span></div>
+          <div class="dcard"><span class="tile t-grey"><svg class="ic"><use href="#tv"/></svg></span><b>تلفزيون LED</b><small>100 واط</small><span class="kw num">19 <small>ك.و.س/شهر</small></span></div>
+          <div class="dcard"><span class="tile t-orange"><svg class="ic"><use href="#kettle"/></svg></span><b>غلاية</b><small>2,000 واط</small><span class="kw num">14 <small>ك.و.س/شهر</small></span></div>
+          <div class="dcard"><span class="tile t-green"><svg class="ic"><use href="#router"/></svg></span><b>راوتر</b><small>12 واط</small><span class="kw num">9 <small>ك.و.س/شهر</small></span></div>
+        </div>
+      </div>
+      <button class="efab" type="button"><svg class="ic"><use href="#plus"/></svg>إضافة جهاز</button>
+      <nav class="bnav" data-on="devices"></nav></div></div><figcaption>Devices</figcaption></figure>
+
+    <figure class="frame"><div class="phone"><div class="screen"><div class="sb"><span>9:41</span><i class="batt"></i></div>
+      <header class="top"><button class="ibtn" aria-label="رجوع"><svg class="ic"><use href="#back"/></svg></button><h1>تكييف 1.5 حصان</h1><button class="ibtn" aria-label="تعديل"><svg class="ic"><use href="#sliders"/></svg></button></header>
+      <div class="body fade">
+        <div class="hero-img"><svg class="ic"><use href="#ac"/></svg><span class="badge" style="position:absolute;top:12px;inset-inline-start:12px;background:var(--glass);color:#fff;border:1px solid var(--glass-line)">صورة الجهاز</span></div>
+        <div class="stat3"><div class="card"><small>القدرة</small><b class="num">1,200 W</b></div><div class="card"><small>الاستهلاك اليومي</small><b class="num">3.6 kWh</b></div><div class="card"><small>التشغيل</small><b class="num">3 h</b></div></div>
+        <div style="display:flex;gap:10px"><div class="card grow1"><small class="muted">التكلفة اليومية</small><div class="num" style="font:700 22px/1.3 var(--font-en)">5.4 <span style="font:600 12px var(--font-ar);color:var(--ink-3)">ج.م</span></div></div><div class="card grow1"><small class="muted">التكلفة الشهرية</small><div class="num" style="font:700 22px/1.3 var(--font-en)">162 <span style="font:600 12px var(--font-ar);color:var(--ink-3)">ج.م</span></div></div></div>
+        <div class="card"><div class="h-row"><b>سجل التشغيل</b><span class="muted">ساعات / آخر 7 أيام</span></div>
+          <div class="mbars" style="margin-top:10px"><i style="height:62%"></i><i style="height:75%"></i><i style="height:100%"></i><i style="height:88%"></i><i style="height:50%"></i><i style="height:75%"></i><i class="hi" style="height:75%"></i></div></div>
+        <div class="card" style="display:flex;gap:12px;align-items:flex-start"><span class="tile t-yellow"><svg class="ic"><use href="#led"/></svg></span><div><b style="font:700 14px var(--font-ar)">اقتراح للتوفير</b><div class="t2" style="font-size:13px">اضبط الترموستات على 25° لتقليل الاستهلاك حتى 10% شهرياً.</div></div></div>
+      </div></div></div><figcaption>Device details</figcaption></figure>
+  </div>
+
+  <h3 class="gh">Meter photo and OCR</h3>
+  <p class="gsub">Five steps from viewfinder to result. The yellow frame, the sweep line and the reading itself are the only bright elements on the dark camera surface. Failure always offers manual entry beside the retry button.</p>
+  <div class="rail">
+
+    <figure class="frame"><div class="phone"><div class="screen cam"><div class="sb"><span>9:41</span><i class="batt"></i></div>
+      <div class="vf"><button class="cbtn" style="position:absolute;top:8px;inset-inline-start:12px;width:40px;height:40px;z-index:3" aria-label="إغلاق"><svg class="ic"><use href="#x"/></svg></button>
+        <div class="hintb" style="top:12px"><span>ضع شاشة العداد في الإطار</span></div>
+        <div class="meter"><div class="lbl">PREPAID METER · 220V</div><div class="lcd">184.50</div><div class="keys"><i></i><i></i><i></i><i></i></div></div>
+        <div class="brk"><i></i><i></i><i></i><i></i></div></div>
+      <div class="ctl"><button class="cbtn" aria-label="رفع صورة"><svg class="ic"><use href="#image"/></svg></button><button class="shut" aria-label="التقاط"><i></i></button><button class="cbtn" aria-label="الفلاش"><svg class="ic"><use href="#bolt"/></svg></button></div></div></div><figcaption>Camera</figcaption></figure>
+
+    <figure class="frame"><div class="phone"><div class="screen cam"><div class="sb"><span>9:41</span><i class="batt"></i></div>
+      <div class="vf"><div class="meter" style="opacity:.9"><div class="lbl">PREPAID METER · 220V</div><div class="lcd">184.50</div><div class="keys"><i></i><i></i><i></i><i></i></div></div>
+        <div class="crop"><i></i><i></i><i></i><i></i></div></div>
+      <div class="sheet-dark"><div class="h-row"><b style="font:700 16px var(--font-ar)">معاينة الصورة</b><span class="badge" style="background:rgba(255,255,255,.14);color:#fff">اسحب الأطراف للقص</span></div>
+        <div style="display:flex;gap:10px"><button class="btn ghost grow1" type="button" style="flex:1">إعادة</button><button class="btn tonal" type="button"><svg class="ic"><use href="#crop"/></svg>قص</button></div>
+        <button class="btn primary block" type="button"><svg class="ic"><use href="#ai"/></svg>تحليل الصورة</button></div></div></div><figcaption>Preview &amp; crop</figcaption></figure>
+
+    <figure class="frame"><div class="phone"><div class="screen cam"><div class="sb"><span>9:41</span><i class="batt"></i></div>
+      <div class="vf"><div class="meter"><div class="lbl">PREPAID METER · 220V</div><div class="lcd">184.50</div><div class="keys"><i></i><i></i><i></i><i></i></div></div>
+        <div class="brk"><i></i><i></i><i></i><i></i></div><div class="scanln"></div></div>
+      <div class="sheet-dark"><div class="h-row"><div style="display:flex;align-items:center;gap:10px"><span class="spin" style="width:22px;height:22px;border-width:2.5px;border-color:rgba(255,255,255,.2);border-top-color:var(--yellow)"></span><b style="font:700 15px var(--font-ar)">جارٍ قراءة الشاشة…</b></div><b class="num" style="font-size:15px">68%</b></div>
+        <div class="bar"><i style="--w:68%"></i></div>
+        <div style="display:grid;gap:6px;font:600 13px var(--font-ar)"><div style="display:flex;gap:8px;align-items:center"><svg class="ic" style="width:18px;height:18px;color:#5EE0AE"><use href="#check"/></svg>تحسين الصورة</div><div style="display:flex;gap:8px;align-items:center"><svg class="ic" style="width:18px;height:18px;color:#5EE0AE"><use href="#check"/></svg>تحديد أرقام العداد</div><div style="display:flex;gap:8px;align-items:center;opacity:.65"><svg class="ic" style="width:18px;height:18px"><use href="#clock"/></svg>التحقق من القراءة</div></div></div></div></div><figcaption>Scanning · OCR progress</figcaption></figure>
+
+    <figure class="frame"><div class="phone"><div class="screen cam"><div class="sb"><span>9:41</span><i class="batt"></i></div>
+      <div class="vf" style="flex:1"><div class="meter" style="top:50px;height:170px;inset-inline:56px;padding:12px;gap:8px"><div class="lbl">PREPAID METER</div><div class="lcd" style="height:50px;font-size:28px">184.50</div><div class="keys"><i></i><i></i><i></i><i></i></div></div>
+        <div class="brk" style="top:36px;height:198px;inset-inline:46px"><i style="border-color:#34D399"></i><i style="border-color:#34D399"></i><i style="border-color:#34D399"></i><i style="border-color:#34D399"></i></div></div>
+      <div class="sheet" style="display:flex;flex-direction:column;gap:12px;padding:18px 16px 20px;box-shadow:none;border-radius:28px 28px 0 0;color:var(--ink)">
+        <div style="display:flex;align-items:center;gap:10px"><span class="tile t-green"><svg class="ic"><use href="#check"/></svg></span><div><b style="font:700 16px var(--font-ar)">تمت القراءة بنجاح</b><div class="muted">دقة القراءة 98%</div></div><span class="badge b-ok" style="margin-inline-start:auto">موثوقة</span></div>
+        <div class="card" style="background:var(--surface-2);box-shadow:none;text-align:center"><small class="muted">الرصيد المقروء</small><div class="read num" style="margin-top:2px">184.50</div><small class="muted">ج.م</small></div>
+        <button class="btn primary block" type="button">تأكيد وحفظ</button><button class="btn ghost block" type="button">تعديل القراءة</button></div></div></div><figcaption>Reading success</figcaption></figure>
+
+    <figure class="frame"><div class="phone"><div class="screen cam"><div class="sb"><span>9:41</span><i class="batt"></i></div>
+      <div class="vf dim" style="flex:1"><div class="meter" style="top:50px;height:170px;inset-inline:56px;padding:12px;gap:8px"><div class="lbl">PREPAID METER</div><div class="lcd" style="height:50px;font-size:28px">1 4.5</div><div class="keys"><i></i><i></i><i></i><i></i></div></div>
+        <div class="brk" style="top:36px;height:198px;inset-inline:46px"><i style="border-color:#FF8E8E"></i><i style="border-color:#FF8E8E"></i><i style="border-color:#FF8E8E"></i><i style="border-color:#FF8E8E"></i></div></div>
+      <div class="sheet" style="display:flex;flex-direction:column;gap:10px;padding:18px 16px 20px;box-shadow:none;border-radius:28px 28px 0 0;color:var(--ink)">
+        <div style="display:flex;align-items:center;gap:10px"><span class="tile t-red"><svg class="ic"><use href="#warn"/></svg></span><div><b style="font:700 16px var(--font-ar)">تعذّرت قراءة الصورة</b><div class="muted">الأرقام غير واضحة</div></div></div>
+        <div class="row" style="padding:2px 0"><span class="tile t-yellow" style="width:34px;height:34px;border-radius:11px"><svg class="ic" style="width:18px;height:18px"><use href="#led"/></svg></span><b style="font-size:13px">صوّر في إضاءة أفضل وتجنب الانعكاس</b></div>
+        <div class="row" style="padding:2px 0"><span class="tile t-blue" style="width:34px;height:34px;border-radius:11px"><svg class="ic" style="width:18px;height:18px"><use href="#camera"/></svg></span><b style="font-size:13px">ثبّت الهاتف واملأ الإطار بالشاشة</b></div>
+        <button class="btn primary block" type="button"><svg class="ic"><use href="#refresh"/></svg>أعد التصوير</button><button class="btn ghost block" type="button">أدخل القراءة يدوياً</button></div></div></div><figcaption>Reading failed</figcaption></figure>
+  </div>
+
+  <h3 class="gh">Balance, analytics and AI</h3>
+  <p class="gsub">Balance answers “when do I need to recharge”. Analytics answers “where is it going”. The AI screen turns both into a score, warnings and next steps. Warnings use orange and a label; red is kept for abnormal consumption.</p>
+  <div class="rail">
+
+    <figure class="frame"><div class="phone"><div class="screen"><div class="sb"><span>9:41</span><i class="batt"></i></div>
+      <header class="top"><button class="ibtn" aria-label="رجوع"><svg class="ic"><use href="#back"/></svg></button><h1>الرصيد</h1><button class="ibtn" aria-label="الشحن"><svg class="ic"><use href="#recharge"/></svg></button></header>
+      <div class="body fade">
+        <section class="bal"><div class="top2"><div><small>الرصيد الحالي</small><div class="amt num">184.50<span>ج.م</span></div></div>
+          <div class="gwrap" style="width:96px;height:96px"><div class="gauge g-glass" data-v="43" data-n="30" data-sweep="260"></div><div class="gc"><b>13</b><small>يوم متبقٍ</small></div></div></div>
+          <div class="mini"><div class="glass"><em>آخر شحن</em><b class="num" style="font-size:14px">6 أكتوبر</b></div><div class="glass"><em>ينفد في</em><b class="num" style="font-size:14px">27 أكتوبر</b></div><div class="glass"><em>مصروف يومي</em><b class="num" style="font-size:14px">14.1 ج.م</b></div></div></section>
+        <div class="card" style="background:var(--green-soft);box-shadow:none"><div style="display:flex;gap:12px;align-items:flex-start"><span class="tile t-green" style="background:var(--surface)"><svg class="ic"><use href="#recharge"/></svg></span><div><b style="font:700 14px var(--font-ar);color:var(--green-ink)">توصية الشحن</b><div class="t2" style="font-size:13px">اشحن 200 ج.م قبل 25 أكتوبر لتفادي الانقطاع.</div></div></div><button class="btn primary sm" type="button" style="margin-top:12px;width:100%">تسجيل عملية شحن</button></div>
+        <div class="card"><div class="h-row"><b>آخر عمليات الشحن</b><button class="lnk" type="button">عرض الكل</button></div>
+          <div class="row"><span class="tile t-blue"><svg class="ic"><use href="#recharge"/></svg></span><div class="grow1"><b>6 أكتوبر</b><small>شحن كارت</small></div><b class="num" style="color:var(--green-ink)">+300</b></div>
+          <div class="sep"></div>
+          <div class="row"><span class="tile t-blue"><svg class="ic"><use href="#recharge"/></svg></span><div class="grow1"><b>21 سبتمبر</b><small>شحن كارت</small></div><b class="num" style="color:var(--green-ink)">+250</b></div>
+        </div>
+      </div>
+      <nav class="bnav" data-on="home"></nav></div></div><figcaption>Balance</figcaption></figure>
+
+    <figure class="frame" id="f-analytics"><div class="phone"><div class="screen"><div class="sb"><span>9:41</span><i class="batt"></i></div>
+      <header class="top"><h1>التحليلات</h1><button class="ibtn" aria-label="الفترة"><svg class="ic"><use href="#calendar"/></svg></button></header>
+      <div class="body fade">
+        <div class="seg"><button type="button">يومي</button><button class="on" type="button">شهري</button><button type="button">سنوي</button></div>
+        <div class="stat3"><div class="card"><small>اليوم</small><b class="num" style="color:var(--orange-ink)">+16%</b><small>عن أمس</small></div><div class="card"><small>الشهر</small><b class="num" style="color:var(--green-ink)">−15%</b><small>عن سبتمبر</small></div><div class="card"><small>السنة</small><b class="num" style="color:var(--green-ink)">−6%</b><small>عن 2025</small></div></div>
+        <div class="card"><div class="h-row"><b>توزيع الطاقة</b><span class="muted">240 ك.و.س</span></div>
+          <div style="display:flex;align-items:center;gap:14px;margin-top:8px">
+            <div class="gwrap" style="width:104px;height:104px"><svg viewBox="0 0 100 100" style="width:100%;height:100%;transform:rotate(-90deg)" role="img" aria-label="Energy distribution"><circle cx="50" cy="50" r="36" fill="none" stroke="var(--blue)" stroke-width="14" pathLength="100" stroke-dasharray="44 56" stroke-dashoffset="0"/><circle cx="50" cy="50" r="36" fill="none" stroke="var(--green)" stroke-width="14" pathLength="100" stroke-dasharray="17 83" stroke-dashoffset="-45"/><circle cx="50" cy="50" r="36" fill="none" stroke="var(--yellow)" stroke-width="14" pathLength="100" stroke-dasharray="11 89" stroke-dashoffset="-63"/><circle cx="50" cy="50" r="36" fill="none" stroke="var(--orange)" stroke-width="14" pathLength="100" stroke-dasharray="7 93" stroke-dashoffset="-75"/><circle cx="50" cy="50" r="36" fill="none" stroke="var(--surface-3)" stroke-width="14" pathLength="100" stroke-dasharray="16 84" stroke-dashoffset="-83"/></svg><div class="gc"><b style="font-size:18px">45%</b><small style="color:var(--ink-3)">تكييف</small></div></div>
+            <div class="legend" style="flex:1"><div><i style="background:var(--blue)"></i>تكييف<em>45%</em></div><div><i style="background:var(--green)"></i>ثلاجة<em>18%</em></div><div><i style="background:var(--yellow)"></i>طلمبة<em>12%</em></div><div><i style="background:var(--orange)"></i>تلفزيون<em>8%</em></div></div></div></div>
+        <div style="display:flex;gap:10px"><div class="card grow1" style="display:flex;gap:10px;align-items:center"><span class="tile t-red" style="width:36px;height:36px"><svg class="ic"><use href="#trend"/></svg></span><div><small class="muted">الأعلى</small><b style="display:block;font:700 13px var(--font-ar)">التكييف</b></div></div><div class="card grow1" style="display:flex;gap:10px;align-items:center"><span class="tile t-green" style="width:36px;height:36px"><svg class="ic"><use href="#trend-d"/></svg></span><div><small class="muted">الأقل</small><b style="display:block;font:700 13px var(--font-ar)">الراوتر</b></div></div></div>
+        <div class="card"><div class="h-row"><b>مقارنة شهرية</b><span class="muted">ك.و.س</span></div>
+          <svg class="chart" viewBox="0 0 290 124" style="margin-top:8px" role="img" aria-label="Monthly usage May to October">
+            <line class="gl" x1="0" x2="262" y1="10" y2="10"/><line class="gl" x1="0" x2="262" y1="55" y2="55"/><line class="gl" x1="0" x2="262" y1="100" y2="100"/>
+            <text x="288" y="13" text-anchor="end">300</text><text x="288" y="58" text-anchor="end">150</text><text x="288" y="103" text-anchor="end">0</text>
+            <rect class="rise" x="225" y="37" width="26" height="63" rx="5" style="fill:color-mix(in srgb,var(--blue) 38%,var(--surface))"/><rect class="rise" x="181" y="19.6" width="26" height="80.4" rx="5" style="fill:color-mix(in srgb,var(--blue) 38%,var(--surface))"/><rect class="rise" x="137" y="7" width="26" height="93" rx="5" style="fill:color-mix(in srgb,var(--blue) 38%,var(--surface))"/><rect class="rise" x="93" y="3.4" width="26" height="96.6" rx="5" style="fill:var(--blue)"/><rect class="rise" x="49" y="15.7" width="26" height="84.3" rx="5" style="fill:color-mix(in srgb,var(--blue) 38%,var(--surface))"/><rect x="5" y="28" width="26" height="72" rx="5" fill="none" stroke="var(--blue)" stroke-width="1.5" stroke-dasharray="4 3"/><rect class="rise" x="5" y="66.4" width="26" height="33.6" rx="5" style="fill:var(--blue)"/>
+            <text x="238" y="116" text-anchor="middle">مايو</text><text x="194" y="116" text-anchor="middle">يونيو</text><text x="150" y="116" text-anchor="middle">يوليو</text><text x="106" y="116" text-anchor="middle" style="fill:var(--ink);font-weight:700">أغسطس</text><text x="62" y="116" text-anchor="middle">سبتمبر</text><text x="18" y="116" text-anchor="middle">أكتوبر</text>
+          </svg></div>
+      </div>
+      <nav class="bnav" data-on="analytics"></nav></div></div><figcaption>Analytics</figcaption></figure>
+
+    <figure class="frame" id="f-ai"><div class="phone"><div class="screen"><div class="sb"><span>9:41</span><i class="batt"></i></div>
+      <header class="top"><h1>التحليل الذكي</h1><span class="badge b-ai"><svg class="ic" style="width:12px;height:12px"><use href="#ai"/></svg>AI</span></header>
+      <div class="body fade">
+        <div class="ai-card"><div style="display:flex;align-items:center;gap:14px;margin-top:4px">
+          <div class="gwrap" style="width:104px;height:104px"><div class="gauge" data-v="78" data-n="30" data-sweep="260" style="--gc:var(--green)"></div><div class="gc"><b style="font-size:28px">78</b><small style="color:var(--ink-3)">من 100</small></div></div>
+          <div><span class="badge b-ok">جيد</span><div style="font:700 15px/1.4 var(--font-ar);margin-top:6px">درجة كفاءة استهلاكك</div><div class="t2" style="font-size:12.5px">تحسنت 4 نقاط عن الأسبوع الماضي</div></div></div></div>
+        <div class="card" style="display:flex;gap:12px;align-items:center"><span class="tile t-blue"><svg class="ic"><use href="#calendar"/></svg></span><div class="grow1"><small class="muted">موعد الشحن المتوقع</small><b style="display:block;font:700 15px var(--font-ar)">27 أكتوبر</b></div>
+          <div style="text-align:center"><svg class="mini-trend" viewBox="0 0 84 34" aria-hidden="true"><path d="M2 26 C16 26 18 18 32 20 C46 22 48 12 62 12 C72 12 74 8 82 6" fill="none" stroke="var(--orange)" stroke-width="2.4" stroke-linecap="round"/></svg><small class="muted">اتجاه صاعد +6%</small></div></div>
+        <div class="card" style="background:var(--orange-soft);box-shadow:none"><div style="display:flex;gap:12px;align-items:flex-start"><span class="tile t-orange" style="background:var(--surface)"><svg class="ic"><use href="#warn"/></svg></span><div><b style="font:700 14px var(--font-ar);color:var(--orange-ink)">تحذير</b><div class="t2" style="font-size:13px">استهلاك التكييف أعلى 22% من المعتاد بين 2 و5 مساءً.</div></div></div></div>
+        <div class="card"><div style="display:flex;gap:12px;align-items:flex-start"><span class="tile t-grey"><svg class="ic"><use href="#wrench"/></svg></span><div><b style="font:700 14px var(--font-ar)">مشكلة محتملة</b><div class="t2" style="font-size:13px">قد تنخفض كفاءة التكييف. ننصح بتنظيف الفلتر أو الصيانة.</div></div></div></div>
+        <div class="card"><b>التوصيات</b>
+          <div class="row"><span class="tile t-green" style="width:34px;height:34px;border-radius:11px"><svg class="ic" style="width:18px;height:18px"><use href="#check"/></svg></span><b style="font-size:13px">اضبط التكييف على 25°</b></div>
+          <div class="row"><span class="tile t-green" style="width:34px;height:34px;border-radius:11px"><svg class="ic" style="width:18px;height:18px"><use href="#check"/></svg></span><b style="font-size:13px">شغّل الغسالة خارج ساعات الذروة</b></div>
+        </div>
+      </div>
+      <nav class="bnav" data-on="analytics"></nav></div></div><figcaption>AI analysis</figcaption></figure>
+
+    <figure class="frame" data-clone="f-ai" data-dark="1" data-cap="AI analysis · dark"></figure>
+  </div>
+
+  <h3 class="gh">Notifications and settings</h3>
+  <p class="gsub">Alerts carry a tinted tile, a one-line action, and an unread dot. Settings keep the language choice and dark mode one tap away.</p>
+  <div class="rail">
+    <figure class="frame"><div class="phone"><div class="screen"><div class="sb"><span>9:41</span><i class="batt"></i></div>
+      <header class="top"><button class="ibtn" aria-label="رجوع"><svg class="ic"><use href="#back"/></svg></button><h1>الإشعارات</h1><button class="lnk" type="button">قراءة الكل</button></header>
+      <div class="body">
+        <div class="chips"><span class="chip on">الكل</span><span class="chip">الرصيد</span><span class="chip">الاستهلاك</span><span class="chip">الأجهزة</span></div>
+        <div class="group-l">اليوم</div>
+        <div class="card" style="padding:4px 14px">
+          <div class="row"><span class="tile t-orange"><svg class="ic"><use href="#wallet"/></svg></span><div class="grow1"><b>رصيد منخفض</b><small>الرصيد أقل من 200 ج.م. يُفضّل الشحن قبل 25 أكتوبر.</small></div><i class="dot" style="background:var(--blue);box-shadow:none"></i></div><div class="sep"></div>
+          <div class="row"><span class="tile t-red"><svg class="ic"><use href="#bolt"/></svg></span><div class="grow1"><b>استهلاك مرتفع</b><small>استهلاكك اليوم أعلى 16% من أمس.</small></div><i class="dot" style="background:var(--blue);box-shadow:none"></i></div><div class="sep"></div>
+          <div class="row"><span class="tile t-yellow"><svg class="ic"><use href="#trend"/></svg></span><div class="grow1"><b>استهلاك غير معتاد</b><small>ارتفاع مفاجئ بين 2 و5 مساءً.</small></div></div>
+        </div>
+        <div class="group-l">أمس</div>
+        <div class="card" style="padding:4px 14px">
+          <div class="row"><span class="tile t-blue"><svg class="ic"><use href="#recharge"/></svg></span><div class="grow1"><b>تذكير بالشحن</b><small>موعد الشحن المقترح بعد 11 يوماً.</small></div></div><div class="sep"></div>
+          <div class="row"><span class="tile t-blue"><svg class="ic"><use href="#ac"/></svg></span><div class="grow1"><b>تنبيه جهاز</b><small>التكييف يعمل منذ 9 ساعات متواصلة.</small></div></div>
+        </div>
+      </div></div></div><figcaption>Notifications</figcaption></figure>
+
+    <figure class="frame"><div class="phone"><div class="screen"><div class="sb"><span>9:41</span><i class="batt"></i></div>
+      <header class="top"><h1>الإعدادات</h1></header>
+      <div class="body">
+        <div class="card" style="display:flex;align-items:center;gap:12px"><span class="avatar" style="width:52px;height:52px;border-radius:18px;font-size:20px">أ</span><div class="grow1"><b style="font:700 16px var(--font-ar)">أحمد سمير</b><div class="muted">عداد كارت · 4521 0098 7731</div></div><svg class="ic" style="color:var(--ink-3)"><use href="#chev"/></svg></div>
+        <div class="card" style="padding:4px 14px">
+          <div class="row"><span class="tile t-blue"><svg class="ic"><use href="#user"/></svg></span><div class="grow1"><b>الملف الشخصي</b></div><svg class="ic" style="color:var(--ink-3)"><use href="#chev"/></svg></div><div class="sep"></div>
+          <div class="row"><span class="tile t-blue"><svg class="ic"><use href="#globe"/></svg></span><div class="grow1"><b>اللغة</b></div><div class="seg" style="width:116px;padding:3px"><button class="on" type="button" style="height:28px;font-size:12px">عربي</button><button type="button" style="height:28px;font-size:12px;font-family:var(--font-en)">English</button></div></div><div class="sep"></div>
+          <div class="row"><span class="tile t-grey"><svg class="ic"><use href="#moon"/></svg></span><div class="grow1"><b>الوضع الداكن</b></div><button class="sw" role="switch" aria-checked="false" aria-label="الوضع الداكن"></button></div><div class="sep"></div>
+          <div class="row"><span class="tile t-orange"><svg class="ic"><use href="#bell"/></svg></span><div class="grow1"><b>الإشعارات</b></div><button class="sw on" role="switch" aria-checked="true" aria-label="الإشعارات"></button></div>
+        </div>
+        <div class="card" style="padding:4px 14px">
+          <div class="row"><span class="tile t-grey"><svg class="ic"><use href="#info"/></svg></span><div class="grow1"><b>حول التطبيق</b></div><svg class="ic" style="color:var(--ink-3)"><use href="#chev"/></svg></div><div class="sep"></div>
+          <div class="row"><span class="tile t-grey"><svg class="ic"><use href="#help"/></svg></span><div class="grow1"><b>المساعدة</b></div><svg class="ic" style="color:var(--ink-3)"><use href="#chev"/></svg></div><div class="sep"></div>
+          <div class="row"><span class="tile t-grey"><svg class="ic"><use href="#shield"/></svg></span><div class="grow1"><b>الخصوصية</b></div><svg class="ic" style="color:var(--ink-3)"><use href="#chev"/></svg></div>
+        </div>
+        <button class="btn danger block" type="button" style="height:48px"><svg class="ic"><use href="#logout"/></svg>تسجيل الخروج</button>
+      </div>
+      <nav class="bnav" data-on="settings"></nav></div></div><figcaption>Settings</figcaption></figure>
+  </div>
+
+  <h3 class="gh">Empty, loading, error and success states</h3>
+  <p class="gsub">Each state says what happened and offers the next action. Skeletons copy the layout of the screen they replace, so nothing jumps when data arrives.</p>
+  <div class="rail">
+    <figure class="frame"><div class="phone"><div class="screen"><div class="sb"><span>9:41</span><i class="batt"></i></div>
+      <header class="top"><h1>أجهزتي</h1><button class="ibtn" aria-label="إضافة جهاز"><svg class="ic"><use href="#plus"/></svg></button></header>
+      <div class="body center-col"><div class="ill"><svg class="ic"><use href="#plug"/></svg></div><h2>لا توجد أجهزة بعد</h2><p>أضف أجهزتك لتعرف كم تستهلك كل منها وكم تدفع.</p><button class="btn primary" type="button"><svg class="ic"><use href="#plus"/></svg>إضافة جهاز</button><button class="lnk" type="button">أو صوّر العداد أولاً</button></div>
+      <nav class="bnav" data-on="devices"></nav></div></div><figcaption>Empty</figcaption></figure>
+
+    <figure class="frame"><div class="phone"><div class="screen"><div class="sb"><span>9:41</span><i class="batt"></i></div>
+      <header class="top"><div class="sk" style="width:40px;height:40px;border-radius:14px"></div><div class="hg"><div class="sk" style="height:10px;width:50px"></div><div class="sk" style="height:16px;width:80px;margin-top:6px"></div></div><div class="sk" style="width:40px;height:40px;border-radius:14px"></div></header>
+      <div class="body" aria-busy="true" aria-label="جارٍ التحميل">
+        <div class="sk" style="height:182px;border-radius:26px;flex:none"></div>
+        <div class="sk" style="height:56px;border-radius:18px;flex:none"></div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;flex:none"><div class="sk" style="height:54px;border-radius:18px"></div><div class="sk" style="height:54px;border-radius:18px"></div><div class="sk" style="height:54px;border-radius:18px"></div><div class="sk" style="height:54px;border-radius:18px"></div></div>
+        <div class="card"><div class="sk" style="height:12px;width:35%"></div><div class="sk" style="height:84px;margin-top:12px;border-radius:14px"></div><div class="sk" style="height:8px;margin-top:12px;border-radius:9px"></div></div>
+      </div>
+      <nav class="bnav" data-on="home"></nav></div></div><figcaption>Loading · skeleton</figcaption></figure>
+
+    <figure class="frame"><div class="phone"><div class="screen"><div class="sb"><span>9:41</span><i class="batt"></i></div>
+      <header class="top"><span class="avatar">أ</span><div class="hg"><small>صباح الخير</small><h1>أحمد</h1></div><button class="ibtn" aria-label="الإشعارات"><svg class="ic"><use href="#bell"/></svg></button></header>
+      <div class="body center-col"><div class="ill" style="color:var(--red-ink);background:var(--red-soft)"><svg class="ic"><use href="#wifi-off"/></svg></div><h2>تعذّر تحميل البيانات</h2><p>تحقق من اتصالك بالإنترنت ثم حاول مرة أخرى.</p><button class="btn primary" type="button"><svg class="ic"><use href="#refresh"/></svg>إعادة المحاولة</button><button class="lnk" type="button">عرض آخر بيانات محفوظة</button></div>
+      <div style="padding:0 16px 8px"><div class="snack"><svg class="ic" style="color:#FF8E8E"><use href="#warn"/></svg>لا يوجد اتصال<b>إعادة</b></div></div>
+      <nav class="bnav" data-on="home"></nav></div></div><figcaption>Error</figcaption></figure>
+
+    <figure class="frame"><div class="phone"><div class="screen"><div class="sb"><span>9:41</span><i class="batt"></i></div>
+      <header class="top"><h1>تسجيل الشحن</h1></header>
+      <div class="body center-col"><div class="ill" style="color:var(--green-ink);background:var(--green-soft)"><svg class="ic"><use href="#check"/></svg></div><h2>تم تسجيل الشحن</h2><p>أُضيف 200 ج.م إلى رصيدك.</p>
+        <div class="card" style="width:100%;text-align:center"><small class="muted">الرصيد الجديد</small><div class="num" style="font:700 36px/1.2 var(--font-en)">384.50 <span style="font:600 14px var(--font-ar);color:var(--ink-3)">ج.م</span></div><span class="badge b-ok">يكفي حتى 10 نوفمبر</span></div>
+        <button class="btn primary block" type="button">العودة للرئيسية</button></div>
+      <div style="padding:0 16px 8px"><div class="snack"><svg class="ic"><use href="#check"/></svg>تم حفظ العملية<b>تراجع</b></div></div>
+      <nav class="bnav" data-on="home"></nav></div></div><figcaption>Success</figcaption></figure>
+  </div>
+</div>
+</section>
+<style>
+.hero-vis .bg-ring{position:absolute;inset:auto;top:50%;left:50%;transform:translate(-50%,-50%);width:min(560px,92vw);height:auto;aspect-ratio:1;margin:0}
+.lay .qa{grid-template-columns:repeat(4,1fr)}
+.lay .ai-strip{background:var(--surface)}
+.tdots{display:flex;gap:6px;align-items:center}
+.side .brand-s{display:flex;align-items:center;gap:10px;font:800 17px var(--font-en);padding:4px 8px 18px}
+.side .brand-s svg{width:36px;height:36px}
+</style>
+
+<!-- ================= LAYOUTS ================= -->
+<section class="sec" id="layouts">
+<div class="wrap">
+  <h2>Wireframes and responsive layouts</h2>
+  <p class="sub">Structure first, then the same content on larger windows. Navigation moves from a bottom bar on phones, to a rail on tablets, to a labelled sidebar on desktop. The first column always starts on the right.</p>
+
+  <h3 class="gh">Wireframes</h3>
+  <p class="gsub">Low fidelity, ordered by what the user needs first. Dashed boxes are content regions, solid boxes are the primary object on the screen.</p>
+  <div class="rail">
+    <figure class="frame"><div class="wf" aria-label="Home wireframe">
+      <div class="wr" style="flex:none;align-items:center"><div class="wb" style="flex:none;width:30px;height:30px;border-radius:50%">av</div><div class="wb" style="height:24px">greeting</div><div class="wb" style="flex:none;width:30px;height:30px">bell</div></div>
+      <div class="wb f" style="height:126px;flex:none">Balance card · amount · days dial · 3 stats</div>
+      <div class="wb" style="height:34px;flex:none">AI prediction line</div>
+      <div class="wr" style="flex:none"><div class="wb" style="height:48px">act</div><div class="wb" style="height:48px">act</div><div class="wb" style="height:48px">act</div><div class="wb" style="height:48px">act</div></div>
+      <div class="wb" style="flex:1">Usage chart · day / week / month · tier bar</div>
+      <div class="wr" style="flex:none"><div class="wb" style="height:34px">nav</div><div class="wb" style="height:34px">nav</div><div class="wb f" style="height:34px">scan</div><div class="wb" style="height:34px">nav</div><div class="wb" style="height:34px">nav</div></div>
+    </div><figcaption>Home</figcaption></figure>
+    <figure class="frame"><div class="wf" aria-label="Devices wireframe">
+      <div class="wr" style="flex:none"><div class="wb" style="height:28px">title</div><div class="wb" style="flex:none;width:30px;height:28px">+</div></div>
+      <div class="wb" style="height:36px;flex:none">search</div>
+      <div class="wr" style="flex:none"><div class="wb" style="height:26px">all</div><div class="wb" style="height:26px">cat</div><div class="wb" style="height:26px">cat</div><div class="wb" style="height:26px">cat</div></div>
+      <div class="wr" style="flex:1"><div style="display:flex;flex-direction:column;gap:8px"><div class="wb f" style="flex:1">device</div><div class="wb f" style="flex:1">device</div><div class="wb f" style="flex:1">device</div></div><div style="display:flex;flex-direction:column;gap:8px"><div class="wb f" style="flex:1">device</div><div class="wb f" style="flex:1">device</div><div class="wb f" style="flex:1">device</div></div></div>
+      <div class="wb f" style="height:36px;flex:none;width:110px">+ add device</div>
+      <div class="wr" style="flex:none"><div class="wb" style="height:34px">nav</div><div class="wb" style="height:34px">nav</div><div class="wb f" style="height:34px">scan</div><div class="wb" style="height:34px">nav</div><div class="wb" style="height:34px">nav</div></div>
+    </div><figcaption>Devices</figcaption></figure>
+    <figure class="frame"><div class="wf" aria-label="Camera wireframe">
+      <div class="wr" style="flex:none"><div class="wb" style="flex:none;width:30px;height:30px">x</div><div class="wb" style="height:30px">hint</div></div>
+      <div class="wb f" style="flex:1">Viewfinder<br>meter frame + corners</div>
+      <div class="wb" style="height:20px;flex:none">tip text</div>
+      <div class="wr" style="flex:none;align-items:center;justify-content:space-around"><div class="wb" style="flex:none;width:46px;height:46px">gallery</div><div class="wb f" style="flex:none;width:62px;height:62px;border-radius:50%">shutter</div><div class="wb" style="flex:none;width:46px;height:46px">flash</div></div>
+    </div><figcaption>Camera</figcaption></figure>
+    <figure class="frame"><div class="wf" aria-label="Balance wireframe">
+      <div class="wr" style="flex:none"><div class="wb" style="flex:none;width:30px;height:30px">‹</div><div class="wb" style="height:30px">title</div></div>
+      <div class="wb f" style="height:120px;flex:none">Balance · dial · recharge date · finish date · daily spend</div>
+      <div class="wb" style="height:70px;flex:none">Recharge recommendation + button</div>
+      <div class="wb" style="flex:1">Recharge history list</div>
+      <div class="wr" style="flex:none"><div class="wb" style="height:34px">nav</div><div class="wb" style="height:34px">nav</div><div class="wb f" style="height:34px">scan</div><div class="wb" style="height:34px">nav</div><div class="wb" style="height:34px">nav</div></div>
+    </div><figcaption>Balance</figcaption></figure>
+  </div>
+
+  <h3 class="gh">Tablet · expanded window 1024 × 720</h3>
+  <p class="gsub">A navigation rail replaces the bottom bar. The balance column stays at 300 px; charts take the remaining width and the donut and device ranking sit side by side underneath.</p>
+  <div class="scroll-x"><div class="dev" style="width:635px;height:446px"><div class="dev-in" style="transform:scale(.62)">
+    <div class="lay" style="width:1024px;height:720px">
+      <nav class="rail-n" aria-label="التنقل"><svg viewBox="0 0 64 64" style="width:44px;height:44px;margin-bottom:10px"><use href="#logo"/></svg>
+        <a class="on" href="#"><span class="pill"><svg class="ic"><use href="#home"/></svg></span>الرئيسية</a><a href="#"><span class="pill"><svg class="ic"><use href="#plug"/></svg></span>الأجهزة</a><a href="#"><span class="pill"><svg class="ic"><use href="#chart"/></svg></span>التحليلات</a><a href="#"><span class="pill"><svg class="ic"><use href="#wallet"/></svg></span>الرصيد</a><a href="#"><span class="pill"><svg class="ic"><use href="#sliders"/></svg></span>الإعدادات</a>
+        <button class="fab" style="margin:auto 0 0" aria-label="تصوير العداد"><svg class="ic"><use href="#camera"/></svg></button></nav>
+      <div class="lmain">
+        <div class="lhead"><h1>لوحة التحكم</h1><span class="badge b-info">الأربعاء، 14 أكتوبر</span><button class="ibtn" aria-label="الإشعارات"><svg class="ic"><use href="#bell"/></svg><i class="dot"></i></button><span class="avatar">أ</span></div>
+        <div style="display:grid;grid-template-columns:300px minmax(0,1fr);gap:16px;flex:1;min-height:0">
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <section class="bal"><div class="top2"><div><small>الرصيد الحالي</small><div class="amt num">184.50<span>ج.م</span></div><small style="display:block;margin-top:4px">يكفي حتى 27 أكتوبر</small></div><div class="gwrap" style="width:92px;height:92px"><div class="gauge g-glass" data-v="43" data-n="30" data-sweep="260"></div><div class="gc"><b>13</b><small>يوم متبقٍ</small></div></div></div>
+              <div class="mini"><div class="glass"><em>اليوم</em><b class="num">9.4</b><em>ك.و.س</em></div><div class="glass"><em>الشهر</em><b class="num">112</b><em>ك.و.س</em></div><div class="glass"><em>التكلفة</em><b class="num">168</b><em>ج.م</em></div></div></section>
+            <div class="ai-strip"><span class="tile"><svg class="ic"><use href="#ai"/></svg></span><div class="grow1"><b>توقع الذكاء الاصطناعي</b><small>ينفد الرصيد حوالي 27 أكتوبر</small></div></div>
+            <nav class="qa"><a href="#"><span class="tile t-blue"><svg class="ic"><use href="#camera"/></svg></span>تصوير العداد</a><a href="#"><span class="tile t-green"><svg class="ic"><use href="#plug"/></svg></span>إضافة جهاز</a><a href="#"><span class="tile t-orange"><svg class="ic"><use href="#file"/></svg></span>التقارير</a><a href="#"><span class="tile t-yellow"><svg class="ic"><use href="#led"/></svg></span>نصائح</a></nav>
+            <div class="card" style="display:flex;gap:12px;align-items:flex-start"><span class="tile t-yellow"><svg class="ic"><use href="#led"/></svg></span><div><b style="font:700 14px var(--font-ar)">نصيحة اليوم</b><div class="t2" style="font-size:13px">شغّل الغسالة والمكواة خارج ساعات الذروة لتقليل الشريحة.</div></div></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:14px;min-width:0">
+            <div class="card"><div class="h-row"><b style="font-size:16px">الاستهلاك اليومي</b><div class="seg" style="width:220px"><button class="on" type="button">يومي</button><button type="button">أسبوعي</button><button type="button">شهري</button></div></div>
+              <svg class="chart" viewBox="0 0 290 124" style="margin-top:10px" role="img" aria-label="Daily usage">
+                <line class="gl" x1="0" x2="262" y1="10" y2="10"/><line class="gl" x1="0" x2="262" y1="55" y2="55"/><line class="gl" x1="0" x2="262" y1="100" y2="100"/>
+                <text x="288" y="13" text-anchor="end">12</text><text x="288" y="58" text-anchor="end">6</text><text x="288" y="103" text-anchor="end">0</text>
+                <path d="M250,38.5 C230,38.5 230,28 210,28 C190,28 190,41.5 170,41.5 C150,41.5 150,33.3 130,33.3 C110,33.3 110,44.5 90,44.5 C70,44.5 70,39.3 50,39.3 C30,39.3 30,29.5 10,29.5 L10,100 L250,100 Z" fill="url(#areaf)"/>
+                <path class="ln draw" pathLength="1" d="M250,38.5 C230,38.5 230,28 210,28 C190,28 190,41.5 170,41.5 C150,41.5 150,33.3 130,33.3 C110,33.3 110,44.5 90,44.5 C70,44.5 70,39.3 50,39.3 C30,39.3 30,29.5 10,29.5"/>
+                <circle cx="10" cy="29.5" r="4.5" fill="var(--blue)" stroke="var(--surface)" stroke-width="2.5"/><text x="14" y="18" text-anchor="middle" style="fill:var(--ink);font-weight:700;font-family:var(--font-en)">9.4</text>
+                <text x="250" y="116" text-anchor="middle">خميس</text><text x="210" y="116" text-anchor="middle">جمعة</text><text x="170" y="116" text-anchor="middle">سبت</text><text x="130" y="116" text-anchor="middle">أحد</text><text x="90" y="116" text-anchor="middle">اثنين</text><text x="50" y="116" text-anchor="middle">ثلاثاء</text><text x="10" y="116" text-anchor="middle" style="fill:var(--ink);font-weight:700">اليوم</text>
+              </svg></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+              <div class="card"><b>توزيع الطاقة</b><div style="display:flex;align-items:center;gap:14px;margin-top:10px"><div class="gwrap" style="width:110px;height:110px"><svg viewBox="0 0 100 100" style="width:100%;height:100%;transform:rotate(-90deg)" role="img" aria-label="Energy distribution"><circle cx="50" cy="50" r="36" fill="none" stroke="var(--blue)" stroke-width="14" pathLength="100" stroke-dasharray="44 56" stroke-dashoffset="0"/><circle cx="50" cy="50" r="36" fill="none" stroke="var(--green)" stroke-width="14" pathLength="100" stroke-dasharray="17 83" stroke-dashoffset="-45"/><circle cx="50" cy="50" r="36" fill="none" stroke="var(--yellow)" stroke-width="14" pathLength="100" stroke-dasharray="11 89" stroke-dashoffset="-63"/><circle cx="50" cy="50" r="36" fill="none" stroke="var(--orange)" stroke-width="14" pathLength="100" stroke-dasharray="7 93" stroke-dashoffset="-75"/><circle cx="50" cy="50" r="36" fill="none" stroke="var(--surface-3)" stroke-width="14" pathLength="100" stroke-dasharray="16 84" stroke-dashoffset="-83"/></svg><div class="gc"><b style="font-size:20px">240</b><small style="color:var(--ink-3)">ك.و.س</small></div></div>
+                <div class="legend" style="flex:1"><div><i style="background:var(--blue)"></i>تكييف<em>45%</em></div><div><i style="background:var(--green)"></i>ثلاجة<em>18%</em></div><div><i style="background:var(--yellow)"></i>طلمبة<em>12%</em></div><div><i style="background:var(--orange)"></i>تلفزيون<em>8%</em></div></div></div></div>
+              <div class="card"><b>أعلى الأجهزة استهلاكاً</b>
+                <div class="row"><span class="tile t-blue" style="width:36px;height:36px"><svg class="ic"><use href="#ac"/></svg></span><div class="grow1"><b style="font-size:13px">تكييف</b><div class="bar" style="margin-top:4px"><i style="--w:100%"></i></div></div><b class="num" style="font-size:13px">108</b></div>
+                <div class="row"><span class="tile t-blue" style="width:36px;height:36px"><svg class="ic"><use href="#fridge"/></svg></span><div class="grow1"><b style="font-size:13px">ثلاجة</b><div class="bar" style="margin-top:4px"><i style="--w:40%"></i></div></div><b class="num" style="font-size:13px">43</b></div>
+                <div class="row"><span class="tile t-grey" style="width:36px;height:36px"><svg class="ic"><use href="#pump"/></svg></span><div class="grow1"><b style="font-size:13px">طلمبة مياه</b><div class="bar" style="margin-top:4px"><i style="--w:27%"></i></div></div><b class="num" style="font-size:13px">29</b></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div></div></div>
+
+  <h3 class="gh">Desktop · large window 1440 × 900</h3>
+  <p class="gsub">A labelled sidebar and a KPI row put every number from the phone's balance card in one glance. The chart and the device table share the wide column; the AI summary and distribution live in a 400 px side column.</p>
+  <div class="scroll-x"><div class="dev" style="width:806px;height:504px"><div class="dev-in" style="transform:scale(.56)">
+    <div class="lay" style="width:1440px;height:900px">
+      <aside class="side"><div class="brand-s"><svg viewBox="0 0 64 64"><use href="#logo"/></svg>PowerWise Egypt</div>
+        <a class="on" href="#"><svg class="ic"><use href="#home"/></svg>الرئيسية</a><a href="#"><svg class="ic"><use href="#plug"/></svg>الأجهزة</a><a href="#"><svg class="ic"><use href="#chart"/></svg>التحليلات</a><a href="#"><svg class="ic"><use href="#wallet"/></svg>الرصيد</a><a href="#"><svg class="ic"><use href="#ai"/></svg>التحليل الذكي</a><a href="#"><svg class="ic"><use href="#bell"/></svg>الإشعارات</a><a href="#"><svg class="ic"><use href="#sliders"/></svg>الإعدادات</a>
+        <div class="card" style="margin-top:auto;background:var(--surface-2);box-shadow:none"><span class="tile t-blue" style="margin-bottom:8px"><svg class="ic"><use href="#camera"/></svg></span><b style="font:700 14px var(--font-ar)">حدّث قراءة العداد</b><div class="t2" style="font-size:12.5px;margin:2px 0 10px">ارفع صورة من الهاتف أو من الكمبيوتر.</div><button class="btn primary sm block" type="button">رفع صورة</button></div></aside>
+      <div class="lmain" style="padding:28px">
+        <div class="lhead"><h1>لوحة التحكم</h1><div class="lsearch"><svg class="ic"><use href="#search"/></svg>ابحث عن جهاز أو تقرير…</div><button class="ibtn" aria-label="الإشعارات"><svg class="ic"><use href="#bell"/></svg><i class="dot"></i></button><span class="avatar">أ</span></div>
+        <div class="kpis">
+          <div class="kpi" style="background:var(--grad);color:#fff"><small style="color:#fff;opacity:.85">الرصيد الحالي</small><b class="num">184.50 <span style="font:600 14px var(--font-ar)">ج.م</span></b><em>يكفي 13 يوماً · حتى 27 أكتوبر</em></div>
+          <div class="kpi"><small>استهلاك اليوم</small><b class="num">9.4 <span style="font:600 14px var(--font-ar);color:var(--ink-3)">ك.و.س</span></b><em style="color:var(--orange-ink)">+16% عن أمس</em></div>
+          <div class="kpi"><small>هذا الشهر</small><b class="num">112 <span style="font:600 14px var(--font-ar);color:var(--ink-3)">ك.و.س</span></b><em style="color:var(--green-ink)">المتوقع 240 · أقل 15% من سبتمبر</em></div>
+          <div class="kpi"><small>التكلفة الحالية</small><b class="num">168 <span style="font:600 14px var(--font-ar);color:var(--ink-3)">ج.م</span></b><em class="t2">الشريحة 101–200 · 56%</em></div>
+        </div>
+        <div style="display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:16px;flex:1;min-height:0">
+          <div style="display:flex;flex-direction:column;gap:16px;min-width:0">
+            <div class="card" style="padding:20px"><div class="h-row"><b style="font-size:17px">الاستهلاك اليومي</b><div class="seg" style="width:240px"><button class="on" type="button">يومي</button><button type="button">أسبوعي</button><button type="button">شهري</button></div></div>
+              <svg class="chart" viewBox="0 0 290 124" style="margin-top:10px;max-height:300px" role="img" aria-label="Daily usage">
+                <line class="gl" x1="0" x2="262" y1="10" y2="10"/><line class="gl" x1="0" x2="262" y1="55" y2="55"/><line class="gl" x1="0" x2="262" y1="100" y2="100"/>
+                <text x="288" y="13" text-anchor="end">12</text><text x="288" y="58" text-anchor="end">6</text><text x="288" y="103" text-anchor="end">0</text>
+                <path d="M250,38.5 C230,38.5 230,28 210,28 C190,28 190,41.5 170,41.5 C150,41.5 150,33.3 130,33.3 C110,33.3 110,44.5 90,44.5 C70,44.5 70,39.3 50,39.3 C30,39.3 30,29.5 10,29.5 L10,100 L250,100 Z" fill="url(#areaf)"/>
+                <path class="ln draw" pathLength="1" d="M250,38.5 C230,38.5 230,28 210,28 C190,28 190,41.5 170,41.5 C150,41.5 150,33.3 130,33.3 C110,33.3 110,44.5 90,44.5 C70,44.5 70,39.3 50,39.3 C30,39.3 30,29.5 10,29.5"/>
+                <circle cx="10" cy="29.5" r="4.5" fill="var(--blue)" stroke="var(--surface)" stroke-width="2.5"/><text x="14" y="18" text-anchor="middle" style="fill:var(--ink);font-weight:700;font-family:var(--font-en)">9.4</text>
+                <text x="250" y="116" text-anchor="middle">خميس</text><text x="210" y="116" text-anchor="middle">جمعة</text><text x="170" y="116" text-anchor="middle">سبت</text><text x="130" y="116" text-anchor="middle">أحد</text><text x="90" y="116" text-anchor="middle">اثنين</text><text x="50" y="116" text-anchor="middle">ثلاثاء</text><text x="10" y="116" text-anchor="middle" style="fill:var(--ink);font-weight:700">اليوم</text>
+              </svg></div>
+            <div class="card" style="padding:20px"><div class="h-row"><b style="font-size:17px">الأجهزة الأعلى استهلاكاً</b><button class="lnk" type="button">عرض الكل</button></div>
+              <table class="tbl" style="margin-top:6px"><thead><tr><th>الجهاز</th><th>القدرة</th><th>الاستهلاك الشهري</th><th>التكلفة</th><th style="width:26%">الحصة</th></tr></thead><tbody>
+                <tr><td><b>تكييف 1.5 حصان</b></td><td class="num">1,200 W</td><td class="num">108 kWh</td><td class="num">162 ج.م</td><td><div class="bar"><i style="--w:45%"></i></div></td></tr>
+                <tr><td><b>ثلاجة</b></td><td class="num">150 W</td><td class="num">43 kWh</td><td class="num">65 ج.م</td><td><div class="bar"><i style="--w:18%"></i></div></td></tr>
+                <tr><td><b>طلمبة مياه</b></td><td class="num">750 W</td><td class="num">29 kWh</td><td class="num">44 ج.م</td><td><div class="bar"><i style="--w:12%"></i></div></td></tr>
+                <tr><td><b>تلفزيون LED</b></td><td class="num">100 W</td><td class="num">19 kWh</td><td class="num">29 ج.م</td><td><div class="bar"><i style="--w:8%"></i></div></td></tr>
+              </tbody></table></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:16px;min-width:0">
+            <div class="ai-card" style="padding:20px"><div style="display:flex;align-items:center;gap:16px;margin-top:4px"><div class="gwrap" style="width:112px;height:112px"><div class="gauge" data-v="78" data-n="30" data-sweep="260" style="--gc:var(--green)"></div><div class="gc"><b style="font-size:30px">78</b><small style="color:var(--ink-3)">من 100</small></div></div><div><span class="badge b-ai"><svg class="ic" style="width:12px;height:12px"><use href="#ai"/></svg>التحليل الذكي</span><div style="font:700 16px/1.4 var(--font-ar);margin-top:8px">كفاءة استهلاكك جيدة</div><div class="t2" style="font-size:13px">الشحن المتوقع: 27 أكتوبر</div></div></div>
+              <div class="card" style="background:var(--orange-soft);box-shadow:none;margin-top:14px;display:flex;gap:12px"><span class="tile t-orange" style="background:var(--surface)"><svg class="ic"><use href="#warn"/></svg></span><div><b style="font:700 14px var(--font-ar);color:var(--orange-ink)">تحذير</b><div class="t2" style="font-size:13px">استهلاك التكييف أعلى 22% من المعتاد بين 2 و5 مساءً.</div></div></div></div>
+            <div class="card" style="padding:20px"><b style="font-size:16px">توزيع الطاقة</b><div style="display:flex;align-items:center;gap:16px;margin-top:12px"><div class="gwrap" style="width:130px;height:130px"><svg viewBox="0 0 100 100" style="width:100%;height:100%;transform:rotate(-90deg)" role="img" aria-label="Energy distribution"><circle cx="50" cy="50" r="36" fill="none" stroke="var(--blue)" stroke-width="14" pathLength="100" stroke-dasharray="44 56" stroke-dashoffset="0"/><circle cx="50" cy="50" r="36" fill="none" stroke="var(--green)" stroke-width="14" pathLength="100" stroke-dasharray="17 83" stroke-dashoffset="-45"/><circle cx="50" cy="50" r="36" fill="none" stroke="var(--yellow)" stroke-width="14" pathLength="100" stroke-dasharray="11 89" stroke-dashoffset="-63"/><circle cx="50" cy="50" r="36" fill="none" stroke="var(--orange)" stroke-width="14" pathLength="100" stroke-dasharray="7 93" stroke-dashoffset="-75"/><circle cx="50" cy="50" r="36" fill="none" stroke="var(--surface-3)" stroke-width="14" pathLength="100" stroke-dasharray="16 84" stroke-dashoffset="-83"/></svg><div class="gc"><b style="font-size:22px">240</b><small style="color:var(--ink-3)">ك.و.س</small></div></div>
+              <div class="legend" style="flex:1"><div><i style="background:var(--blue)"></i>تكييف<em>45%</em></div><div><i style="background:var(--green)"></i>ثلاجة<em>18%</em></div><div><i style="background:var(--yellow)"></i>طلمبة<em>12%</em></div><div><i style="background:var(--orange)"></i>تلفزيون<em>8%</em></div><div><i style="background:var(--surface-3)"></i>أخرى<em>17%</em></div></div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div></div></div>
+  <p class="dev-note">Both frames are scaled previews of the real layouts. Scroll sideways on small screens.</p>
+
+  <h3 class="gh">Layout grids and breakpoints</h3>
+  <div class="grid g3" style="margin-bottom:16px">
+    <div class="dc"><h4>COMPACT · 4 COLUMNS · MARGIN 16 · GUTTER 16</h4><div class="lg-grid" style="--gt:16px;--mg:16px;grid-template-columns:repeat(4,1fr)"><i></i><i></i><i></i><i></i></div></div>
+    <div class="dc"><h4>MEDIUM · 8 COLUMNS · MARGIN 24 · GUTTER 16</h4><div class="lg-grid" style="--gt:16px;--mg:24px;grid-template-columns:repeat(8,1fr)"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+    <div class="dc"><h4>EXPANDED · 12 COLUMNS · MARGIN 32 · GUTTER 24</h4><div class="lg-grid" style="--gt:24px;--mg:32px;grid-template-columns:repeat(12,1fr)"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+  </div>
+  <div class="dc"><div class="scroll-x"><table style="min-width:760px">
+    <thead><tr><th>WINDOW</th><th>WIDTH (dp)</th><th>NAVIGATION</th><th>HOME LAYOUT</th><th>CARDS PER ROW</th></tr></thead>
+    <tbody>
+      <tr><td><b>Compact</b></td><td><code>0–599</code></td><td>Bottom bar with raised scan button</td><td>One column: balance, AI line, actions, chart</td><td>1 (device cards 2)</td></tr>
+      <tr><td><b>Medium</b></td><td><code>600–839</code></td><td>Rail, 88 wide</td><td>Two columns: balance and AI left, charts right</td><td>2</td></tr>
+      <tr><td><b>Expanded</b></td><td><code>840–1199</code></td><td>Rail, 88 wide</td><td>300 px balance column, chart, donut and ranking</td><td>2–3</td></tr>
+      <tr><td><b>Large</b></td><td><code>1200+</code></td><td>Sidebar, 248 wide</td><td>KPI row, wide column and 400 px side column</td><td>4 KPIs, 2 columns</td></tr>
+    </tbody></table></div>
+    <p class="note" style="margin:12px 0 0">Content stops growing at 1280. Charts keep their aspect ratio and add gridlines as they widen. Landscape phones use the medium layout without the rail labels.</p>
+  </div>
+</div>
+</section>
+
+<!-- ================= SPECS ================= -->
+<section class="sec" id="specs">
+<div class="wrap">
+  <h2>Specifications and tokens</h2>
+  <p class="sub">Numbers a developer can build from, a Figma file structure that matches them, and the token set as JSON.</p>
+
+  <h3 class="gh">Component specifications</h3>
+  <div class="dc"><div class="scroll-x"><table style="min-width:720px">
+    <thead><tr><th>COMPONENT</th><th>SIZE</th><th>RADIUS</th><th>TYPE</th><th>BEHAVIOR</th></tr></thead>
+    <tbody>
+      <tr><td><b>Top app bar</b></td><td><code>56 high · 16 side</code></td><td><code>icon buttons 14</code></td><td>Cairo 700 18</td><td>Title fills; back arrow mirrors in LTR</td></tr>
+      <tr><td><b>Primary button</b></td><td><code>52 high · min 120</code></td><td><code>16</code></td><td>Cairo 700 16</td><td>Press 97% · 120 ms; loading keeps width</td></tr>
+      <tr><td><b>Small button</b></td><td><code>40 high</code></td><td><code>12</code></td><td>Cairo 700 14</td><td>Inside cards and dialogs</td></tr>
+      <tr><td><b>Text input</b></td><td><code>52 high</code></td><td><code>14</code></td><td>Cairo 500 14, label 12/600</td><td>Focus 2 px blue ring; error adds red ring and a hint line</td></tr>
+      <tr><td><b>Card</b></td><td><code>padding 14–20</code></td><td><code>22</code></td><td>Title 15/700</td><td>Elevation 1; hover lifts 3 px</td></tr>
+      <tr><td><b>Balance card</b></td><td><code>padding 16 · dial 92</code></td><td><code>26</code></td><td>Inter 700 38 for the amount</td><td>Dial: 30 ticks, 260° sweep, fills on load</td></tr>
+      <tr><td><b>Bottom navigation</b></td><td><code>72 high</code></td><td><code>24 top</code></td><td>Cairo 600 10.5</td><td>Active item sits on a 52 × 30 tinted pill</td></tr>
+      <tr><td><b>Scan button</b></td><td><code>58 × 58</code></td><td><code>20</code></td><td>Icon 26</td><td>Raised 30 above the bar, gradient fill</td></tr>
+      <tr><td><b>Chip</b></td><td><code>34 high (48 hit)</code></td><td><code>full</code></td><td>Cairo 600 13</td><td>Single select for filters</td></tr>
+      <tr><td><b>Switch</b></td><td><code>48 × 28</code></td><td><code>full</code></td><td>-</td><td>Thumb moves toward the end edge when on</td></tr>
+      <tr><td><b>Bottom sheet</b></td><td><code>grabber 40 × 4</code></td><td><code>28 top</code></td><td>Title 16/700</td><td>Drag to dismiss; scrim 45%</td></tr>
+      <tr><td><b>Dialog</b></td><td><code>max 340 · padding 20</code></td><td><code>28</code></td><td>Title 17/700</td><td>Cancel on the start side, destructive action on the end</td></tr>
+      <tr><td><b>Snackbar</b></td><td><code>padding 12 / 14</code></td><td><code>14</code></td><td>Cairo 600 13</td><td>4 s, one action, sits above the bottom bar</td></tr>
+      <tr><td><b>Progress bar</b></td><td><code>8 high</code></td><td><code>full</code></td><td>-</td><td>Fills from the start edge; turns orange at 90%, red at 100%</td></tr>
+    </tbody></table></div></div>
+
+  <div class="grid g2" style="margin-top:16px">
+    <div class="dc"><h4>FIGMA FILE STRUCTURE</h4>
+<pre class="code tree">PowerWise Egypt.fig
+├─ Cover
+├─ Foundations
+│   ├─ Color        variables, modes: Light / Dark
+│   ├─ Type         styles: AR Cairo, EN Inter, Numeric
+│   ├─ Space &amp; Radius
+│   ├─ Elevation &amp; Glass
+│   ├─ Icons        24 px grid, core + appliance sets
+│   └─ Motion       durations, easing curves
+├─ Components     (variants: state, size, theme, direction)
+│   ├─ Button · Input · Select · Switch · Chip
+│   ├─ Card · Balance Card · Device Card
+│   ├─ Navigation · App Bar · Bottom Nav · Rail · Sidebar
+│   ├─ Overlay · Dialog · Bottom Sheet · Snackbar · Tooltip
+│   └─ Charts · Line · Bar · Donut · Dial · Skeleton
+├─ Wireframes
+├─ Mobile · AR · Light
+│   ├─ Onboarding · Core · Meter OCR · Money &amp; AI · System
+│   └─ States · Empty · Loading · Error · Success
+├─ Mobile · AR · Dark
+├─ Mobile · EN · Light      (auto-mirrored from AR)
+├─ Tablet · 1024 · AR
+├─ Desktop · 1440 · AR
+├─ Prototypes     splash → login → home → scan → result
+└─ Handoff        specs, tokens, accessibility notes</pre>
+      <p class="note" style="margin:12px 0 0">Frames use auto layout with start/end padding so a single component set serves both directions. Boolean property <code>rtl</code> mirrors icons that should flip.</p></div>
+    <div class="dc"><h4>DESIGN TOKENS · JSON</h4>
+<pre class="code">{
+  "color": {
+    "primary":          { "light": "#1F5BFF", "dark": "#5B8CFF" },
+    "on-primary":       { "light": "#FFFFFF", "dark": "#04102E" },
+    "secondary":        { "light": "#0E9F6E", "dark": "#34D399" },
+    "accent":           { "light": "#FFC21A", "dark": "#FFD24D" },
+    "warning":          { "light": "#F58A07", "dark": "#FFA23A" },
+    "danger":           { "light": "#E5383B", "dark": "#FF6B6B" },
+    "success":          { "alias": "secondary" },
+    "background":       { "light": "#F3F6FC", "dark": "#070B14" },
+    "surface":          { "light": "#FFFFFF", "dark": "#0F1626" },
+    "surface-variant":  { "light": "#E9EEF8", "dark": "#172036" },
+    "outline":          { "light": "#D9E1F0", "dark": "#243050" },
+    "on-surface":       { "light": "#0A1226", "dark": "#EAF0FF" },
+    "on-surface-variant": { "light": "#47536E", "dark": "#A3B0CE" }
+  },
+  "gradient": {
+    "brand": { "angle": 135, "stops": ["#1F5BFF", "#0B8A63"] }
+  },
+  "font": {
+    "family": { "ar": "Cairo", "en": "Inter", "mono": "JetBrains Mono" },
+    "size":   { "label": 12, "body": 14, "body-lg": 16, "title": 20, "headline": 28, "display": 40, "meter": 44 },
+    "weight": { "regular": 400, "medium": 500, "semibold": 600, "bold": 700, "black": 800 }
+  },
+  "space":  [4, 8, 12, 16, 20, 24, 32, 40, 48, 64],
+  "radius": { "xs": 8, "sm": 12, "md": 16, "lg": 22, "xl": 28, "full": 999 },
+  "size":   { "touch": 48, "button": 52, "button-sm": 40, "input": 52, "app-bar": 56, "bottom-nav": 72 },
+  "shadow": {
+    "1": "0 1px 2px rgba(10,18,38,.06)",
+    "2": "0 8px 24px rgba(23,50,110,.12)",
+    "3": "0 22px 56px rgba(23,50,110,.22)"
+  },
+  "motion": {
+    "press": "120ms", "hover": "200ms", "page": "450ms", "reveal": "1000ms",
+    "ease-out": "cubic-bezier(.2,.8,.2,1)"
+  },
+  "breakpoint": { "compact": 0, "medium": 600, "expanded": 840, "large": 1200 }
+}</pre></div>
+  </div>
+</div>
+</section>
+</main>
+
+<footer class="foot"><div class="wrap">PowerWise Egypt design system. All balances, readings and prices are sample data for illustration.</div></footer>
+
+<script>
+(function(){
+  var NS='http://www.w3.org/2000/svg';
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function buildGauge(el){
+    if(el.firstChild) return;
+    var v=+el.dataset.v||0, n=+el.dataset.n||36, sw=+el.dataset.sweep||250, w=el.dataset.w||2.8, r1=+el.dataset.r1||38, r2=+el.dataset.r2||47;
+    var on=Math.round(v/100*n);
+    var svg=document.createElementNS(NS,'svg');
+    svg.setAttribute('viewBox','0 0 100 100'); svg.setAttribute('aria-hidden','true');
+    for(var i=0;i<n;i++){
+      var a=(-sw/2+i*sw/(n-1))*Math.PI/180, s=Math.sin(a), c=Math.cos(a);
+      var l=document.createElementNS(NS,'line');
+      l.setAttribute('x1',(50+r1*s).toFixed(2)); l.setAttribute('y1',(50-r1*c).toFixed(2));
+      l.setAttribute('x2',(50+r2*s).toFixed(2)); l.setAttribute('y2',(50-r2*c).toFixed(2));
+      l.setAttribute('class',i<on?'on':'off');
+      l.style.strokeWidth=w; l.style.animationDelay=(i*12)+'ms';
+      svg.appendChild(l);
+    }
+    el.appendChild(svg);
+  }
+
+  var navItems=[['home','home','الرئيسية'],['devices','plug','الأجهزة'],null,['analytics','chart','التحليلات'],['settings','sliders','الإعدادات']];
+  function buildNav(el){
+    var cur=el.dataset.on, h='';
+    navItems.forEach(function(it){
+      if(!it){ h+='<button class="fab" type="button" aria-label="تصوير العداد"><svg class="ic"><use href="#camera"/></svg></button>'; return; }
+      var on=it[0]===cur;
+      h+='<a href="#"'+(on?' class="on" aria-current="page"':'')+'><span class="pill"><svg class="ic"><use href="#'+it[1]+'"/></svg></span>'+it[2]+'</a>';
+    });
+    el.innerHTML=h;
+  }
+
+  document.querySelectorAll('.bnav[data-on]').forEach(buildNav);
+  document.querySelectorAll('.gauge[data-v]').forEach(buildGauge);
+
+  document.querySelectorAll('[data-clone]').forEach(function(host){
+    var src=document.getElementById(host.dataset.clone); if(!src) return;
+    var ph=src.querySelector('.phone').cloneNode(true);
+    if(host.dataset.dark) ph.querySelector('.screen').classList.add('fd');
+    host.appendChild(ph);
+    if(host.tagName==='FIGURE'){ var cap=document.createElement('figcaption'); cap.textContent=host.dataset.cap||''; host.appendChild(cap); }
+  });
+
+  /* theme toggle: auto -> light -> dark */
+  var modes=['auto','light','dark'], mi=0, root=document.documentElement;
+  var tb=document.getElementById('themeBtn'), tl=document.getElementById('themeLbl'), tu=tb.querySelector('use');
+  tb.addEventListener('click',function(){
+    mi=(mi+1)%3; var m=modes[mi];
+    if(m==='auto') root.removeAttribute('data-theme'); else root.setAttribute('data-theme',m);
+    tl.textContent=m.charAt(0).toUpperCase()+m.slice(1);
+    tu.setAttribute('href',m==='dark'?'#moon':'#sun');
+  });
+
+  function replay(el){ el.style.animation='none'; void el.getBoundingClientRect(); el.style.animation=''; }
+
+  document.addEventListener('click',function(e){
+    var t=e.target;
+    var a=t.closest('a[href="#"]'); if(a){ e.preventDefault(); return; }
+    var sb=t.closest('.seg button');
+    if(sb){ [].forEach.call(sb.parentNode.children,function(x){x.classList.remove('on')}); sb.classList.add('on'); return; }
+    var sw=t.closest('.sw');
+    if(sw){ var on=sw.getAttribute('aria-checked')!=='true'; sw.setAttribute('aria-checked',on?'true':'false'); sw.classList.toggle('on',on); return; }
+    var ch=t.closest('.chips .chip');
+    if(ch){ [].forEach.call(ch.parentNode.children,function(x){x.classList.remove('on')}); ch.classList.add('on'); return; }
+    var rp=t.closest('[data-replay]');
+    if(rp){ var tgt=document.querySelector(rp.dataset.replay); if(tgt) replay(tgt); return; }
+  });
+
+  var pg=document.getElementById('mPage'), pb=document.getElementById('mPageBtn');
+  if(pg&&pb) pb.addEventListener('click',function(){ pg.classList.toggle('p2'); });
+
+  var cEl=document.getElementById('mCount'), cb=document.getElementById('mCountBtn');
+  function count(){
+    if(!cEl) return;
+    if(reduce){ cEl.textContent='184.50'; return; }
+    var t0=null, end=184.5;
+    function f(ts){ if(!t0) t0=ts; var p=Math.min((ts-t0)/900,1), e=1-Math.pow(1-p,3); cEl.textContent=(end*e).toFixed(2); if(p<1) requestAnimationFrame(f); else cEl.textContent='184.50'; }
+    requestAnimationFrame(f);
+  }
+  if(cb) cb.addEventListener('click',count);
+})();
+</script>
+
+</body></html>
